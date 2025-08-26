@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import type { HTMLAttributes } from "react";
+import { useTranslation } from "react-i18next";
 import { BsArrowRightCircleFill } from "react-icons/bs";
 
 export interface InsuranceElProps extends HTMLAttributes<HTMLDivElement> {
@@ -16,6 +17,7 @@ const InsuranceEl = ({
   className,
   ...rest
 }: InsuranceElProps) => {
+  const { t } = useTranslation("home");
   const { className: btnClasses, ...btnRest } = buttonProps;
   return (
     <div
@@ -40,13 +42,15 @@ const InsuranceEl = ({
           {subHeading}
         </span>
         <button
+          dir={"auto"}
           {...btnRest}
           className={clsx(
             "flex items-center justify-center  text-akti-burgundy font-semibold text-base",
             btnClasses
           )}
         >
-          View more <BsArrowRightCircleFill className="ml-1.5 inline-flex" />
+          {t("banner.view-btn")}{" "}
+          <BsArrowRightCircleFill className={clsx("mx-1.5 inline-flex")} />
         </button>
       </div>
     </div>

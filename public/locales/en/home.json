@@ -1,0 +1,27 @@
+{
+  "banner": {
+    "bg-text": "Types of \nInsurances",
+    "insurances": {
+      "motor": {
+        "heading": "Motor",
+        "subHeading": "Are you searching for reliable online car insurance in Qatar that offers comprehensive and convenient coverage? AKTI is then the solution."
+      },
+      "marine": {
+        "heading": "Marine",
+        "subHeading": "Set sail with confidence, knowing you're covered. Our third-party Boat & Yacht Insurance provides seamless protection on the water. Get your policy online in minutes and enjoy total peace of mind"
+      },
+      "medical": {
+        "heading": "Medical",
+        "subHeading": "Designed exclusively for residents aged 60 and above, AKTI Senior’s Health Insurance plans offer two tailored options: Basic and Basic Plus."
+      },
+      "travel": {
+        "heading": "Travel",
+        "subHeading": " Stay protected against trip delays, lost baggage, and unexpected emergencies—wherever you go."
+      },
+      "personal": {
+        "heading": "Personal Accidents",
+        "subHeading": "Select the plan that works for you and stay covered with reliable protection every day."
+      }
+    }
+  }
+}

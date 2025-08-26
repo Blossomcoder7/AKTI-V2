@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+* {
+  font-family: "Lama Sans Regular", sans-serif !important;
+  transition: all ease 350ms;
+}

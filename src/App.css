@@ -1,0 +1,60 @@
+@import "./styles/Fonts.css";
+
+:root {
+  /* Main brand */
+  --akti-burgundy: #590b25;
+  --akti-copper: #673446;
+  --akti-sand: #f2c8b6;
+  --akti-sky: #cddef4;
+  --akti-fire: #df2a2c;
+  --akti-grey: #735e64;
+  --akti-savana: #be6455;
+  --akti-warm-grey: #c1b2b6;
+  --akti-sage: #afc8be;
+  --akti-white: #ffffff;
+}
+
+#root,
+body {
+  font-family: "lama", sans-serif;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: auto;
+  overflow: auto;
+  padding: 0;
+  margin: 0;
+  scrollbar-width: none !important;
+}
+
+body,
+main {
+  overflow: auto;
+  scrollbar-width: none !important;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+body {
+  background-color: var(--akti-burgundy);
+}
+
+@media (max-width: 72rem) {
+  html,
+  body,
+  #root {
+    width: 100%;
+    height: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+  }
+}

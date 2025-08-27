@@ -35,10 +35,10 @@ const InsuranceEl = ({
         />
       </div>
       <div className="flex flex-col gap-1 items-center justify-between">
-        <span className="text-akti-burgundy font-semibold text-3xl">
+        <span className="text-akti-burgundy  font-semibold text-3xl">
           {heading}
         </span>
-        <span className="text-[#353535] font-thin text-sm max-w-xs px-2 text-pretty text-center">
+        <span className="text-akti-grey font-thin text-[12px] max-w-xs px-3 py-1 text-pretty text-center">
           {subHeading}
         </span>
         <button

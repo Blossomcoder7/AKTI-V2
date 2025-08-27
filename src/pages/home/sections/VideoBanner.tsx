@@ -20,18 +20,17 @@ const VideoBanner = () => {
   });
   useGSAP(
     () => {
-      const scroller = document.querySelector("body"); // or a ref you control
       if (!scrollerRefEl.current || !pinRefEl.current || !fadingEl.current) {
         return;
       } else {
-        ScrollTrigger.refresh();
         ScrollTrigger.create({
           trigger: scrollerRefEl.current,
           pin: pinRefEl.current,
-          markers: true,
-          scroller,
+          // markers: true,
+          // scroller,
           start: "top top",
           end: "bottom top",
+          // pinSpacing: false,
           onUpdate: (self) => {
             const progress = self.progress;
             motionProgress.set(progress);
@@ -51,7 +50,7 @@ const VideoBanner = () => {
   return (
     <>
       <div
-        ref={pinRefEl}
+        // ref={pinRefEl}
         className="w-full h-screen min-h-screen py-3.5  flex relative items-center justify-center"
       >
         <div
@@ -98,16 +97,15 @@ const VideoBanner = () => {
           </div>
           {/* <div className="w-full h-2/3 absolute z-2 bottom-0 left-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent"></div> */}
         </div>
-        <div className="absolute left-0 sm:block bottom-0 z-20 w-full h-1 ">
-          {scrollYProgress <= 0.99 && (
-            <motion.div
-              style={{ scaleX: springX }}
-              className="h-1 bg-white z-20  origin-left transform"
-            />
-          )}
-        </div>
       </div>
-
+      {scrollYProgress <= 0.99 && (
+        <div className="fixed left-0 sm:block bottom-0 z-20 w-full h-fit ">
+          <motion.div
+            style={{ scaleX: springX }}
+            className="h-1 bg-white z-20  origin-left transform"
+          />
+        </div>
+      )}
       <div id="next" className="h-1 w-full"></div>
     </>
   );

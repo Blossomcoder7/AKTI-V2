@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import WhatsappCTA from "./buttons/WhatsappCTA";
 import LanguageToggle from "./buttons/languageToggle";
 import HamMenuButton from "./buttons/HamMenuButton";
-import FullLogo from "./FullLogo";
+// import FullLogo from "./FullLogo";
 import { useScroll } from "motion/react";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
@@ -17,7 +17,7 @@ const Navbar = () => {
       setY(latest);
     });
   }, [scrollY]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <MagicScrollWrapper>
@@ -27,7 +27,8 @@ const Navbar = () => {
           y > 100 ? "" : "bg-transparent"
         )}
       >
-        {y > 200 ? (
+        <span></span>
+        {/* {y > 200 ? (
           <div className="w-auto h-full inline-flex ">
             <FullLogo
               onClick={() => {
@@ -39,7 +40,7 @@ const Navbar = () => {
           </div>
         ) : (
           <span></span>
-        )}
+        )} */}
         <div className="flex items-center justify-center space-x-4">
           <div className="hidden md:inline-flex">
             <WhatsappCTA />

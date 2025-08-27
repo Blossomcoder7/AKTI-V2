@@ -53,8 +53,8 @@ const Banner = () => {
   }, [open, handleClose]);
 
   return (
-    <div className="flex w-full h-fit items-center justify-center ">
-      <div className="w-full flex items-center  h-screen  justify-center relative bg-white  min-h-screen rounded-[20px]">
+    <div className="flex w-full h-fit items-center justify-center">
+      <div className="w-full flex items-center max-h-[900px] h-screen  justify-center relative bg-white  min-h-screen rounded-[20px]">
         {/* phone number field  */}
 
         <div
@@ -181,14 +181,14 @@ const Banner = () => {
         </div>
         {/* background text  */}
         <div className="absolute w-full h-full inset-0 z-1 flex items-center justify-center">
-          <span className="text-akti-burgundy-light font-bold text-[clamp(50px,4vw,80px)] leading-none">
+          <span className="text-akti-burgundy-light text-center font-bold text-[clamp(50px,4vw,80px)] leading-none">
             <pre>{t("banner.bg-text")}</pre>
           </span>
         </div>
         {/* main content  */}
         <div
           ref={contentEl}
-          className="w-full h-full pb-10 px-10 relative max-w-[1300px] mx-auto inset-0 z-3 min-h-fit max-h-max flex flex-col"
+          className="w-full h-full pb-10 pt-6 px-10 relative max-w-[1300px] mx-auto inset-0 z-3 min-h-fit max-h-max flex flex-col"
         >
           <div className="w-full h-1/3 flex justify-around items-end  ">
             <InsuranceEl
@@ -232,7 +232,10 @@ const Banner = () => {
               image="/images/insurances/travel.png"
             />
             <InsuranceEl
-              className=" translate-x-8/12 -translate-y-1/4"
+              className={clsx(
+                " translate-x-8/12 ",
+                isRtl ? "-translate-y-1/2" : "-translate-y-1/4"
+              )}
               heading={t("banner.insurances.personal.heading")}
               subHeading={t("banner.insurances.personal.subHeading")}
               image="/images/insurances/personal.png"

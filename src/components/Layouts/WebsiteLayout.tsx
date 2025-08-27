@@ -11,7 +11,7 @@ const WebsiteLayout = () => {
           <Navbar />
         </>
       </header>
-      <main className="flex flex-col items-start justify-start bg-akti-burgundy  w-full h-auto min-h-[600vh] p-3.5 space-y-3.5">
+      <main className=" bg-akti-burgundy  w-full h-fit min-h-[1200vh] p-3.5 ">
         <Outlet />
       </main>
       <footer className="flex items-center justify-center">Footer Here</footer>

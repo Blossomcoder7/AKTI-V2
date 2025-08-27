@@ -3,6 +3,7 @@ import VideoBanner from "./sections/VideoBanner";
 import WheelSection from "./sections/WheelSection";
 
 const HomePage = () => {
+  
   return (
     <>
       <Banner />

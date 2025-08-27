@@ -33,8 +33,6 @@ body,
   /* scrollbar-width: none !important; */
 }
 
-
-
 body::-webkit-scrollbar {
   display: none;
 }
@@ -45,6 +43,7 @@ button {
 
 body {
   background-color: var(--akti-burgundy);
+  height: auto;
+  overflow: auto;
+  overflow-x: hidden;
 }
-
-

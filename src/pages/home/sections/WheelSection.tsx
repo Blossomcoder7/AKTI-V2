@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gear from "../../../assets/icons/gear.png";
 import shield from "../../../assets/icons/shield.png";
 import { SliderList } from "../../../options/SliderList";
+import { AnimatePresence, motion } from "motion/react";
 
 gsap.registerPlugin(ScrollTrigger);
 const angle = 270;
@@ -13,8 +14,9 @@ const WheelSection = () => {
   const pinEl = useRef<HTMLDivElement | null>(null);
   const circleEl = useRef<HTMLDivElement | null>(null);
   const handsGroupRef = useRef<HTMLDivElement | null>(null);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [activeId, setActiveId] = useState<number | null>(null);
   const [faviconRadius, setFaviconRadius] = useState(0);
+
   useLayoutEffect(() => {
     if (!circleEl.current) return;
     const observer = new ResizeObserver((entries) => {
@@ -29,48 +31,72 @@ const WheelSection = () => {
 
   const totalHands = SliderList.length;
   const step = angle / (totalHands - 1);
-  const baseAngles = SliderList.map((_, i) => -90 + i * step);
 
   useGSAP(
     () => {
       if (!pinEl.current || !handsGroupRef.current) return;
+
+      let currentItemIndex = 0;
+
       const st = ScrollTrigger.create({
         trigger: pinEl.current,
         start: "top top",
         end: "+=300%",
         pin: pinEl.current,
-        scrub: true,
-        markers: true,
-        onUpdate: (self) => {
-          const rotation = -angle * self.progress;
-          gsap.set(handsGroupRef.current, { rotation });
-          let minDiff = 360;
-          let bestIndex: number | null = null;
-          baseAngles.forEach((base, idx) => {
-            let eff = base + rotation;
-            eff = ((eff % 360) + 360) % 360;
-            const diff = Math.min(
-              Math.abs(eff - angle),
-              360 - Math.abs(eff - angle)
+        scrub: false,
+        snap: {
+          snapTo: (progress) => {
+            // Calculate which item we're closest to
+            const rawIndex = progress * (totalHands - 1);
+            const nearestIndex = Math.round(rawIndex);
+            currentItemIndex = Math.max(
+              0,
+              Math.min(nearestIndex, totalHands - 1)
             );
-            if (diff < minDiff) {
-              minDiff = diff;
-              bestIndex = idx;
-            }
-          });
+            return currentItemIndex / (totalHands - 1);
+          },
+          duration: 0.4,
+          delay: 0.02,
+          ease: "power2.out",
+          directional: false, // Prevents going back to previous
+        },
+        onUpdate: (self) => {
+          // Only animate rotation during the snap, not continuously
+          const targetIndex = Math.round(self.progress * (totalHands - 1));
+          const clampedIndex = Math.max(
+            0,
+            Math.min(targetIndex, totalHands - 1)
+          );
+          const exactRotation = -clampedIndex * step;
 
-          const tolerance = step / 2;
-          if (bestIndex !== null && minDiff <= tolerance) {
-            if (activeIndex !== bestIndex) setActiveIndex(bestIndex);
-          } else {
-            if (activeIndex !== null) setActiveIndex(null);
+          // Single, clean rotation animation
+          gsap.to(handsGroupRef.current, {
+            rotation: exactRotation,
+            duration: 0.4,
+            ease: "power2.out",
+            overwrite: "auto",
+          });
+          const newActiveId = SliderList[clampedIndex]?.id || null;
+          if (activeId !== newActiveId) {
+            setActiveId(newActiveId);
           }
+        },
+        onSnapComplete: (self) => {
+          const finalIndex = Math.round(self.progress * (totalHands - 1));
+          const clampedIndex = Math.max(
+            0,
+            Math.min(finalIndex, totalHands - 1)
+          );
+          const exactRotation = -clampedIndex * step;
+          gsap.set(handsGroupRef.current, {
+            rotation: exactRotation,
+          });
         },
       });
 
       return () => st.kill();
     },
-    { dependencies: [pinEl, handsGroupRef] }
+    { dependencies: [pinEl, handsGroupRef, totalHands, step] }
   );
 
   return (
@@ -100,6 +126,7 @@ const WheelSection = () => {
           {/* Wheel area */}
           <div className="absolute left-0 w-full h-full top-6/12 -translate-y-1">
             <div className="w-full h-full relative flex items-center justify-center">
+              <div className="absolute bottom-full mb-4 max-w-[260px] left-1/2 -translate-x-1/2"></div>
               {/* Center favicon */}
               <div
                 ref={circleEl}
@@ -111,7 +138,6 @@ const WheelSection = () => {
                   className="object-contain w-full h-full rounded-full"
                 />
               </div>
-
               {/* Hands */}
               <div
                 ref={handsGroupRef}
@@ -119,8 +145,8 @@ const WheelSection = () => {
               >
                 {SliderList.map((item, i) => {
                   const baseAngle = i * step;
-                  const isActive = activeIndex === i;
-                  const gap = isActive ? 125 : 125;
+                  const isActive = activeId === item.id;
+                  const gap = isActive ? 155 : 155;
                   const length = faviconRadius + gap;
                   return (
                     <HandItem
@@ -189,16 +215,36 @@ const HandItem: React.FC<HandItemProps> = ({
         </span>
         <div className="w-3 h-3 rounded-full bg-akti-burgundy" />
       </div>
-      {isActive && (
-        <div className="flex flex-col min-w-[200px] text-center justify-center items-center gap-2 translate-y-2">
-          <span className="text-akti-burgundy font-medium text-[clamp(16px,3vw,24px)] whitespace-nowrap">
+      <DetailsCard
+        heading={heading}
+        subHeading={subHeading}
+        isActive={isActive}
+      />
+    </div>
+  );
+};
+
+const DetailsCard = ({
+  heading,
+  subHeading,
+  isActive,
+}: {
+  heading?: string;
+  subHeading?: string;
+  isActive?: boolean;
+}) => {
+  if (isActive)
+    return (
+      <AnimatePresence>
+        <motion.div className="flex flex-col min-w-[200px] text-center justify-center items-center gap-2 translate-y-2">
+          <span className="text-akti-burgundy leading-none font-medium text-[clamp(16px,3vw,24px)] whitespace-nowrap">
             {heading}
           </span>
           <span className="text-akti-grey font-medium text-xs">
             {subHeading}
           </span>
-        </div>
-      )}
-    </div>
-  );
+        </motion.div>
+      </AnimatePresence>
+    );
+  else return null;
 };

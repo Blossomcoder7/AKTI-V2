@@ -1,6 +1,7 @@
 import { Outlet } from "react-router";
 import Navbar from "../UI/Navbar";
 import useSmoothScroll from "../../hooks/useSmoothScroll";
+import Footer from "../UI/Footer";
 
 const WebsiteLayout = () => {
   useSmoothScroll({ autoInit: true });
@@ -11,10 +12,12 @@ const WebsiteLayout = () => {
           <Navbar />
         </>
       </header>
-      <main className=" bg-akti-burgundy  w-full h-fit min-h-[1200vh] p-3.5 ">
+      <main className=" bg-akti-burgundy  w-full h-fit min-h-fit p-3.5 ">
         <Outlet />
       </main>
-      <footer className="flex items-center justify-center">Footer Here</footer>
+      <footer className="flex items-center justify-center">
+        <Footer />
+      </footer>
     </>
   );
 };

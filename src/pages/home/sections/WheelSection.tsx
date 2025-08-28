@@ -42,6 +42,7 @@ const WheelSection = () => {
         trigger: pinEl.current,
         start: "top top",
         end: "+=300%",
+        markers: true,
         pin: pinEl.current,
         scrub: false,
         snap: {

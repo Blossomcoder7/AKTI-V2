@@ -116,7 +116,7 @@ const Banner = () => {
         {/* left top icon  */}
         <div
           className={clsx(
-            "absolute top-[-1px] w-fit h-fit ",
+            " absolute top-[-1px] w-fit h-fit ",
             isRtl ? "right-[-1px]" : "left-[-1px]"
           )}
         >
@@ -180,7 +180,7 @@ const Banner = () => {
           </div>
         </div>
         {/* background text  */}
-        <div className="absolute w-full h-full inset-0 z-1 flex items-center justify-center">
+        <div className="hidden absolute w-full h-full inset-0 z-1 lg:flex items-center justify-center">
           <span className="text-akti-burgundy-light text-center font-bold text-[clamp(50px,4vw,80px)] leading-none">
             <pre>{t("banner.bg-text")}</pre>
           </span>
@@ -188,7 +188,7 @@ const Banner = () => {
         {/* main content  */}
         <div
           ref={contentEl}
-          className="w-full h-full pb-10 pt-6 px-10 relative max-w-[1300px] mx-auto inset-0 z-3 min-h-fit max-h-max flex flex-col"
+          className="hidden w-full h-full pb-10 pt-6 px-10 relative max-w-[1300px] mx-auto inset-0 z-3 min-h-fit max-h-max lg:flex flex-col"
         >
           <div className="w-full h-1/3 flex justify-around items-end  ">
             <InsuranceEl

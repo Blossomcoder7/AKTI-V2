@@ -1,0 +1,52 @@
+/* ===== Cinema coverflow look ===== */
+.review-coverflow .swiper {
+  padding-bottom: 56px; /* space for bullets */
+}
+
+.review-coverflow .swiper-slide {
+  /* set a nice slide width so the center is big */
+  width: clamp(260px, 64vw, 980px);
+  transition: transform 0.45s ease, filter 0.45s ease, opacity 0.45s ease;
+  opacity: 0.35;
+  filter: blur(1.2px) saturate(0.9) brightness(0.7);
+  transform: scale(0.88) translateZ(0);
+  will-change: transform, filter, opacity;
+}
+
+/* side slides a bit brighter than far ones */
+.review-coverflow .swiper-slide-prev,
+.review-coverflow .swiper-slide-next {
+  opacity: 0.75;
+  filter: blur(0.23px) brightness(0.8);
+  transform: scale(0.94);
+}
+
+/* active slide: sharp, big, with strong shadow */
+.review-coverflow .swiper-slide-active {
+  opacity: 1;
+  filter: none;
+  transform: scale(1);
+  z-index: 10;
+}
+
+.review-coverflow .swiper-slide:not(.swiper-slide-active) .slide-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+/* bullets like little pills */
+.review-coverflow .swiper-pagination-bullet {
+  background: #ffffff;
+  opacity: 0.28;
+  transition: width 0.25s ease, opacity 0.25s ease;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+}
+
+.review-coverflow .swiper-pagination-bullet-active {
+  opacity: 1;
+  width: 28px;
+  border-radius: 9999px;
+}

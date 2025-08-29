@@ -1,21 +1,20 @@
 import { MdOutlineArrowRight } from "react-icons/md";
-import { useNavigate } from "react-router";
-import FullLogo from "../../../components/UI/FullLogo";
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
 import InsuranceEl from "../../../components/UI/InsuranceEl";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { BsArrowRightCircleFill } from "react-icons/bs";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import corner from "../../../assets/images/banner-corner.png";
 import { motion, useAnimation } from "motion/react";
 import PhoneCollectionForm from "./PhoneCollectionForm";
 import useLayoutConfig from "../../../hooks/useLayoutConfig";
+import SmallScreenBanner from "../../../components/UI/SmallScreenBanner";
+import GetStartedButton from "../../../components/UI/GetStartedButton";
+import LeftTopCorner from "../../../components/UI/LeftTopCorner";
 
 gsap.registerPlugin(ScrollToPlugin);
 const Banner = () => {
-  const navigate = useNavigate();
   const { isRtl } = useLayoutConfig();
   const { t } = useTranslation("home");
   const contentEl = useRef<HTMLDivElement | null>(null);
@@ -24,7 +23,7 @@ const Banner = () => {
   const handleOpen = () => {
     setOpen(true);
     control.start({
-      width: 450,
+      width: window?.innerWidth > 600 ? 450 : 300,
       opacity: 1,
       padding: 36,
       transition: { duration: 0.35, ease: "easeIn" },
@@ -54,9 +53,10 @@ const Banner = () => {
 
   return (
     <div className="flex w-full h-fit items-center justify-center">
-      <div className="w-full flex items-center max-h-[900px] h-screen  justify-center relative bg-white  min-h-screen rounded-[20px]">
+      <div className="w-full flex flex-col md:flex-row py-4 md:py-0 items-center md:max-h-[900px] h-screen  md:justify-center justify-end gap-6 md:gap-0 relative bg-white  min-h-screen rounded-[20px]">
         {/* phone number field  */}
-
+        <LeftTopCorner />
+        <GetStartedButton />
         <div
           className={clsx(
             "absolute z-4 cursor-pointer  top-1/2 -translate-y-1/2",
@@ -114,73 +114,9 @@ const Banner = () => {
         </motion.div>
 
         {/* left top icon  */}
-        <div
-          className={clsx(
-            " absolute top-[-1px] w-fit h-fit ",
-            isRtl ? "right-[-1px]" : "left-[-1px]"
-          )}
-        >
-          <div
-            className={clsx(
-              "w-fit h-fit p-3  px-3.5  bg-akti-burgundy",
-              isRtl ? "rounded-bl-[20px]" : "rounded-br-[20px]"
-            )}
-          >
-            <FullLogo
-              onClick={() => {
-                navigate("/");
-              }}
-              className=""
-              style={{ height: "60px", width: "auto" }}
-            ></FullLogo>
-            <div
-              className={clsx(
-                "absolute  w-[20px] h-[20px] z-10 pointer-events-none",
-                isRtl
-                  ? "right-full top-0 rotate-90"
-                  : "left-full rotate-0 top-0"
-              )}
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 40 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="block rotate-180"
-              >
-                <path
-                  d="M40 40V0C40 22.0914 22.0914 40 0 40H40Z"
-                  fill="#590b25"
-                />
-              </svg>
-            </div>
-            <div
-              className={clsx(
-                "absolute  w-[20px] h-[20px] z-10 pointer-events-none",
-                isRtl
-                  ? "right-0 rotate-90 top-full"
-                  : "left-0 rotate-0 top-full"
-              )}
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 40 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="block rotate-180"
-              >
-                <path
-                  d="M40 40V0C40 22.0914 22.0914 40 0 40H40Z"
-                  fill="#590b25"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
+
         {/* background text  */}
-        <div className="hidden absolute w-full h-full inset-0 z-1 lg:flex items-center justify-center">
+        <div className="hidden absolute w-full h-full inset-0 z-1 md:flex items-center justify-center">
           <span className="text-akti-burgundy-light text-center font-bold text-[clamp(50px,4vw,80px)] leading-none">
             <pre>{t("banner.bg-text")}</pre>
           </span>
@@ -188,7 +124,7 @@ const Banner = () => {
         {/* main content  */}
         <div
           ref={contentEl}
-          className="hidden w-full h-full pb-10 pt-6 px-10 relative max-w-[1300px] mx-auto inset-0 z-3 min-h-fit max-h-max lg:flex flex-col"
+          className="hidden w-full h-full pb-10 pt-6 px-10 relative max-w-[1300px] mx-auto inset-0 z-3 min-h-fit max-h-max md:flex flex-col"
         >
           <div className="w-full h-1/3 flex justify-around items-end  ">
             <InsuranceEl
@@ -242,34 +178,10 @@ const Banner = () => {
             />
           </div>
         </div>
-        {/* left bottom button  */}
-        <div
-          className={clsx(
-            "absolute group z-5  bottom-3.5 cursor-pointer",
-            isRtl ? "right-3.5" : "left-3.5"
-          )}
-          onClick={() => {
-            gsap.to(window, {
-              scrollTo: { y: window.scrollY + 400, offsetY: 100 },
-              duration: 0.51,
-              ease: "linear",
-            });
-          }}
-        >
-          <div className=" w-xs h-18 bg-gradient-to-b p-3 group-hover:opacity-90 from-[#590B25] via-[#740832] to-[#941845] rounded-2xl">
-            <span className="text-akti-white font-medium text-xl ">
-              {t("banner.get-started")}
-            </span>
-            <button
-              className={clsx(
-                "absolute bottom-3 ",
-                isRtl ? "left-3" : "right-3"
-              )}
-            >
-              <BsArrowRightCircleFill className="text-akti-white group-hover:text-akti-white group-hover:rotate-90 transition-all duration-300 ease-in font-medium text-3xl" />
-            </button>
-          </div>
+        <div className=" md:hidden flex ">
+          <SmallScreenBanner />
         </div>
+        {/* left bottom button  */}
       </div>
     </div>
   );

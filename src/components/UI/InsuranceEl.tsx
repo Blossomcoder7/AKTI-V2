@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { motion } from "motion/react";
 import type { HTMLAttributes } from "react";
 import { useTranslation } from "react-i18next";
 import { BsArrowRightCircleFill } from "react-icons/bs";
@@ -18,7 +19,9 @@ const InsuranceEl = ({
   ...rest
 }: InsuranceElProps) => {
   const { t } = useTranslation("home");
+
   const { className: btnClasses, ...btnRest } = buttonProps;
+
   return (
     <div
       {...rest}
@@ -34,7 +37,22 @@ const InsuranceEl = ({
           className="block object-contain  object-center"
         />
       </div>
-      <div className="flex flex-col gap-1 items-center justify-between">
+      <motion.div
+        initial={{ opacity: 0.1, scale: 0.5 }}
+        whileInView={{
+          opacity: 1,
+          scale: 1,
+        }}
+        viewport={{ once: true, amount: 0.9 }}
+        transition={{
+          duration: 0.3,
+          ease: "easeIn",
+          type: "spring",
+          stiffness: 120,
+          damping: 25,
+        }}
+        className="flex flex-col gap-1 items-center justify-between"
+      >
         <span className="text-akti-burgundy  font-semibold text-3xl">
           {heading}
         </span>
@@ -52,7 +70,7 @@ const InsuranceEl = ({
           {t("banner.view-btn")}{" "}
           <BsArrowRightCircleFill className={clsx("mx-1.5 inline-flex")} />
         </button>
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -3,22 +3,27 @@
     "bg-text": "Types of \nInsurances",
     "insurances": {
       "motor": {
+        "id": 1,
         "heading": "Motor",
         "subHeading": "Are you searching for reliable online car insurance in Qatar that offers comprehensive and convenient coverage? AKTI is then the solution."
       },
       "marine": {
+        "id": 2,
         "heading": "Marine",
         "subHeading": "Set sail with confidence, knowing you're covered. Our third-party Boat & Yacht Insurance provides seamless protection on the water. Get your policy online in minutes and enjoy total peace of mind"
       },
       "medical": {
+        "id": 3,
         "heading": "Medical",
         "subHeading": "Designed exclusively for residents aged 60 and above, AKTI Senior’s Health Insurance plans offer two tailored options: Basic and Basic Plus."
       },
       "travel": {
+        "id": 4,
         "heading": "Travel",
         "subHeading": " Stay protected against trip delays, lost baggage, and unexpected emergencies—wherever you go."
       },
       "personal": {
+        "id": 5,
         "heading": "Personal Accidents",
         "subHeading": "Select the plan that works for you and stay covered with reliable protection every day."
       }
@@ -37,5 +42,35 @@
   "video-banner": {
     "welcome": "Welcome to Alkhaleej Takaful Insurance",
     "subHeading": "AlKhaleej Takaful–\nYour Trusted Shield"
+  },
+  "wheel-section": {
+    "bg-text": "Why Choose us",
+    "slides": {
+      "1": {
+        "id": 1,
+        "heading": "Comprehensive Insurance",
+        "subHeading": "Reliable insurance solutions that protect your life, health, and future—giving you peace of mind every day."
+      },
+      "2": {
+        "id": 2,
+        "heading": "Marine Insurance",
+        "subHeading": "Protect your cargo, vessels, and marine operations with policies tailored for the unpredictable nature of the sea."
+      },
+      "3": {
+        "id": 3,
+        "heading": "Health Insurance",
+        "subHeading": "Access quality healthcare with plans designed to cover medical expenses and ensure your well-being."
+      },
+      "4": {
+        "id": 4,
+        "heading": "Travel Insurance",
+        "subHeading": "Stay protected against unexpected events while traveling, from trip cancellations to medical emergencies abroad."
+      },
+      "5": {
+        "id": 5,
+        "heading": "Personal Insurance",
+        "subHeading": "Safeguard your personal belongings and assets with customizable coverage for home, auto, and more."
+      }
+    }
   }
 }

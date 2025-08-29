@@ -50,8 +50,8 @@ const VideoBanner = () => {
   return (
     <>
       <div
-        // ref={pinRefEl}
-        className="w-full h-screen min-h-screen py-3.5  flex relative items-center justify-center"
+        ref={pinRefEl}
+        className="w-full h-screen min-h-screen pb-3.5 py-3.5  flex flex-col md:flex-row relative items-center justify-center"
       >
         <div
           ref={scrollerRefEl}
@@ -64,10 +64,14 @@ const VideoBanner = () => {
               muted
               loop
               playsInline
-              className="w-full h-full object-center object-cover"
+              className="w-full h-full object-center object-cover bg-black text-white"
             >
               <source
                 src="https://res.cloudinary.com/dfdgjx0ri/video/upload/v1756268250/15439663-uhd_3836_2160_30fps_ra0w53.mp4"
+                type="video/mp4"
+              />
+              <source
+                src="https://res.cloudinary.com/dfdgjx0ri/video/upload/v1753703638/samples/elephants.mp4"
                 type="video/mp4"
               />
               Your browser does not support the video tag.

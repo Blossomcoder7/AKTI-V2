@@ -1,20 +1,72 @@
-import React, { useRef, useState, useLayoutEffect } from "react";
+import React, {
+  useRef,
+  useState,
+  useLayoutEffect,
+  useEffect,
+  useMemo,
+} from "react";
 import background from "../../../assets/images/wheel-section-bg.png";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gear from "../../../assets/icons/gear.png";
 import shield from "../../../assets/icons/shield.png";
-import { SliderList } from "../../../options/SliderList";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
+import { useTranslation } from "react-i18next";
+import clsx from "clsx";
+import useLayoutConfig from "../../../hooks/useLayoutConfig";
+
+export interface SliderListItemType {
+  heading: string;
+  subHeading: string;
+  id: number;
+}
 
 gsap.registerPlugin(ScrollTrigger);
 const angle = 270;
+
 const WheelSection = () => {
+  const { t } = useTranslation("home");
+  const SliderList: SliderListItemType[] = useMemo(
+    () => [
+      {
+        id: 1,
+        heading: t("wheel-section.slides.1.heading"),
+        subHeading: t("wheel-section.slides.1.subHeading"),
+      },
+      {
+        id: 2,
+        heading: t("wheel-section.slides.2.heading"),
+        subHeading: t("wheel-section.slides.2.subHeading"),
+      },
+      {
+        id: 3,
+        heading: t("wheel-section.slides.3.heading"),
+        subHeading: t("wheel-section.slides.3.subHeading"),
+      },
+      {
+        id: 4,
+        heading: t("wheel-section.slides.4.heading"),
+        subHeading: t("wheel-section.slides.4.subHeading"),
+      },
+      {
+        id: 5,
+        heading: t("wheel-section.slides.5.heading"),
+        subHeading: t("wheel-section.slides.5.subHeading"),
+      },
+    ],
+    [t]
+  );
+  const { isRtl } = useLayoutConfig();
   const pinEl = useRef<HTMLDivElement | null>(null);
   const circleEl = useRef<HTMLDivElement | null>(null);
   const handsGroupRef = useRef<HTMLDivElement | null>(null);
   const [activeId, setActiveId] = useState<number | null>(null);
+  useEffect(() => {
+    if (SliderList.length > 0) {
+      setActiveId(SliderList[0].id);
+    }
+  }, [SliderList]);
   const [faviconRadius, setFaviconRadius] = useState(0);
 
   useLayoutEffect(() => {
@@ -29,25 +81,27 @@ const WheelSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const totalHands = SliderList.length;
+  const totalHands = SliderList?.length || 0;
   const step = angle / (totalHands - 1);
 
   useGSAP(
     () => {
       if (!pinEl.current || !handsGroupRef.current) return;
 
-      let currentItemIndex = 0;
+      let currentItemIndex =
+        SliderList.findIndex((item) => item.id === activeId) || 0;
+      let isAnimating = false;
 
       const st = ScrollTrigger.create({
         trigger: pinEl.current,
         start: "top top",
-        end: "+=300%",
-        markers: true,
+        end: "+=400%",
+        markers: false,
         pin: pinEl.current,
         scrub: false,
+        pinSpacing: true,
         snap: {
           snapTo: (progress) => {
-            // Calculate which item we're closest to
             const rawIndex = progress * (totalHands - 1);
             const nearestIndex = Math.round(rawIndex);
             currentItemIndex = Math.max(
@@ -56,30 +110,50 @@ const WheelSection = () => {
             );
             return currentItemIndex / (totalHands - 1);
           },
-          duration: 0.4,
-          delay: 0.02,
+          duration: 0.5,
           ease: "power2.out",
-          directional: false, // Prevents going back to previous
+          directional: false,
         },
         onUpdate: (self) => {
-          // Only animate rotation during the snap, not continuously
+          // Prevent multiple animations from running simultaneously
+          if (isAnimating) return;
+
           const targetIndex = Math.round(self.progress * (totalHands - 1));
           const clampedIndex = Math.max(
             0,
             Math.min(targetIndex, totalHands - 1)
           );
-          const exactRotation = -clampedIndex * step;
 
-          // Single, clean rotation animation
-          gsap.to(handsGroupRef.current, {
-            rotation: exactRotation,
-            duration: 0.4,
-            ease: "power2.out",
-            overwrite: "auto",
-          });
-          const newActiveId = SliderList[clampedIndex]?.id || null;
-          if (activeId !== newActiveId) {
-            setActiveId(newActiveId);
+          // Only animate if the index actually changed
+          if (clampedIndex !== currentItemIndex) {
+            currentItemIndex = clampedIndex;
+            const exactRotation = -clampedIndex * step;
+            isAnimating = true;
+
+            // Single, clean rotation animation with proper rounding
+            gsap.to(handsGroupRef.current, {
+              rotation: exactRotation,
+              duration: 0.5,
+              ease: "power2.out",
+              force3D: true, // Force GPU acceleration
+              transformOrigin: "center center",
+              onComplete: () => {
+                // Ensure final position is exact
+                gsap.set(handsGroupRef.current, {
+                  rotation: Math.round(exactRotation * 100) / 100, // Round to prevent sub-pixel issues
+                  force3D: true,
+                  transformOrigin: "center center",
+                });
+                isAnimating = false;
+              },
+            });
+
+            const newActiveId = SliderList
+              ? SliderList[clampedIndex]?.id
+              : null;
+            if (activeId !== newActiveId) {
+              setActiveId(newActiveId);
+            }
           }
         },
         onSnapComplete: (self) => {
@@ -89,9 +163,15 @@ const WheelSection = () => {
             Math.min(finalIndex, totalHands - 1)
           );
           const exactRotation = -clampedIndex * step;
+
+          // Set final position with precise rounding
           gsap.set(handsGroupRef.current, {
-            rotation: exactRotation,
+            rotation: Math.round(exactRotation * 100) / 100,
+            force3D: true,
+            transformOrigin: "center center",
           });
+
+          isAnimating = false;
         },
       });
 
@@ -101,67 +181,80 @@ const WheelSection = () => {
   );
 
   return (
-    <div className="w-full h-auto py-3.5 flex items-center justify-center">
+    <div className="w-full h-auto flex items-center justify-center">
       <div
+        className="relative w-full py-3.5 h-screen min-h-fit rounded-[20px] overflow-hidden"
         ref={pinEl}
-        className="relative w-full h-auto min-h-fit rounded-[20px] overflow-hidden"
       >
-        {/* Background */}
-        <div className="absolute w-full h-full inset-0 z-0">
-          <img
-            src={background}
-            alt="bg"
-            className="object-center object-cover w-full h-full"
-          />
-        </div>
-
-        {/* Content */}
-        <div className="h-screen min-h-[600px] relative z-10 w-full flex items-center justify-center">
-          {/* Title */}
-          <div className="absolute top-[44px] left-[44px]">
-            <span className="text-[clamp(40px,5vw,60px)] capitalize leading-none font-semibold text-akti-burgundy">
-              <pre>{"Why \nchoose us"}</pre>
-            </span>
+        <div className="relative w-full h-full rounded-[20px] overflow-hidden">
+          {/* Background */}
+          <div className="absolute w-full h-full inset-0 z-0">
+            <img
+              src={background}
+              alt="bg"
+              className="object-center object-cover w-full h-full"
+            />
           </div>
 
-          {/* Wheel area */}
-          <div className="absolute left-0 w-full h-full top-6/12 -translate-y-1">
-            <div className="w-full h-full relative flex items-center justify-center">
-              <div className="absolute bottom-full mb-4 max-w-[260px] left-1/2 -translate-x-1/2"></div>
-              {/* Center favicon */}
-              <div
-                ref={circleEl}
-                className="absolute z-30 w-full h-full flex items-center justify-center"
-              >
-                <img
-                  src="/full-favicon.png"
-                  alt="favicon"
-                  className="object-contain w-full h-full rounded-full"
-                />
-              </div>
-              {/* Hands */}
-              <div
-                ref={handsGroupRef}
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
-              >
-                {SliderList.map((item, i) => {
-                  const baseAngle = i * step;
-                  const isActive = activeId === item.id;
-                  const gap = isActive ? 155 : 155;
-                  const length = faviconRadius + gap;
-                  return (
-                    <HandItem
-                      key={item.id}
-                      baseAngle={baseAngle}
-                      length={length}
-                      icon={i % 2 === 0 ? shield : gear}
-                      label={item.id}
-                      heading={item.title}
-                      subHeading={item.des}
-                      isActive={isActive}
-                    />
-                  );
-                })}
+          {/* Content */}
+          <div className="h-screen min-h-[600px] relative z-10 w-full flex items-center justify-center">
+            {/* Title */}
+            <div
+              className={clsx(
+                "absolute top-[44px] ",
+                isRtl ? "right-[44px]" : "left-[44px]"
+              )}
+            >
+              <span className="text-[clamp(40px,5vw,60px)] capitalize leading-none font-semibold text-akti-burgundy">
+                <pre>{t("wheel-section.bg-text")}</pre>
+              </span>
+            </div>
+
+            {/* Wheel area */}
+            <div className="absolute left-0 w-full h-full top-6/12 -translate-y-1">
+              <div className="w-full h-full relative flex items-center justify-center">
+                <div className="absolute bottom-full mb-4 max-w-[260px] left-1/2 -translate-x-1/2"></div>
+                {/* Center favicon */}
+                <div
+                  ref={circleEl}
+                  className="absolute z-30 w-full h-full flex items-center justify-center"
+                >
+                  <img
+                    src="/full-favicon.png"
+                    alt="favicon"
+                    className="object-contain w-full h-full rounded-full"
+                  />
+                </div>
+                {/* Hands */}
+                <div
+                  ref={handsGroupRef}
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+                  style={{
+                    // Add CSS to prevent blur and improve rendering
+                    backfaceVisibility: "hidden",
+                    perspective: "1000px",
+                    transform: "translate3d(-50%, -50%, 0)", // Force 3D context
+                  }}
+                >
+                  {SliderList?.map((item, i) => {
+                    const baseAngle = i * step;
+                    const isActive = activeId === item?.id;
+                    const gap = isActive ? 155 : 155;
+                    const length = faviconRadius + gap;
+                    return (
+                      <HandItem
+                        key={item?.id}
+                        baseAngle={baseAngle}
+                        length={length}
+                        icon={i % 2 === 0 ? shield : gear}
+                        label={item?.id}
+                        heading={item?.heading}
+                        subHeading={item?.subHeading}
+                        isActive={isActive}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
@@ -193,14 +286,22 @@ const HandItem: React.FC<HandItemProps> = ({
   heading,
   subHeading,
 }) => {
+  // Round the angle and length to prevent sub-pixel issues
+  const roundedAngle = Math.round(baseAngle * 100) / 100;
+  const roundedLength = Math.round(length);
+
   return (
     <div
       className="absolute"
       style={{
         left: "50%",
         top: "50%",
-        transform: `translate(-50%,-50%) rotate(${baseAngle}deg) translateY(-${length}px)`,
+        transform: `translate3d(-50%, -50%, 0) rotate(${roundedAngle}deg) translateY(-${roundedLength}px)`,
         transformOrigin: "center center",
+        // Add CSS to prevent blur and improve rendering
+        backfaceVisibility: "hidden",
+        perspective: "1000px",
+        willChange: "transform", // Optimize for animations
       }}
     >
       <div className="flex flex-col items-center justify-center space-y-2">
@@ -209,6 +310,11 @@ const HandItem: React.FC<HandItemProps> = ({
             src={icon}
             alt="icon"
             className="min-w-12 w-12 min-h-12 h-12 object-contain"
+            style={{
+              // Prevent image blur during transforms
+              backfaceVisibility: "hidden",
+              transform: "translate3d(0, 0, 0)",
+            }}
           />
         )}
         <span className="text-akti-burgundy text-lg font-semibold">
@@ -236,8 +342,19 @@ const DetailsCard = ({
 }) => {
   if (isActive)
     return (
-      <AnimatePresence>
-        <motion.div className="flex flex-col min-w-[200px] text-center justify-center items-center gap-2 translate-y-2">
+      <>
+        <motion.div
+          className="flex flex-col min-w-[200px] text-center justify-center items-center gap-2 translate-y-2"
+          style={{
+            // Prevent blur in motion components
+            backfaceVisibility: "hidden",
+            transform: "translate3d(0, 0, 0)",
+          }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
           <span className="text-akti-burgundy leading-none font-medium text-[clamp(16px,3vw,24px)] whitespace-nowrap">
             {heading}
           </span>
@@ -245,7 +362,7 @@ const DetailsCard = ({
             {subHeading}
           </span>
         </motion.div>
-      </AnimatePresence>
+      </>
     );
   else return null;
 };

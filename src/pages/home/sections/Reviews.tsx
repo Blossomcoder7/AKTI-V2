@@ -10,7 +10,6 @@ import Qleft from "../../../assets/icons/QuoteLeft.png";
 import Qright from "../../../assets/icons/QuoteRight.png";
 
 
-
 const Reviews = () => {
     const reviews = [
         {

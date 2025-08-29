@@ -1,0 +1,28 @@
+{
+  "faq": {
+    "title": "Faqs ( Frequently Asked \nQuestion )",
+    "viewAll": "View All",
+    "items": [
+      {
+        "number": "01",
+        "question": "What Sets Comprehensive Apart From TPL Insurance?",
+        "answer": "Comprehensive Insurance offers extensive protection, covering theft, physical damage to your vehicle, passenger injury, and third-party liability. This means it covers accidents where you're at fault, including injuries to others and damage to their property."
+      },
+      {
+        "number": "02",
+        "question": "What Is The Period Of Insurance Coverage?",
+        "answer": "The insurance coverage period is one year (365 days) from the date of policy issuance."
+      },
+      {
+        "number": "03",
+        "question": "Why Should I Buy A Boat & Yacht Insurance Policy?",
+        "answer": "To stay protected while enjoying the water. Our third-party coverage ensures you're financially safeguarded against any liability for damages to others, giving you peace of mind every time you set sail."
+      },
+      {
+        "number": "04",
+        "question": "Is There Any Number To Call If I Have Any Claim Questions?",
+        "answer": "For any claim questions and clarifications, please call us any time at +974 70801616 to discuss your concern."
+      }
+    ]
+  }
+}

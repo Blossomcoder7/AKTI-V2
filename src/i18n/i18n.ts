@@ -9,11 +9,19 @@ i18n
     lng: "en",
     fallbackLng: "en",
     interpolation: { escapeValue: false },
-    
+
     backend: {
-      loadPath: "/locales/{{lng}}/{{ns}}.json", 
+      loadPath: "/locales/{{lng}}/{{ns}}.json",
     },
-    ns: ["home"],
+    ns: [
+      "home",
+      "footer",
+      "card",
+      "insuranceClaim",
+      "MapSection",
+      "faq",
+      "reviews",
+    ],
     defaultNS: "home",
   });
 

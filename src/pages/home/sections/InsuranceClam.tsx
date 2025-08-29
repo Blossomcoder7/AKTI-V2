@@ -1,6 +1,9 @@
 import logo from "../../../assets/logos/SmallLogo2.png";
+import { useTranslation } from "react-i18next";
 
 const InsuranceClaim = () => {
+
+    const { t } = useTranslation("insuranceClaim");
     return (
         <div
             className="w-full h-auto text-white rounded-2xl py-10">
@@ -8,9 +11,9 @@ const InsuranceClaim = () => {
                 {/* Left Side */}
                 <div className="bg-gradient-to-r from-[#DADADA]/30 to-[#DADADA]/50  rounded-lg p-6  flex flex-col gap-5">
                     <div>
-                        <h1 className="text-xl font-semibold">Log In To Your Account</h1>
+                        <h1 className="text-xl font-semibold">{t("insuranceClaim.steps.step1.title")}</h1>
                         <p className="text-base mt-1">
-                            Access your insurer’s official website <br /> or mobile app.
+                            {t("insuranceClaim.steps.step1.description")}
                         </p>
                     </div>
 
@@ -25,7 +28,7 @@ const InsuranceClaim = () => {
                 <div className="flex w-full justify-end">
                     <div className="text-right max-w-sm ">
                         <h2 className="text-2xl md:text-[3.2rem] font-bold leading-none pb-5">
-                            How to Claim <br /> Insurance Online with AKTI?
+                            {t("insuranceClaim.title")}
                         </h2>
                         <div className="flex w-full justify-end">
                             <div className="h-52 w-52">

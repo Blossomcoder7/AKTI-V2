@@ -1,0 +1,52 @@
+{
+  "officeAddress": "مكتب \nالعنوان",
+
+  "footerButtons": [
+    {
+      "id": 11,
+      "title": "الخليج للتكافل",
+      "description": [
+        { "label": "من نحن", "link": "/about" },
+        { "label": "التأمين الطبي", "link": "/medical" },
+        { "label": "التأمين المؤسسي", "link": "/corporate-insurance" },
+        { "label": "علاقات المستثمرين", "link": "/investor-relations" }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "المنتجات",
+      "description": [
+        { "label": "تأمين السيارات", "link": "/products/motor" },
+        { "label": "التأمين الطبي", "link": "/products/medical" },
+        { "label": "التأمين البحري", "link": "/products/marine" },
+        { "label": "تأمين السفر", "link": "/products/travel" },
+        {
+          "label": "تأمين الحوادث الشخصية",
+          "link": "/products/personal-accidents"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "تواصل معنا",
+      "description": [
+        {
+          "label": "البريد الإلكتروني: cs@alkhaleej.com",
+          "link": "mailto:cs@alkhaleej.com"
+        },
+        {
+          "label": "الرقم المجاني: 8005007 (من 7:30 صباحًا إلى 10:00 مساءً)",
+          "link": "tel:8005007"
+        }
+      ]
+    }
+  ],
+
+  "socialMedia": {
+    "facebook": "فيسبوك",
+    "instagram": "إنستغرام",
+    "linkedin": "لينكدإن"
+  },
+
+  "rightsReserved": "© 2025 الخليج. جميع الحقوق محفوظة"
+}

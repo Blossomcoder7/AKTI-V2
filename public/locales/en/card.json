@@ -1,0 +1,30 @@
+ {
+      "cards": [
+        {
+          "id": 1,
+          "title": "MAIN OFFICE ADDRESS",
+          "description": {
+            "line1": "Grand Hamad Street, Doha 4555 ,Qatar",
+            "line2": "Toll Free/Phone: +974 44041111"
+          }
+        },
+        {
+          "id": 2,
+          "title": "DFC BRANCH",
+          "description": {
+            "line1": "Sunday To Wednesday: 10 AM To 10PM",
+            "line2": "Thursday And Friday: 1 PM To 10 PM.",
+            "line3": "Phone Number: 71180010"
+          }
+        },
+        {
+          "id": 3,
+          "title": "VENDOME MALL",
+          "description": {
+            "line1": "Sunday To Wednesday: 10 AM To 10PM",
+            "line2": "Thursday And Friday: 1 PM To 10 PM.",
+            "line3": "Phone Number: 71180011"
+          }
+        }
+      ]
+    }

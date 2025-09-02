@@ -1,9 +1,14 @@
 import GradientButton from "../../Elements/buttons/GradientButton";
 import { BiMenuAltLeft } from "react-icons/bi";
 
-const HamMenuButton = () => {
+interface HamMenuButtonProps {
+  onClick?: () => void;
+}
+
+const HamMenuButton = ({ onClick }: HamMenuButtonProps) => {
   return (
     <GradientButton
+      onClick={onClick}
       style={{
         minHeight: "45px",
         minWidth: "45px",

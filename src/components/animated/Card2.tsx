@@ -7,36 +7,15 @@ import {
   type RefObject,
 } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const Card2 = () => {
-  const text = [
-    {
-      id: 1,
-      title: "MAIN OFFICE ADDRESS",
-      description: {
-        line1: "Grand Hamad Street, Doha 4555 ,Qatar",
-        line2: "Toll Free/Phone: +974 44041111",
-      },
-    },
-    {
-      id: 2,
-      title: "DFC BRANCH",
-      description: {
-        line1: "Sunday To Wednesday: 10 AM To 10PM",
-        line2: "Thursday And Friday: 1 PM To 10 PM.",
-        line3: "Phone Number: 71180010",
-      },
-    },
-    {
-      id: 3,
-      title: "VENDOME MALL",
-      description: {
-        line1: "Sunday To Wednesday: 10 AM To 10PM",
-        line2: "Thursday And Friday: 1 PM To 10 PM.",
-        line3: "Phone Number: 71180011",
-      },
-    },
-  ];
+  const { t } = useTranslation("card");
+  const text = t("cards", { returnObjects: true }) as {
+    id: number;
+    title: string;
+    description: { line1: string; line2: string; line3?: string };
+  }[];
 
   const cellElms = useRef<(HTMLDivElement | null)[]>([]);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(2);
@@ -70,7 +49,7 @@ const Card2 = () => {
       <div className="w-full pt-6 pb-7 border-b-2 border-b-[#ffffff]/40">
         <div
           ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-3  relative bg-white"
+          className="grid grid-cols-1 md:grid-cols-3 relative bg-white"
         >
           <AnimatePresence>
             {hoveredIndex !== null && (
@@ -91,15 +70,15 @@ const Card2 = () => {
             )}
           </AnimatePresence>
 
-          {text.map((items) => (
+          {text.map((items, idx) => (
             <Fragment key={items.id}>
               <Card2Item
                 ref={cellElms}
-                index={items.id}
+                index={idx}
                 activeIndex={hoveredIndex}
                 title={items.title}
                 description={items.description}
-                onMouseEnter={() => setHoveredIndex(items.id)}
+                onMouseEnter={() => setHoveredIndex(idx)}
               />
             </Fragment>
           ))}

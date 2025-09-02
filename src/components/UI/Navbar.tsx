@@ -9,7 +9,7 @@ import clsx from "clsx";
 import MagicScrollWrapper from "../wrappers/MagicScrollWrapper";
 import type { DrawerRefType } from "../wrappers/Drawer";
 import Drawer from "../wrappers/Drawer";
-
+import useLayoutConfig from "../../hooks/useLayoutConfig";
 
 const Navbar = () => {
   const drawerEl = useRef<DrawerRefType>(null);
@@ -40,7 +40,7 @@ const Navbar = () => {
       setY(latest);
     });
   }, [scrollY]);
-
+  const { isRtl } = useLayoutConfig();
 
   // Function to open the drawer
   const handleMenuClick = () => {
@@ -88,7 +88,7 @@ const Navbar = () => {
       <Drawer
         ref={drawerRef}
         muiDrawerProps={{
-          anchor: "right",
+          anchor: isRtl ? "left" : "right",
         }}
         menu={
           <div className="flex flex-col items-center justify-center w-full h-full space-y-5 pt-8">

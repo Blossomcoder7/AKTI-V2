@@ -149,7 +149,7 @@ const AnimatedFaqEl = ({ faq }: { faq: FaqItemType }) => {
           <img
             src={faq.image}
             alt="FAQ image"
-            className="w-full h-full object-contain"
+            className="w-full h-full object-cover"
           />
         </div>
       </div>

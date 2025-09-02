@@ -6,7 +6,7 @@ import PS from "../../assets/images/GOOGLEPAY.png";
 import AS from "../../assets/images/AppStore.png";
 import { Link } from "react-router-dom";
 
-import Card2 from "../animation/Card2";
+import Card2 from "../animated/Card2";
 
 const Footer = () => {
   const footerButtons = [

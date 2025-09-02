@@ -365,4 +365,4 @@ const DetailsCard = ({
       </>
     );
   else return null;
-};
+};  

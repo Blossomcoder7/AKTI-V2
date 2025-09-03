@@ -15,6 +15,7 @@ import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import useLayoutConfig from "../../../hooks/useLayoutConfig";
+import AnimatedWheelWrapper from "../../../components/animated/AnimatedWheelWrapper";
 
 export interface SliderListItemType {
   heading: string;
@@ -95,7 +96,7 @@ const WheelSection = () => {
       const st = ScrollTrigger.create({
         trigger: pinEl.current,
         start: "top top",
-        end: "+=400%",
+        end: `+=${SliderList.length * 60}% `,
         markers: false,
         pin: pinEl.current,
         scrub: false,
@@ -219,11 +220,13 @@ const WheelSection = () => {
                   ref={circleEl}
                   className="absolute z-30 w-full h-full flex items-center justify-center"
                 >
-                  <img
-                    src="/full-favicon.png"
-                    alt="favicon"
-                    className="object-contain w-full h-full rounded-full"
-                  />
+                  <AnimatedWheelWrapper>
+                    <img
+                      src="/full-favicon.png"
+                      alt="favicon"
+                      className="object-contain w-full h-full rounded-full"
+                    />
+                  </AnimatedWheelWrapper>
                 </div>
                 {/* Hands */}
                 <div
@@ -365,4 +368,4 @@ const DetailsCard = ({
       </>
     );
   else return null;
-};  
+};

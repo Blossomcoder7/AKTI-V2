@@ -5,6 +5,22 @@
       "step1": {
         "title": "Log In To Your Account",
         "description": "Access your insurer’s official website \nor mobile app."
+      },
+      "step2": {
+        "title": "Log In To Your Account",
+        "description": "Access your insurer’s official website \nor mobile app."
+      },
+      "step3": {
+        "title": "Log In To Your Account",
+        "description": "Access your insurer’s official website \nor mobile app."
+      },
+      "step4": {
+        "title": "Log In To Your Account",
+        "description": "Access your insurer’s official website \nor mobile app."
+      },
+      "step5": {
+        "title": "Log In To Your Account",
+        "description": "Access your insurer’s official website \nor mobile app."
       }
     }
   }

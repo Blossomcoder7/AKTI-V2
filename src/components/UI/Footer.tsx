@@ -8,17 +8,15 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import Card2 from "../animated/Card2";
+import AnimatedWheelWrapper from "../animated/AnimatedWheelWrapper";
 
 const Footer = () => {
-  const { t } = useTranslation("footer"); // ✅ load footer namespace
-
-  // get footerButtons from translation
+  const { t } = useTranslation("footer");
   const footerButtons = t("footerButtons", { returnObjects: true }) as {
     id: number;
     title: string;
     description: { label: string; link: string }[];
   }[];
-
   return (
     <>
       <div className="h-auto w-full bg-akti-burgundy">
@@ -36,10 +34,19 @@ const Footer = () => {
                 <h2 className="text-xl font-semibold uppercase whitespace-pre-line">
                   {t("officeAddress")}
                 </h2>
-                <img src={logo} alt="" className="h-16 w-16 object-contain " />
+                <div className="w-24 h-24 aspect-square flex items-center relative justify-center">
+                  <div className="absolute left-1/2 top-1/2 -translate-1/2 text-center leading-none tracking-tight z-2 w-fit p-1 aspect-square flex items-center justify-center bg-white rounded-full text-akti-burgundy font-normal text-xs">
+                    Stay <br /> Updated
+                  </div>
+                  <AnimatedWheelWrapper keepRunning className="absolute left-1/2 top-1/2 -translate-1/2 z-1">
+                    <img
+                      src={logo}
+                      alt=""
+                      className="h-24 w-24 object-contain "
+                    />
+                  </AnimatedWheelWrapper>
+                </div>
               </div>
-
-              {/* ✅ Card2 stays same, no translation */}
               <div className="w-full">
                 <Card2 />
               </div>
@@ -54,8 +61,6 @@ const Footer = () => {
                     className="h-24 w-36 object-contain hover:cursor-pointer"
                   />
                 </div>
-
-                {/* ✅ Loop from JSON translation */}
                 {footerButtons.map((section) => (
                   <div key={section.id}>
                     <h4 className="font-bold text-base mb-3">
@@ -84,8 +89,6 @@ const Footer = () => {
                     </ul>
                   </div>
                 ))}
-
-                {/* ✅ social media from translation */}
                 <div className="flex gap-3 md:gap-1">
                   <a
                     href="https://www.facebook.com/"

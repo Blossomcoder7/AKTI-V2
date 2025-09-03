@@ -10,12 +10,15 @@ import { useEffect, useRef, type HTMLAttributes } from "react";
 
 interface AnimatedWheelWrapperProps extends HTMLAttributes<HTMLDivElement> {
   keepRunning?: boolean;
+  /** speed multiplier (0 = base speed, 1 = 2x base speed) */
+  speed?: number;
 }
 
 const AnimatedWheelWrapper = ({
   children,
   className,
   keepRunning = false,
+  speed = 0, // default: base speed
 }: AnimatedWheelWrapperProps) => {
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
@@ -24,28 +27,29 @@ const AnimatedWheelWrapper = ({
   const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { amount: 0.3 });
 
-  // base spin speed (only for keepRunning)
-  const baseSpeed = 0.4; // slightly slower
-  const speedRef = useRef(baseSpeed);
+  // base spin speed
+  const baseSpeed = 0.4;
+  // scale between 1x and 2x based on speed prop (0 → 1x, 1 → 2x)
+  const scaledBaseSpeed = baseSpeed * (1 + speed);
+
+  const speedRef = useRef(scaledBaseSpeed);
 
   // 🔹 Animation loop
   useEffect(() => {
     let frameId: number;
     const tick = () => {
-      if (isInView) {
-        if (keepRunning) {
-          rotation.set(rotation.get() + speedRef.current);
+      if (isInView && keepRunning) {
+        rotation.set(rotation.get() + speedRef.current);
 
-          // Smoothly return boosted speed to base
-          speedRef.current += (baseSpeed - speedRef.current) * 0.05;
-        }
+        // Smoothly return boosted speed to scaledBaseSpeed
+        speedRef.current += (scaledBaseSpeed - speedRef.current) * 0.05;
       }
       frameId = requestAnimationFrame(tick);
     };
 
     tick();
     return () => cancelAnimationFrame(frameId);
-  }, [keepRunning, isInView, rotation]);
+  }, [keepRunning, isInView, rotation, scaledBaseSpeed]);
 
   // 🔹 Scroll reaction
   useEffect(() => {
@@ -53,16 +57,17 @@ const AnimatedWheelWrapper = ({
       if (!isInView) return;
 
       if (keepRunning) {
-        // much gentler boost
-        speedRef.current = baseSpeed + Math.min(Math.abs(v) * 0.002, 2);
+        // boost based on scroll, relative to scaledBaseSpeed
+        speedRef.current =
+          scaledBaseSpeed + Math.min(Math.abs(v) * 0.002, 2);
       } else {
-        // gentler direct scroll → rotation
+        // direct scroll → rotation
         rotation.set(rotation.get() + v * 0.002);
       }
     });
 
     return () => unsubscribe();
-  }, [scrollVelocity, isInView, keepRunning, rotation]);
+  }, [scrollVelocity, isInView, keepRunning, rotation, scaledBaseSpeed]);
 
   return (
     <div

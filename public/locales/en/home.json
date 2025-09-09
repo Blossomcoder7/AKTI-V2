@@ -1,6 +1,6 @@
 {
   "banner": {
-    "bg-text": "Types of \nInsurances",
+    "bg-text": "Our Services",
     "insurances": {
       "motor": {
         "id": 1,
@@ -41,10 +41,14 @@
   },
   "video-banner": {
     "welcome": "Welcome to Alkhaleej Takaful Insurance",
-    "subHeading": "AlKhaleej Takaful–\nYour Trusted Shield"
+    "subHeading": "AlKhaleej Takaful–\nYour Trusted Shield",
+    "buttons": {
+      "policy": "Policy",
+      "claim": "Claim"
+    }
   },
   "wheel-section": {
-    "bg-text": "Why Choose us",
+    "bg-text": "Why \nChoose us",
     "slides": {
       "1": {
         "id": 1,

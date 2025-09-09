@@ -56,7 +56,7 @@ const Banner = () => {
       <div className="w-full flex flex-col md:flex-row py-4 md:py-0 items-center md:max-h-[900px] h-screen  md:justify-center justify-end gap-6 md:gap-0 relative bg-white  min-h-screen rounded-[20px]">
         {/* phone number field  */}
         <LeftTopCorner />
-        <GetStartedButton />
+
         <div
           className={clsx(
             "absolute z-4 cursor-pointer  top-1/2 -translate-y-1/2",
@@ -116,11 +116,15 @@ const Banner = () => {
         {/* left top icon  */}
 
         {/* background text  */}
-        <div className="hidden absolute w-full h-full inset-0 z-1 md:flex items-center justify-center">
+        <div className="hidden absolute w-full h-full inset-0 z-6 md:flex flex-col gap-4 items-center justify-center">
           <span className="text-akti-burgundy-light text-center font-bold text-[clamp(50px,4vw,80px)] leading-none">
             <pre>{t("banner.bg-text")}</pre>
           </span>
+          <div>
+            <GetStartedButton />
+          </div>
         </div>
+
         {/* main content  */}
         <div
           ref={contentEl}
@@ -129,7 +133,7 @@ const Banner = () => {
           <div className="w-full h-1/3 flex justify-around items-end  ">
             <InsuranceEl
               className={clsx(
-                "translate-y-8 ",
+                "translate-y-5",
                 isRtl ? "-translate-x-6" : "translate-x-6"
               )}
               heading={t("banner.insurances.motor.heading")}

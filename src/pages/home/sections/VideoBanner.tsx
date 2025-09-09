@@ -82,8 +82,11 @@ const VideoBanner = () => {
               style={{ padding: "40px" }}
               className="flex  justify-start items-end flex-row h-full  py-[15px] md:py-[20px] lg:py-[40px] xl:py-[60px] "
             >
-              <div ref={fadingEl} className="flex flex-col h-fit w-fit  z-3">
-                <p className="text-white text-center sm:text-start text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl mb-2">
+              <div
+                ref={fadingEl}
+                className="flex flex-col h-fit w-full justify-center items-center  z-3"
+              >
+                <p className=" text-white text-center sm:text-start text-base sm:text-lg md:text-xl mb-2">
                   {t("video-banner.welcome")}
                 </p>
                 <h1
@@ -96,6 +99,15 @@ const VideoBanner = () => {
                 >
                   <pre> {t("video-banner.subHeading")}</pre>
                 </h1>
+
+                <div className="flex gap-3 md:gap-10 pt-6">
+                  <div className="bg-gradient-to-tl from-[#941845] via-akti-burgundy-light to-akti-burgundy px-6 py-3  rounded-lg text-white cursor-pointer hover:bg-akti-darkRed transition-colors uppercase">
+                    {t("video-banner.buttons.policy")}
+                  </div>
+                  <div className="bg-gradient-to-tl from-[#941845] via-akti-burgundy-light to-akti-burgundy px-6 py-3  rounded-lg text-white cursor-pointer hover:bg-akti-darkRed transition-colors uppercase">
+                    {t("video-banner.buttons.claim")}
+                  </div>
+                </div>
               </div>
             </XSpacing>
           </div>

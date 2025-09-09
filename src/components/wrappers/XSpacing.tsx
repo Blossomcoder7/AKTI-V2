@@ -12,7 +12,7 @@ const XSpacing: React.FC<XSpacing> = (props) => {
     <div
       {...rest}
       className={clsx(
-        `flex flex-col justify-center items-center w-full h-fit px-[15px] md:px-[20px] lg:px-[40px] xl:px-[60px] 2xl:max-w-[120rem] 2xl:mx-auto`,
+        `flex flex-col justify-center items-center w-full h-fit px-[15px] md:px-[20px] lg:px-[40px] xl:px-[60px] 2xl:max-w-[140rem] 2xl:mx-auto`,
         className
       )}
     >

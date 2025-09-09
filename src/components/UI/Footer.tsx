@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 
 import Card2 from "../animated/Card2";
 import AnimatedWheelWrapper from "../animated/AnimatedWheelWrapper";
+import SlidingButton from "../Elements/buttons/SlidingButton";
 
 const Footer = () => {
   const { t } = useTranslation("footer");
@@ -28,7 +29,7 @@ const Footer = () => {
             backgroundPosition: "center",
           }}
         >
-          <div className="px-4">
+          <div className="px-4 w-full">
             <div className="w-full pt-1">
               <div className="flex w-full justify-between items-center pt-6">
                 <h2 className="text-xl font-semibold uppercase whitespace-pre-line">
@@ -38,7 +39,10 @@ const Footer = () => {
                   <div className="absolute left-1/2 top-1/2 -translate-1/2 text-center leading-none tracking-tight z-2 w-fit p-1 aspect-square flex items-center justify-center bg-white rounded-full text-akti-burgundy font-normal text-xs">
                     Stay <br /> Updated
                   </div>
-                  <AnimatedWheelWrapper keepRunning className="absolute left-1/2 top-1/2 -translate-1/2 z-1">
+                  <AnimatedWheelWrapper
+                    keepRunning
+                    className="absolute left-1/2 top-1/2 -translate-1/2 z-1"
+                  >
                     <img
                       src={logo}
                       alt=""
@@ -53,7 +57,7 @@ const Footer = () => {
             </div>
 
             <div className="">
-              <div className="pt-4 lg:pt-6 pb-4 md:pb-0 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              <div className="pt-4 lg:pt-6 pb-4 md:pb-0 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5">
                 <div>
                   <img
                     src={textLogo}
@@ -72,14 +76,14 @@ const Footer = () => {
                           {section.id === 11 || section.id === 12 ? (
                             <Link
                               to={item.link}
-                              className="hover:underline hover:text-gray-300 transition"
+                              className="hover:text-akti-burgundy hover:scale-110 transform transition-transform duration-300 ease-in-out hover:font-bold"
                             >
                               {item.label}
                             </Link>
                           ) : (
                             <a
                               href={item.link || "#"}
-                              className="hover:underline hover:text-gray-300 transition"
+                              className="hover:text-akti-burgundy hover:scale-110 transform transition-transform duration-300 ease-in-out hover:font-bold"
                             >
                               {item.label}
                             </a>
@@ -89,32 +93,39 @@ const Footer = () => {
                     </ul>
                   </div>
                 ))}
-                <div className="flex gap-3 md:gap-1">
+                <div className="flex   gap-3 md:gap-1">
                   <a
                     href="https://www.facebook.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-fit h-fit text-sm bg-[#E0E0E0]/40 border text-[#ffffff] border-[#ffffff] p-2 rounded-full hover:cursor-pointer"
+                    className="w-fit h-fit text-sm bg-[#E0E0E0]/40 border text-[#ffffff] border-[#ffffff] rounded-full hover:cursor-pointer"
                   >
-                    {t("socialMedia.facebook")}
+                    <SlidingButton className="px-2 py-1">
+                      {" "}
+                      {t("socialMedia.facebook")}
+                    </SlidingButton>
                   </a>
 
                   <a
                     href="https://www.instagram.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-fit h-fit text-sm bg-[#E0E0E0]/40 border text-[#ffffff] border-[#ffffff] p-2 rounded-full hover:cursor-pointer"
+                    className="w-fit h-fit text-sm bg-[#E0E0E0]/40 border text-[#ffffff] border-[#ffffff]  rounded-full hover:cursor-pointer"
                   >
-                    {t("socialMedia.instagram")}
+                    <SlidingButton className="px-2 py-1">
+                      {t("socialMedia.instagram")}{" "}
+                    </SlidingButton>
                   </a>
 
                   <a
                     href="https://www.linkedin.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-fit h-fit text-sm bg-[#E0E0E0]/40 border text-[#ffffff] border-[#ffffff] p-2 rounded-full hover:cursor-pointer"
+                    className="w-fit h-fit text-sm bg-[#E0E0E0]/40 border text-[#ffffff] border-[#ffffff]  rounded-full hover:cursor-pointer"
                   >
-                    {t("socialMedia.linkedin")}
+                    <SlidingButton className="px-2 py-1">
+                      {t("socialMedia.linkedin")}
+                    </SlidingButton>
                   </a>
                 </div>
               </div>

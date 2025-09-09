@@ -121,51 +121,53 @@ const InsuranceClaim = () => {
   );
 
   return (
-    <div ref={containerRef} className="w-full  text-white rounded-2xl ">
-      <div className="w-full h-auto relative min-h-fit  grid grid-cols-1 md:grid-cols-2 items-center py-10 gap-6">
-        {/* Left Side */}
-        <div
-          ref={horizontalRef}
-          className="w-full relative h-full flex  items-center justify-start gap-14 min-w-max"
-        >
-          {arr.map((a, i) => (
-            <Card
-              ref={(el) => {
-                cardItemsRef.current[i] = el ?? undefined;
-              }}
-              heading={a.title}
-              subHeading={a.description}
-              className={clsx("cards-items absolute  ", ``)}
-              style={{
-                top: `${50 + 10 * i}%`,
-                transform: `translateX(${10 * i}%)`,
-              }}
-              key={`${isRtl}-${i}`}
-              index={i + 1}
-            />
-          ))}
-        </div>
-        {/* Right Side */}
-        <div className="flex w-full min-h-fit -order-1 md:order-1 justify-end">
-          <div className="text-right max-w-sm ">
-            <h2 className="text-2xl md:text-[3.2rem] font-bold leading-none pb-5">
-              {t("insuranceClaim.title")}
-            </h2>
-            <div className="flex w-full h-52 justify-end">
-              <div ref={circleEl} className="h-52 w-52 aspect-square">
-                <AnimatedWheelWrapper>
-                  <img
-                    src={logo}
-                    alt="logo"
-                    className="w-full h-full object-cover"
-                  />
-                </AnimatedWheelWrapper>
+    <>
+      <div ref={containerRef} className="w-full  text-white rounded-2xl ">
+        <div className="w-full h-auto relative min-h-fit  grid grid-cols-1 md:grid-cols-2 items-center py-10 gap-6">
+          {/* Left Side */}
+          <div
+            ref={horizontalRef}
+            className="w-full relative h-full flex  items-center justify-start gap-14 min-w-max"
+          >
+            {arr.map((a, i) => (
+              <Card
+                ref={(el) => {
+                  cardItemsRef.current[i] = el ?? undefined;
+                }}
+                heading={a.title}
+                subHeading={a.description}
+                className={clsx("cards-items absolute  ", ``)}
+                style={{
+                  top: `${50 + 10 * i}%`,
+                  transform: `translateX(${10 * i}%)`,
+                }}
+                key={`${isRtl}-${i}`}
+                index={i + 1}
+              />
+            ))}
+          </div>
+          {/* Right Side */}
+          <div className="flex w-full min-h-fit -order-1 md:order-1 justify-end">
+            <div className="text-right max-w-sm ">
+              <h2 className="text-2xl md:text-[3.2rem] font-bold leading-none pb-5">
+                {t("insuranceClaim.title")}
+              </h2>
+              <div className="flex w-full h-52 justify-end">
+                <div ref={circleEl} className="h-52 w-52 aspect-square">
+                  <AnimatedWheelWrapper>
+                    <img
+                      src={logo}
+                      alt="logo"
+                      className="w-full h-full object-cover"
+                    />
+                  </AnimatedWheelWrapper>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

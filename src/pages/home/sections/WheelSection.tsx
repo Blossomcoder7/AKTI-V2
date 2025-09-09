@@ -99,7 +99,7 @@ const WheelSection = () => {
       const st = ScrollTrigger.create({
         trigger: pinEl.current,
         start: "top top",
-        end: `+=${SliderList.length * 60}% `,
+        end: `+=${SliderList.length * 40}% `,
         markers: false,
         pin: pinEl.current,
         scrub: false,

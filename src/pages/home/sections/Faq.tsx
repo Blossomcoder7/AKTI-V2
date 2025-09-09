@@ -28,20 +28,22 @@ const Faq = () => {
 
   return (
     <div className="w-full h-auto py-8">
-      {/* <XSpacing> */}
-      <div className="flex flex-col  sm:flex-row justify-between w-full items-center mb-8 ">
-        <h2 className="text-2xl text-center sm:text-start sm:text-4xl font-semibold text-white leading-tight">
-          <pre>{faqData.title}</pre>
-        </h2>
-        <div className="hidden sm:flex w-fit items-center gap-6 rounded-xl py-3 px-3 text-white cursor-pointer bg-[#D0D0D0]/50 border-white/30 hover:bg-white/20 transition-colors">
-          <span className="text-white text-lg font-medium">{ }View All</span>
-          <span className="p-2 rounded-full bg-white">
-            <FaArrowRight className="text-[#740832] text-sm" />
-          </span>
+      <>
+        <div className="flex flex-col  sm:flex-row justify-between w-full items-center mb-8 ">
+          <h2 className="text-2xl text-center sm:text-start sm:text-4xl font-semibold text-white leading-tight">
+            <pre>{faqData.title}</pre>
+          </h2>
+          <div className="hidden sm:flex w-fit items-center gap-6 rounded-xl py-3 px-3 text-white cursor-pointer bg-[#D0D0D0]/50 border-white/30 hover:bg-white/20 transition-colors">
+            <span className="text-white text-lg font-medium">{ }View All</span>
+            <span className="p-2 rounded-full bg-white">
+              <FaArrowRight className="text-[#740832] text-sm" />
+            </span>
+          </div>
         </div>
-      </div>
-      <div>
-        <div className="rounded-2xl flex flex-col w-full h-fit overflow-hidden shadow-lg">
+      </>
+
+      <div className="rounded-2xl flex flex-col w-full h-fit overflow-hidden shadow-lg">
+        <>
           {faqData?.items?.length > 0 ? (
             faqData?.items?.map((faq, index) => (
               <AnimatedFaqEl
@@ -54,8 +56,9 @@ const Faq = () => {
               <div className="w-full ">No FAQ</div>
             </>
           )}
-        </div>
+        </>
       </div>
+
 
       <div className="sm:hidden pt-10 pb-5 w-full flex flex-col items-center">
         <div className=" flex w-fit items-center gap-6 rounded-xl py-3 px-3 text-white cursor-pointer bg-[#D0D0D0]/50 border-white/30 hover:bg-white/20 transition-colors">
@@ -67,7 +70,6 @@ const Faq = () => {
           </span>
         </div>
       </div>
-      {/* </XSpacing> */}
     </div>
   );
 };

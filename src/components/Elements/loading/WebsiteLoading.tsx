@@ -7,7 +7,7 @@ const WebsiteLoading = () => {
         <img
           src={"/white-favicon.png"}
           alt="logo"
-          className="w-full h-screen p-32 object-contain"
+          className="w-full h-screen max-h-[500px] p-32 object-contain"
         />
       </AnimatedWheelWrapper>
     </div>

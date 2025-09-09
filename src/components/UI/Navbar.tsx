@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import WhatsappCTA from "./buttons/WhatsappCTA";
 import LanguageToggle from "./buttons/languageToggle";
 import HamMenuButton from "./buttons/HamMenuButton";
@@ -12,19 +12,18 @@ import Drawer from "../wrappers/Drawer";
 import useLayoutConfig from "../../hooks/useLayoutConfig";
 
 const Navbar = () => {
-  const drawerEl = useRef<DrawerRefType>(null);
-
+  const { locale } = useParams();
   const navigate = useNavigate();
   const navItems = [
-    { label: "Home", path: "/en/home" },
-    { label: "About", path: "/about" },
-    { label: "Service", path: "/services" },
-    { label: "Contact Us", path: "/contact" },
+    { label: "Home", path: "home" },
+    { label: "About", path: "about" },
+    { label: "Service", path: "services" },
+    { label: "Contact Us", path: "contact" },
   ];
 
   const handleNavigation = (path: string) => {
-    navigate(path);
-    drawerEl.current?.close?.();
+    navigate(`/${locale}/${path}`);
+    drawerRef.current?.close?.();
   };
 
   const isActive = (path: string) => {
@@ -33,7 +32,7 @@ const Navbar = () => {
 
   const { scrollY } = useScroll();
   const [y, setY] = useState(0);
-  const drawerRef = useRef<DrawerRefType>(null);
+  const drawerRef = useRef<DrawerRefType | null>(null);
 
   useEffect(() => {
     return scrollY.on("change", (latest) => {
@@ -110,7 +109,11 @@ const Navbar = () => {
 
             <div className="flex flex-col items-center space-y-4 py-4 ">
               <WhatsappCTA />
-              <LanguageToggle />
+              <LanguageToggle
+                next={() => {
+                  drawerRef?.current?.close?.();
+                }}
+              />
             </div>
           </div>
         }

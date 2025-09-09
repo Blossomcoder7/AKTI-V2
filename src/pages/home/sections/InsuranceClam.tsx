@@ -7,9 +7,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useLayoutConfig from "../../../hooks/useLayoutConfig";
 import AnimatedWheelWrapper from "../../../components/animated/AnimatedWheelWrapper";
+import useScreenSize from "../../../hooks/useScreenSize";
 gsap.registerPlugin(ScrollTrigger);
 const InsuranceClaim = () => {
   const { t } = useTranslation("insuranceClaim");
+
   const arr = [
     {
       title: t("insuranceClaim.steps.step1.title"),
@@ -40,14 +42,22 @@ const InsuranceClaim = () => {
       description: t("insuranceClaim.steps.step5.description"),
     },
   ];
+
   const containerRef = useRef<HTMLDivElement | null>(null);
   const horizontalRef = useRef<HTMLDivElement | null>(null);
   const cardItemsRef = useRef<(HTMLDivElement | undefined)[]>([]);
   const circleEl = useRef<HTMLDivElement | null>(null);
-
+  const { isTab, isMobile } = useScreenSize();
+  const isSmallScreen = isTab || isMobile;
   const { isRtl } = useLayoutConfig();
+
   useGSAP(
     () => {
+      if (isRtl) {
+        ScrollTrigger.refresh();
+      } else {
+        ScrollTrigger.refresh();
+      }
       if (!containerRef.current || !cardItemsRef.current || !circleEl?.current)
         return;
       const containerEl = containerRef.current;
@@ -67,15 +77,15 @@ const InsuranceClaim = () => {
 
       items.forEach((item, i) => {
         if (i === 0) {
-          tl.set(item, { yPercent: -50 + 2 * i });
+          tl.set(item, { yPercent: isSmallScreen ? 0 : -50 + 2 * i });
         } else {
           if (isRtl) {
             tl.fromTo(
               item,
               { yPercent: 300 },
               {
-                yPercent: -50 + 7 * i,
-                xPercent: 1 - 5 * i,
+                yPercent: (isSmallScreen ? 0 : -50) + 7 * i,
+                xPercent: isSmallScreen ? 0 : 1 - 5 * i,
               },
               ">"
             );
@@ -84,8 +94,8 @@ const InsuranceClaim = () => {
               item,
               { yPercent: 300 },
               {
-                yPercent: -50 + 7 * i,
-                xPercent: 1 + 5 * i,
+                yPercent: (isSmallScreen ? 0 : -50) + 7 * i,
+                xPercent: isSmallScreen ? 0 : 1 + 5 * i,
               },
               ">"
             );
@@ -99,18 +109,24 @@ const InsuranceClaim = () => {
       };
     },
     {
-      dependencies: [cardItemsRef, isRtl, containerRef, circleEl],
+      dependencies: [
+        cardItemsRef,
+        isSmallScreen,
+        isRtl,
+        containerRef,
+        circleEl,
+      ],
       scope: containerRef,
     }
   );
 
   return (
     <div ref={containerRef} className="w-full  text-white rounded-2xl ">
-      <div className="w-full  grid grid-cols-1 md:grid-cols-2 items-center py-10 gap-6">
+      <div className="w-full h-auto relative min-h-fit  grid grid-cols-1 md:grid-cols-2 items-center py-10 gap-6">
         {/* Left Side */}
         <div
           ref={horizontalRef}
-          className="w-full relative h-full flex items-center justify-start gap-14 min-w-max"
+          className="w-full relative h-full flex  items-center justify-start gap-14 min-w-max"
         >
           {arr.map((a, i) => (
             <Card
@@ -124,18 +140,18 @@ const InsuranceClaim = () => {
                 top: `${50 + 10 * i}%`,
                 transform: `translateX(${10 * i}%)`,
               }}
-              key={i}
+              key={`${isRtl}-${i}`}
               index={i + 1}
             />
           ))}
         </div>
         {/* Right Side */}
-        <div className="flex w-full justify-end">
+        <div className="flex w-full min-h-fit -order-1 md:order-1 justify-end">
           <div className="text-right max-w-sm ">
             <h2 className="text-2xl md:text-[3.2rem] font-bold leading-none pb-5">
               {t("insuranceClaim.title")}
             </h2>
-            <div className="flex w-full justify-end">
+            <div className="flex w-full h-52 justify-end">
               <div ref={circleEl} className="h-52 w-52 aspect-square">
                 <AnimatedWheelWrapper>
                   <img

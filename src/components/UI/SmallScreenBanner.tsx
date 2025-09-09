@@ -4,15 +4,16 @@ import "swiper/swiper-bundle.css";
 import "../../styles/Banner.css";
 import InsuranceEl from "./InsuranceEl";
 import { useTranslation } from "react-i18next";
+import GetStartedButton from "./GetStartedButton";
 
 const SmallScreenBanner = () => {
   const { t } = useTranslation("home");
 
   return (
     <div className="w-full h-full  rounded-2xl">
-      <div className="w-full flex flex-col justify-center items-center">
+      <div className="w-full flex flex-col  gap-4 justify-center items-center">
         <h1 className="text-center text-3xl font-bold text-akti-burgundy-light mb-5">
-          Types of <br /> Insurances
+          <pre>{t("banner.bg-text")}</pre>
         </h1>
 
         <div className="w-full h-fit flex justify-center items-center">
@@ -29,8 +30,8 @@ const SmallScreenBanner = () => {
               spaceBetween={20}
               slidesPerView={1}
               breakpoints={{
-                640: { slidesPerView: 1.3 },
-                768: { slidesPerView: 2 },
+                640: { slidesPerView: 1 },
+                768: { slidesPerView: 1 },
                 1024: { slidesPerView: 3 },
                 1280: { slidesPerView: 4 },
               }}
@@ -74,6 +75,10 @@ const SmallScreenBanner = () => {
               ))}
             </Swiper>
           </div>
+        </div>
+
+        <div className="relative flex w-full items-center justify-center z-20">
+          <GetStartedButton />
         </div>
       </div>
     </div>

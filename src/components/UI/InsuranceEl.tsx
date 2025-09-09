@@ -8,6 +8,7 @@ export interface InsuranceElProps extends HTMLAttributes<HTMLDivElement> {
   image: string;
   heading: string;
   subHeading: string;
+  delay?: number;
   buttonProps?: HTMLAttributes<HTMLButtonElement>;
 }
 const InsuranceEl = ({
@@ -16,6 +17,7 @@ const InsuranceEl = ({
   heading,
   image,
   className,
+  delay = 0.5,
   ...rest
 }: InsuranceElProps) => {
   const { t } = useTranslation("home");
@@ -30,26 +32,43 @@ const InsuranceEl = ({
         className
       )}
     >
-      <div className="w-fit h-fit max-w-[clamp(150px,6vw,300px)]">
-        <img
-          src={image}
-          alt={"image"}
-          className="block object-contain  object-center"
-        />
-      </div>
       <motion.div
         initial={{ opacity: 0.1, scale: 0.5 }}
         whileInView={{
           opacity: 1,
           scale: 1,
         }}
-        viewport={{ once: true, amount: 0.9 }}
+        viewport={{ once: true, amount: 0.1 }}
         transition={{
           duration: 0.3,
           ease: "easeIn",
           type: "spring",
           stiffness: 120,
           damping: 25,
+          delay: delay || 0.5,
+        }}
+        className="w-fit h-fit max-w-[clamp(150px,6vw,300px)]"
+      >
+        <img
+          src={image}
+          alt={"image"}
+          className="block object-contain  object-center"
+        />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0.1, scale: 0.5 }}
+        whileInView={{
+          opacity: 1,
+          scale: 1,
+        }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{
+          duration: 0.3,
+          ease: "easeIn",
+          type: "spring",
+          stiffness: 120,
+          damping: 25,
+          delay: delay || 0.5,
         }}
         className="flex flex-col gap-1 items-center justify-between"
       >

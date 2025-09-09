@@ -5,7 +5,10 @@ import { Menu, MenuItem } from "@mui/material";
 import { LANGUAGES } from "../../../options/languages";
 import GradientButton from "../../Elements/buttons/GradientButton";
 
-const LanguageToggle = () => {
+interface LanguageToggleProps {
+  next?: () => void;
+}
+const LanguageToggle = ({ next }: LanguageToggleProps) => {
   const { locale } = useParams();
   const navigate = useNavigate();
 
@@ -27,7 +30,9 @@ const LanguageToggle = () => {
         segments.unshift(lang);
       }
       const newPath = "/" + segments.join("/");
+      
       navigate(newPath + window.location.search);
+      next?.();
     }
   };
 

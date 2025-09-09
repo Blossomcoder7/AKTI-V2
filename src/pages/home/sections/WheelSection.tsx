@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import useLayoutConfig from "../../../hooks/useLayoutConfig";
 import AnimatedWheelWrapper from "../../../components/animated/AnimatedWheelWrapper";
+import useScreenSize from "../../../hooks/useScreenSize";
 
 export interface SliderListItemType {
   heading: string;
@@ -27,6 +28,8 @@ gsap.registerPlugin(ScrollTrigger);
 const angle = 270;
 
 const WheelSection = () => {
+  const { isTab, isMobile } = useScreenSize();
+  const isSmallScreen = isMobile || isTab;
   const { t } = useTranslation("home");
   const SliderList: SliderListItemType[] = useMemo(
     () => [
@@ -212,7 +215,7 @@ const WheelSection = () => {
             </div>
 
             {/* Wheel area */}
-            <div className="absolute left-0 w-full h-full top-6/12 -translate-y-1">
+            <div className="absolute left-0 w-full h-full top-1/3  md:top-6/12 -translate-y-1">
               <div className="w-full h-full relative flex items-center justify-center">
                 <div className="absolute bottom-full mb-4 max-w-[260px] left-1/2 -translate-x-1/2"></div>
                 {/* Center favicon */}
@@ -231,7 +234,7 @@ const WheelSection = () => {
                 {/* Hands */}
                 <div
                   ref={handsGroupRef}
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+                  className="absolute left-1/2 lg:top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
                   style={{
                     // Add CSS to prevent blur and improve rendering
                     backfaceVisibility: "hidden",
@@ -242,7 +245,7 @@ const WheelSection = () => {
                   {SliderList?.map((item, i) => {
                     const baseAngle = i * step;
                     const isActive = activeId === item?.id;
-                    const gap = isActive ? 155 : 155;
+                    const gap = isSmallScreen ? 0 : 155;
                     const length = faviconRadius + gap;
                     return (
                       <HandItem
@@ -295,10 +298,9 @@ const HandItem: React.FC<HandItemProps> = ({
 
   return (
     <div
-      className="absolute"
+      className="absolute top-1/2"
       style={{
         left: "50%",
-        top: "50%",
         transform: `translate3d(-50%, -50%, 0) rotate(${roundedAngle}deg) translateY(-${roundedLength}px)`,
         transformOrigin: "center center",
         // Add CSS to prevent blur and improve rendering
@@ -307,7 +309,7 @@ const HandItem: React.FC<HandItemProps> = ({
         willChange: "transform", // Optimize for animations
       }}
     >
-      <div className="flex flex-col items-center justify-center space-y-2">
+      <div className="flex flex-col items-center justify-center space-y-2 translate-y-1/2 lg:translate-y-0">
         {icon && (
           <img
             src={icon}
@@ -347,7 +349,7 @@ const DetailsCard = ({
     return (
       <>
         <motion.div
-          className="flex flex-col min-w-[200px] text-center justify-center items-center gap-2 translate-y-2"
+          className="flex flex-col min-w-[200px] text-center justify-center items-center gap-2 translate-y-full lg:translate-y-2"
           style={{
             // Prevent blur in motion components
             backfaceVisibility: "hidden",

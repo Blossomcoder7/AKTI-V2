@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { motion, useMotionValue, useSpring } from "motion/react";
+import SlidingButton from "../../../components/Elements/buttons/SlidingButton";
 gsap.registerPlugin(ScrollTrigger);
 const VideoBanner = () => {
   const { t } = useTranslation("home");
@@ -51,7 +52,8 @@ const VideoBanner = () => {
     <>
       <div
         ref={pinRefEl}
-        className="w-full h-screen min-h-screen pb-3.5 py-3.5  flex flex-col md:flex-row relative items-center justify-center"
+        id="section2"
+        className="w-full  h-screen min-h-screen pb-3.5 py-3.5  flex flex-col md:flex-row relative items-center justify-center"
       >
         <div
           ref={scrollerRefEl}
@@ -80,7 +82,7 @@ const VideoBanner = () => {
           <div className="w-full h-full flex items-center justify-center relative z-3">
             <XSpacing
               style={{ padding: "40px" }}
-              className="flex  justify-start items-end flex-row h-full  py-[15px] md:py-[20px] lg:py-[40px] xl:py-[60px] "
+              className="flex  flex-col justify-end items-center  h-full  py-[15px] md:py-[20px] lg:py-[40px] xl:py-[60px] "
             >
               <div
                 ref={fadingEl}
@@ -99,14 +101,19 @@ const VideoBanner = () => {
                 >
                   <pre> {t("video-banner.subHeading")}</pre>
                 </h1>
-
+              </div>
+              <div className="w-full h-fit py-4 flex items-center justify-center">
                 <div className="flex gap-3 md:gap-10 pt-6">
-                  <div className="bg-gradient-to-tl from-[#941845] via-akti-burgundy-light to-akti-burgundy px-6 py-3  rounded-lg text-white cursor-pointer hover:bg-akti-darkRed transition-colors uppercase">
-                    {t("video-banner.buttons.policy")}
-                  </div>
-                  <div className="bg-gradient-to-tl from-[#941845] via-akti-burgundy-light to-akti-burgundy px-6 py-3  rounded-lg text-white cursor-pointer hover:bg-akti-darkRed transition-colors uppercase">
-                    {t("video-banner.buttons.claim")}
-                  </div>
+                  <SlidingButton className=" bg-gradient-to-tl py-0.5 px-2 from-[#941845] via-akti-burgundy-light to-akti-burgundy  leading-none  flex items-center justify-center rounded-lg overflow-hidden">
+                    <div className=" px-6 py-3   text-white cursor-pointer hover:bg-akti-darkRed transition-colors uppercase">
+                      {t("video-banner.buttons.policy")}
+                    </div>
+                  </SlidingButton>
+                  <SlidingButton className=" bg-gradient-to-tl py-0.5 px-2 from-[#941845] via-akti-burgundy-light to-akti-burgundy  leading-none  flex items-center justify-center rounded-lg overflow-hidden">
+                    <div className=" px-6 py-3   text-white cursor-pointer hover:bg-akti-darkRed transition-colors uppercase">
+                      {t("video-banner.buttons.claim")}
+                    </div>
+                  </SlidingButton>
                 </div>
               </div>
             </XSpacing>

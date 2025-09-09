@@ -62,7 +62,7 @@ const AnimatedFaqEl = ({ faq }: { faq: FaqItemType }) => {
           setShow(false);
         }}
         className={clsx(
-          `flex relative flex-col sm:flex-row items-center gap-4 justify-between  bg-white p-6 not-last:border-b border-[#282828]/20}`
+          `flex relative flex-col sm:flex-row items-center gap-4 justify-between  bg-white py-10 p-6 not-last:border-b border-[#282828]/20}`
         )}
       >
         <div className="absolute pointer-events-none w-full h-full inset-0 p-4">
@@ -80,7 +80,7 @@ const AnimatedFaqEl = ({ faq }: { faq: FaqItemType }) => {
                   <motion.div
                     ref={elRef}
                     className={clsx(
-                      "absolute z-10 top-2/3 pointer-events-none -translate-y-2/3  ",
+                      "absolute z-10 top-2/3 hidden md:flex  pointer-events-none -translate-y-2/3  ",
                       isRtl ? "left-0" : ""
                     )}
                     style={{

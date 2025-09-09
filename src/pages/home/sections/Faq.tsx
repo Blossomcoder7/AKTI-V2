@@ -25,7 +25,6 @@ const Faq = () => {
     viewAll: "View All",
     items: [],
   };
-  console.log({ faqData: faqData });
 
   return (
     <div className="w-full h-auto py-8">

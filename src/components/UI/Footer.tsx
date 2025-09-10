@@ -56,8 +56,8 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="">
-              <div className="pt-4 lg:pt-6 pb-4 md:pb-0 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5">
+            <>
+              <div className="pt-4 lg:pt-6 gap-5 pb-4 md:pb-0 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5">
                 <div>
                   <img
                     src={textLogo}
@@ -76,14 +76,14 @@ const Footer = () => {
                           {section.id === 11 || section.id === 12 ? (
                             <Link
                               to={item.link}
-                              className="hover:text-akti-burgundy hover:scale-110 transform transition-transform duration-300 ease-in-out hover:font-bold"
+                              className="hover:text-akti-burgundy hover:underline hover:scale-110 transform transition-transform duration-300 ease-in-out hover:font-bold"
                             >
                               {item.label}
                             </Link>
                           ) : (
                             <a
                               href={item.link || "#"}
-                              className="hover:text-akti-burgundy hover:scale-110 transform transition-transform duration-300 ease-in-out hover:font-bold"
+                              className="hover:text-akti-burgundy  hover:underline hover:scale-110 transform transition-transform duration-300 ease-in-out hover:font-bold"
                             >
                               {item.label}
                             </a>
@@ -93,14 +93,14 @@ const Footer = () => {
                     </ul>
                   </div>
                 ))}
-                <div className="flex   gap-3 md:gap-1">
+                <div className="flex gap-3 md:gap-1">
                   <a
                     href="https://www.facebook.com/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-fit h-fit text-sm bg-[#E0E0E0]/40 border text-[#ffffff] border-[#ffffff] rounded-full hover:cursor-pointer"
                   >
-                    <SlidingButton className="px-2 py-1">
+                    <SlidingButton className="p-1">
                       {" "}
                       {t("socialMedia.facebook")}
                     </SlidingButton>
@@ -112,7 +112,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     className="w-fit h-fit text-sm bg-[#E0E0E0]/40 border text-[#ffffff] border-[#ffffff]  rounded-full hover:cursor-pointer"
                   >
-                    <SlidingButton className="px-2 py-1">
+                    <SlidingButton className="p-1">
                       {t("socialMedia.instagram")}{" "}
                     </SlidingButton>
                   </a>
@@ -123,7 +123,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     className="w-fit h-fit text-sm bg-[#E0E0E0]/40 border text-[#ffffff] border-[#ffffff]  rounded-full hover:cursor-pointer"
                   >
-                    <SlidingButton className="px-2 py-1">
+                    <SlidingButton className="p-1">
                       {t("socialMedia.linkedin")}
                     </SlidingButton>
                   </a>
@@ -135,7 +135,7 @@ const Footer = () => {
                   <p className="text-sm">{t("rightsReserved")}</p>
 
                   <div className="flex space-x-4">
-                    <div className="hover:cursor-pointer">
+                    <div className="hover:cursor-pointer hover:scale-110 transform transition-transform duration-300 ease-in-out">
                       <a href="#" target="_blank" rel="noopener noreferrer">
                         <img
                           src={PS}
@@ -145,7 +145,7 @@ const Footer = () => {
                       </a>
                     </div>
 
-                    <div className="hover:cursor-pointer">
+                    <div className="hover:cursor-pointer hover:scale-110  transform transition-transform duration-300 ease-in-out">
                       <a href="#" target="_blank" rel="noopener noreferrer">
                         <img
                           src={AS}
@@ -157,7 +157,7 @@ const Footer = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </>
           </div>
         </div>
       </div>

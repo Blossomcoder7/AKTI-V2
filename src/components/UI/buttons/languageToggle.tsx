@@ -33,7 +33,7 @@ const LanguageToggle = ({ next }: LanguageToggleProps) => {
 
       const staticTitle = "AKTI - ";
       const dynamicTitle =
-        locale === "en"
+        lang === "ar"
           ? "الخليج للتأمين التكافلي"
           : "AlKhaleej Takaful Insurance";
       document.title = `${staticTitle}${dynamicTitle}`;

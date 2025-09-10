@@ -10,7 +10,7 @@ const LeftTopCorner = () => {
     <>
       <div
         className={clsx(
-          " absolute top-[-1px] w-fit h-fit z-10 ",
+          " absolute top-[-1px] max-w-fit w-fit h-fit z-10 ",
           isRtl ? "right-[-1px]" : "left-[-1px]"
         )}
       >

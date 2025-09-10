@@ -53,11 +53,11 @@ const Navbar = () => {
       <MagicScrollWrapper>
         <div
           className={clsx(
-            "px-7 flex items-center w-full h-full py-2.5 justify-between",
+            "px-7 flex items-center max-w-full w-full h-full py-2.5 justify-end",
             y > 100 ? "" : "bg-transparent"
           )}
         >
-          <span></span>
+          <div></div>
           {/* {y > 200 ? (
             <div className="w-auto h-full inline-flex ">
               <FullLogo

@@ -3,7 +3,7 @@ import { initReactI18next } from "react-i18next";
 import HttpBackend from "i18next-http-backend";
 
 i18n
-  .use(HttpBackend) 
+  .use(HttpBackend)
   .use(initReactI18next)
   .init({
     lng: "en",
@@ -15,6 +15,7 @@ i18n
     ns: [
       "home",
       "footer",
+      "navbar",
       "card",
       "insuranceClaim",
       "MapSection",

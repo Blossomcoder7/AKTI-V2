@@ -30,7 +30,14 @@ const LanguageToggle = ({ next }: LanguageToggleProps) => {
         segments.unshift(lang);
       }
       const newPath = "/" + segments.join("/");
-      
+
+      const staticTitle = "AKTI - ";
+      const dynamicTitle =
+        locale === "en"
+          ? "الخليج للتأمين التكافلي"
+          : "AlKhaleej Takaful Insurance";
+      document.title = `${staticTitle}${dynamicTitle}`;
+
       navigate(newPath + window.location.search);
       next?.();
     }

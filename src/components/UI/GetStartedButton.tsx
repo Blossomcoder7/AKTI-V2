@@ -20,7 +20,7 @@ const GetStartedButton = () => {
       >
         <div className=" w-full h-full flex gap-10 rounded-2xl justify-center items-center bg-gradient-to-b px-7 py-3 group-hover:opacity-90 from-[#590B25] via-[#740832] to-[#941845] ">
           <SlidingButton className="leading-none">
-            <span className="text-akti-white font-medium text-xl ">
+            <span className="text-akti-white font-medium text-lg ">
               {t("banner.get-started")}
             </span>
           </SlidingButton>

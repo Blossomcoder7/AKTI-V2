@@ -1,5 +1,4 @@
 import { forwardRef, useRef, type HTMLAttributes } from "react";
-
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import { useGSAP } from "@gsap/react";

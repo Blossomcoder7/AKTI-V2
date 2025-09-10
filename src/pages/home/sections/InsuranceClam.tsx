@@ -1,5 +1,5 @@
 import { forwardRef, useRef, type HTMLAttributes } from "react";
-import logo from "../../../assets/logos/SmallLogo2.png";
+
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import { useGSAP } from "@gsap/react";
@@ -156,7 +156,7 @@ const InsuranceClaim = () => {
                 <div ref={circleEl} className="h-52 w-52 aspect-square">
                   <AnimatedWheelWrapper>
                     <img
-                      src={logo}
+                      src={"/akti-logo-white.svg"}
                       alt="logo"
                       className="w-full h-full object-cover"
                     />

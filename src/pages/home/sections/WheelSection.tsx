@@ -225,7 +225,7 @@ const WheelSection = () => {
                 >
                   <AnimatedWheelWrapper>
                     <img
-                      src="/full-favicon.png"
+                      src="/akti-logo-burgundy.svg"
                       alt="favicon"
                       className="object-contain w-full h-full rounded-full"
                     />

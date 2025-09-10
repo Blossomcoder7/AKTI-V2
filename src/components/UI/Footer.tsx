@@ -18,6 +18,7 @@ const Footer = () => {
     title: string;
     description: { label: string; link: string }[];
   }[];
+
   return (
     <>
       <div className="h-auto w-full bg-akti-burgundy">
@@ -93,7 +94,7 @@ const Footer = () => {
                     </ul>
                   </div>
                 ))}
-                <div className="flex   gap-3 md:gap-1">
+                <div className="flex col-span-1 flex-wrap  gap-3 md:gap-1">
                   <a
                     href="https://www.facebook.com/"
                     target="_blank"
@@ -166,3 +167,6 @@ const Footer = () => {
 };
 
 export default Footer;
+
+
+

@@ -7,13 +7,15 @@ import LocaleLayout from "./components/Layouts/localeLayout";
 import getInitialLocale from "./utils/getInitialLocale";
 const HomePage = lazy(() => import("./pages/home/Index"));
 const App = () => {
+
   const preload = useCallback(async () => {
     import("./pages/home/Index");
   }, []);
   useEffect(() => {
     preload();
-  }, [preload]);
-  
+
+  }, [preload, ]);
+
   return (
     <BrowserRouter>
       <Routes>

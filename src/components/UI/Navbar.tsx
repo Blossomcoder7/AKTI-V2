@@ -10,15 +10,17 @@ import MagicScrollWrapper from "../wrappers/MagicScrollWrapper";
 import type { DrawerRefType } from "../wrappers/Drawer";
 import Drawer from "../wrappers/Drawer";
 import useLayoutConfig from "../../hooks/useLayoutConfig";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const { locale } = useParams();
   const navigate = useNavigate();
+  const { t } = useTranslation("navbar");
   const navItems = [
-    { label: "Home", path: "home" },
-    { label: "About", path: "about" },
-    { label: "Service", path: "services" },
-    { label: "Contact Us", path: "contact" },
+    { label: t("Navbar.home"), path: "home" },
+    { label: t("Navbar.about"), path: "about" },
+    { label: t("Navbar.services"), path: "services" },
+    { label: t("Navbar.contact"), path: "contact" },
   ];
 
   const handleNavigation = (path: string) => {

@@ -47,3 +47,11 @@ body {
   overflow: auto;
   overflow-x: hidden;
 }
+
+/* globals.css or inside a <style> tag */
+html,
+body,
+#root {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}

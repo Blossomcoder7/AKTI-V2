@@ -17,6 +17,7 @@ import clsx from "clsx";
 import useLayoutConfig from "../../../hooks/useLayoutConfig";
 import AnimatedWheelWrapper from "../../../components/animated/AnimatedWheelWrapper";
 import useScreenSize from "../../../hooks/useScreenSize";
+import BrandLogo from "../../../components/Elements/logo/BrandLogo";
 
 export interface SliderListItemType {
   heading: string;
@@ -223,12 +224,8 @@ const WheelSection = () => {
                   ref={circleEl}
                   className="absolute z-30 w-full h-full flex items-center justify-center"
                 >
-                  <AnimatedWheelWrapper>
-                    <img
-                      src="/akti-logo-burgundy.svg"
-                      alt="favicon"
-                      className="object-contain w-full h-full rounded-full"
-                    />
+                  <AnimatedWheelWrapper className="flex items-center justify-center aspect-square h-1/2">
+                    <BrandLogo fill="#660033" className="md:w-full xl:h-full aspect-square xl:w-fit" />
                   </AnimatedWheelWrapper>
                 </div>
                 {/* Hands */}

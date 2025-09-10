@@ -1,4 +1,5 @@
 import { forwardRef, useRef, type HTMLAttributes } from "react";
+
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import { useGSAP } from "@gsap/react";
@@ -7,7 +8,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useLayoutConfig from "../../../hooks/useLayoutConfig";
 import AnimatedWheelWrapper from "../../../components/animated/AnimatedWheelWrapper";
 import useScreenSize from "../../../hooks/useScreenSize";
-import BrandLogo from "../../../components/Elements/logo/BrandLogo";
 gsap.registerPlugin(ScrollTrigger);
 const InsuranceClaim = () => {
   const { t } = useTranslation("insuranceClaim");
@@ -154,8 +154,12 @@ const InsuranceClaim = () => {
               </h2>
               <div className="flex w-full h-52 justify-end">
                 <div ref={circleEl} className="h-52 w-52 aspect-square">
-                  <AnimatedWheelWrapper className="w-full flex items-center justify-center aspect-square h-full">
-                    <BrandLogo fill="#ffffff" />
+                  <AnimatedWheelWrapper>
+                    <img
+                      src={"/akti-logo-white.svg"}
+                      alt="logo"
+                      className="w-full h-full object-cover"
+                    />
                   </AnimatedWheelWrapper>
                 </div>
               </div>

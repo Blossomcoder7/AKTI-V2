@@ -1,15 +1,14 @@
-const image1 =
-  "https://res.cloudinary.com/dfdgjx0ri/image/upload/v1753703644/samples/coffee.jpg";
-const image2 =
-  "https://res.cloudinary.com/dfdgjx0ri/image/upload/v1753703644/samples/cup-on-a-table.jpg";
-const image3 =
-  "https://res.cloudinary.com/dfdgjx0ri/image/upload/v1753703638/samples/animals/kitten-playing.gif";
-const image4 =
-  "https://res.cloudinary.com/dfdgjx0ri/image/upload/v1753703636/samples/sheep.jpg";
+// const image1 =
+//   "https://res.cloudinary.com/dfdgjx0ri/image/upload/v1753703644/samples/coffee.jpg";
+// const image2 =
+//   "https://res.cloudinary.com/dfdgjx0ri/image/upload/v1753703644/samples/cup-on-a-table.jpg";
+// const image3 =
+//   "https://res.cloudinary.com/dfdgjx0ri/image/upload/v1753703638/samples/animals/kitten-playing.gif";
+// const image4 =
+//   "https://res.cloudinary.com/dfdgjx0ri/image/upload/v1753703636/samples/sheep.jpg";
 
-const images = [image1, image2, image3, image4];
+// const images = [image1, image2, image3, image4];
 import { FaArrowRight } from "react-icons/fa";
-import AnimatedFaqEl from "../../../components/animated/AnimatedFaqEl";
 import type FaqItemType from "../../../types/FaqItemType";
 import { useTranslation } from "react-i18next";
 
@@ -42,7 +41,7 @@ const Faq = () => {
         </div>
       </>
 
-      <div className="rounded-2xl flex flex-col w-full h-fit overflow-hidden shadow-lg">
+      {/* <div className="rounded-2xl flex flex-col w-full h-fit overflow-hidden shadow-lg">
         <>
           {faqData?.items?.length > 0 ? (
             faqData?.items?.map((faq, index) => (
@@ -57,7 +56,7 @@ const Faq = () => {
             </>
           )}
         </>
-      </div>
+      </div> */}
 
 
       <div className="sm:hidden pt-10 pb-5 w-full flex flex-col items-center">

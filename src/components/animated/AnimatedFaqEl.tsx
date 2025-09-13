@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import type FaqItemType from "../../types/FaqItemType";
 import {
   AnimatePresence,
   motion,
@@ -9,8 +8,10 @@ import {
 import { useRef, useState } from "react";
 import useFollowMouseLocation from "../../hooks/useFollowMouseLocation";
 import useLayoutConfig from "../../hooks/useLayoutConfig";
+import type ServicesType from "../../types/ServicesType";
+import { FaPlus } from "react-icons/fa";
 
-const AnimatedFaqEl = ({ faq }: { faq: FaqItemType }) => {
+const AnimatedServiceEl = ({ service }: { service: ServicesType }) => {
   const pathRef = useRef<SVGPathElement>(null);
   const motionAngle = useMotionValue(0);
   const springedAngle = useSpring(motionAngle, {
@@ -79,7 +80,7 @@ const AnimatedFaqEl = ({ faq }: { faq: FaqItemType }) => {
                 <motion.div
                   ref={elRef}
                   className={clsx(
-                    "absolute z-10 top-2/3 hidden md:flex  pointer-events-none -translate-y-2/3  ",
+                    "absolute z-10 top-2/3 hidden md:flex  pointer-events-none -translate-y-2/3 ",
                     isRtl ? "left-0" : ""
                   )}
                   style={{
@@ -96,7 +97,7 @@ const AnimatedFaqEl = ({ faq }: { faq: FaqItemType }) => {
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 >
                   <img
-                    src={faq.image}
+                    src={service.image}
                     alt="moving"
                     className="w-52 pointer-events-none rounded-3xl object-contain"
                   />
@@ -126,33 +127,30 @@ const AnimatedFaqEl = ({ faq }: { faq: FaqItemType }) => {
 
       <div className="flex items-start gap-6 flex-1 sm:items-center">
         <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-[#740832] text-white font-bold text-lg">
-          {faq.number}
+          {service.number}
         </div>
 
-        <div className="flex-1 items-center grid grid-cols-1 lg:grid-cols-2 gap-6 ">
-          <div className="flex-1">
-            <h3 className="text-xl font-semibold  text-[#740832] leading-relaxed">
-              {faq.question}
-            </h3>
-          </div>
+        <div className=" items-center grid grid-cols-1 lg:grid-cols-2 gap-6 ">
+          <h3 className="text-5xl font-semibold  text-[#740832] leading-relaxed">
+            {service.title}
+          </h3>
 
-          <div className="flex-1 items-center">
+
+          <div className=" items-center">
             <p className="text-[#282828] text-base leading-relaxed">
-              {faq.answer}
+              {service.desc}
             </p>
           </div>
         </div>
       </div>
 
-      <div className="flex-shrink-0 items-center  ml-6 w-48 h-24 bg-gray-100 rounded-lg overflow-hidden">
-        <img
-          src={faq.image}
-          alt="FAQ image"
-          className="w-full h-full object-cover"
-        />
+      <div className="flex-shrink-0 items-center">
+        <p className="border p-4 rounded-full">
+          <FaPlus />
+        </p>
       </div>
     </div>
   );
 };
 
-export default AnimatedFaqEl;
+export default AnimatedServiceEl;

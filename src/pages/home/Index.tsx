@@ -1,23 +1,31 @@
-import useLayoutConfig from "../../hooks/useLayoutConfig";
-import Banner from "./sections/Banner";
-import Faq from "./sections/Faq";
-import InsuranceClaim from "./sections/InsuranceClam";
-import VideoBanner from "./sections/VideoBanner";
+// import useLayoutConfig from "../../hooks/useLayoutConfig";
+import AddressSection from "./sections/AddressSection";
+import AktiApp from "./sections/AktiApp";
+import BannerNew from "./sections/BannerNew";
+import ChooseUs from "./sections/ChooseUs";
+import FaqNew from "./sections/FaqNew";
+import InsuranceClamNew from "./sections/InsuranceClamNew";
+import InsuranceType from "./sections/InsuranceType";
+import Reviews from "./sections/Reviews";
+import SecureFuture from "./sections/SecureFuture";
+import ShowCounter from "./sections/ShowCounter";
 import WheelSection from "./sections/WheelSection";
 
 const HomePage = () => {
-  const { isRtl, locale } = useLayoutConfig();
+  // const { isRtl, locale } = useLayoutConfig();
   return (
     <>
-      <Banner />
-      <VideoBanner />
+      <BannerNew />
+      <ShowCounter />
+      <SecureFuture />
+      <InsuranceType />
       <WheelSection />
-      {isRtl ? (
-        <InsuranceClaim key={locale} />
-      ) : (
-        <InsuranceClaim key={locale} />
-      )}
-      <Faq />
+      <InsuranceClamNew />
+      <ChooseUs />
+      <Reviews />
+      <AktiApp />
+      <AddressSection />
+      <FaqNew />
     </>
   );
 };

@@ -41,7 +41,7 @@ const Reviews = () => {
 
     return (
         <>
-            <div className="w-full flex flex-col items-center justify-center pb-5 px-4 ">
+            <div className="w-full flex flex-col items-center justify-center px-4 py-8 ">
                 {/* <XSpacing> */}
                 <div className="h-full w-full">
                     <div className="text-center text-[#ffffff]">

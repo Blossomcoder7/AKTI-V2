@@ -2,7 +2,7 @@ import React, {
   useRef,
   useState,
   useLayoutEffect,
-  useEffect,
+  useEffect,  
   useMemo,
 } from "react";
 import background from "../../../assets/images/wheel-section-bg.png";

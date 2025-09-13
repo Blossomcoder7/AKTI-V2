@@ -1,10 +1,10 @@
 import { Outlet } from "react-router";
 import Navbar from "../UI/Navbar";
 import useSmoothScroll from "../../hooks/useSmoothScroll";
-import Footer from "../UI/Footer";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import WebsiteLoading from "../Elements/loading/WebsiteLoading";
+import FooterNew from "../UI/FooterNew";
 
 const WebsiteLayout = () => {
   useSmoothScroll({ autoInit: true });
@@ -30,7 +30,7 @@ const WebsiteLayout = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      <header className="w-full h-[90px] fixed top-0 left-0 z-[999] flex items-end justify-center">
+      <header className="w-full h-[80px] fixed top-0 left-0 z-[999] flex items-end justify-center">
         <>
           <Navbar />
         </>
@@ -39,7 +39,8 @@ const WebsiteLayout = () => {
         <Outlet />
       </main>
       <footer className="flex items-center justify-center">
-        <Footer />
+        {/* <Footer /> */}
+        <FooterNew />
       </footer>
     </>
   );

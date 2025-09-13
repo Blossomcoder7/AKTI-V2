@@ -46,43 +46,38 @@ const Card2 = () => {
 
   return (
     <div className="w-full">
-      <div className="w-full pt-6 pb-7 border-b-2 border-b-[#ffffff]/40">
-        <div
-          ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-3 relative bg-white"
-        >
-          <AnimatePresence>
-            {hoveredIndex !== null && (
-              <motion.div
-                key="overlay"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: 1,
-                  top: overlayStyle.top,
-                  left: overlayStyle.left,
-                  width: overlayStyle.width,
-                  height: overlayStyle.height,
-                }}
-                exit={{ opacity: 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="pointer-events-none absolute top-0 left-0 bg-[#282828] z-10"
-              />
-            )}
-          </AnimatePresence>
+      <div ref={gridRef} className="grid grid-cols-1  relative bg-white">
+        <AnimatePresence>
+          {hoveredIndex !== null && (
+            <motion.div
+              key="overlay"
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: 1,
+                top: overlayStyle.top,
+                left: overlayStyle.left,
+                width: overlayStyle.width,
+                height: overlayStyle.height,
+              }}
+              exit={{ opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="pointer-events-none absolute top-0 left-0 bg-[#282828] z-10"
+            />
+          )}
+        </AnimatePresence>
 
-          {text.map((items, idx) => (
-            <Fragment key={items.id}>
-              <Card2Item
-                ref={cellElms}
-                index={idx}
-                activeIndex={hoveredIndex}
-                title={items.title}
-                description={items.description}
-                onMouseEnter={() => setHoveredIndex(idx)}
-              />
-            </Fragment>
-          ))}
-        </div>
+        {text.map((items, idx) => (
+          <Fragment key={items.id}>
+            <Card2Item
+              ref={cellElms}
+              index={idx}
+              activeIndex={hoveredIndex}
+              title={items.title}
+              description={items.description}
+              onMouseEnter={() => setHoveredIndex(idx)}
+            />
+          </Fragment>
+        ))}
       </div>
     </div>
   );

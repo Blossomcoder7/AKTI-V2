@@ -4,7 +4,7 @@ import SlidingButton from "../../../components/Elements/buttons/SlidingButton";
 
 const SecureFuture = () => {
   return (
-    <div className="w-full h-auto  flex justify-center items-center p-8 rounded-[20px] bg-white">
+    <div className="w-full h-auto  flex justify-center items-center p-10 rounded-[20px] bg-white my-3">
       <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
         <div className="w-full h-[300px] md:h-[450px]  flex flex-1 justify-center items-center">
           <img

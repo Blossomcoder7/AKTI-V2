@@ -3,13 +3,12 @@ import image1 from "../../../assets/images/Vector3.png";
 import { FaLongArrowAltUp } from "react-icons/fa";
 import SlidingButton from "../../../components/Elements/buttons/SlidingButton";
 import WeeklyDynamics from "../../../components/animated/WeeklyDynamics";
-import LeftTopCorner from "../../../components/UI/LeftTopCorner";
 import Counter from "../../../components/animated/Counter";
 
 const BannerNew = () => {
   return (
-    <>
-      <div className="w-full flex-1 flex flex-col items-start gap-5 max-w-lg">
+    <div className="w-full h-auto flex justify-center items-center py-10 gap-6">
+      <div className="w-full flex-1 flex flex-col items-start gap-5">
         <p className="text-base text-black italic">
           Welcome to Alkhaleej Takaful Insurance
         </p>
@@ -30,13 +29,15 @@ const BannerNew = () => {
       </div>
 
       <div className="w-full flex-1 relative flex justify-center items-center">
-        <img
-          src={image1}
-          alt="Insurance"
-          className="w-full max-w-lg rounded-lg shadow-lg"
-        />
+        <div className="w-full h-[500px] flex justify-center items-center">
+          <img
+            src={image1}
+            alt="Insurance"
+            className="w-full h-full object-center object-cover rounded-lg "
+          />
+        </div>
 
-        <div className="absolute top-28 right-4 bg-white text-gray-700 py-2 px-3 rounded-2xl flex items-center gap-2">
+        <div className="absolute top-24 -right-10 bg-white text-gray-700 py-2 px-3 rounded-2xl flex items-center gap-2">
           <div className="w-full flex justify-center items-center gap-2">
             <div className="w-full flex flex-col px-2 text-base font-semibold">
               <span>Customers</span>
@@ -52,11 +53,11 @@ const BannerNew = () => {
           </div>
         </div>
 
-        <div className="absolute bottom-4 -left-8 px-4 py-2 rounded-md text-sm">
+        <div className="absolute bottom-2 -left-24 px-4 py-2 rounded-md text-sm">
           <WeeklyDynamics />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

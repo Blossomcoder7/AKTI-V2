@@ -7,8 +7,8 @@ import { MdHomeWork } from "react-icons/md";
 
 const AddressSection = () => {
   return (
-    <div className="w-full flex flex-col justify-center items-center my-4">
-      <div className="relative w-full min-h-fit p-14 rounded-2xl overflow-hidden">
+    <div className="w-full flex flex-col justify-center items-center my-3">
+      <div className="relative w-full min-h-fit p-10 rounded-2xl overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src={backgroundImage}

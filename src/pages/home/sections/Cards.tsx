@@ -87,7 +87,7 @@ const Cards = () => {
     ? allCards.find((card) => card.id === hoveredIndex)?.image
     : null;
   return (
-    <div className="py-14 flex w-full  flex-col relative">
+    <div className="py-6 flex w-full  flex-col relative">
       <>
         <div
           ref={gridRef}
@@ -148,7 +148,7 @@ const Cards = () => {
                 </Fragment>
               ))}
               <div className="hidden lg:flex items-end justify-end relative">
-                <div className="absolute -bottom-20 right-0 z-1">
+                <div className="absolute -bottom-14 right-0 z-1">
                   <motion.div
                     style={{
                       rotate,

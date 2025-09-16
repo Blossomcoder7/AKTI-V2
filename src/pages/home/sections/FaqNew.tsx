@@ -50,8 +50,8 @@ const FaqNew = () => {
   };
 
   return (
-    <div className="w-full h-auto flex flex-col justify-center items-center bg-akti-white rounded-[20px] px-6 py-12">
-      <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl py-5">
+    <div className="w-full h-auto flex flex-col justify-center items-center bg-akti-white rounded-[20px] p-10">
+      <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 gap-10 ">
         <div className="w-full h-full flex flex-col justify-between">
           <div className="flex flex-col gap-5">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">

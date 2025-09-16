@@ -55,8 +55,8 @@ const InsuranceClamNew = () => {
   };
 
   return (
-    <div className="w-full h-auto flex flex-col items-center justify-center rounded-[20px] bg-akti-white pt-14 pb-8 px-6">
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-8">
+    <div className="w-full h-auto flex flex-col items-center justify-center rounded-[20px] bg-akti-white p-10">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center ">
         <div className="w-full flex justify-center items-center">
           <img
             src={steps[activeStep].image}
@@ -66,7 +66,7 @@ const InsuranceClamNew = () => {
         </div>
 
         <div className="w-full flex flex-col gap-4 text-center lg:text-start">
-          <h2 className="text-2xl lg:text-4xl font-bold mb-4">
+          <h2 className="text-2xl lg:text-5xl font-bold mb-4">
             How to Claim Insurance <br />
             Online with AKTI?
           </h2>

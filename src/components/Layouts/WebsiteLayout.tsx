@@ -1,10 +1,10 @@
 import { Outlet } from "react-router";
-import Navbar from "../UI/Navbar";
 import useSmoothScroll from "../../hooks/useSmoothScroll";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import WebsiteLoading from "../Elements/loading/WebsiteLoading";
 import FooterNew from "../UI/FooterNew";
+import NavbarNew from "../UI/NavbarNew";
 
 const WebsiteLayout = () => {
   useSmoothScroll({ autoInit: true });
@@ -32,7 +32,7 @@ const WebsiteLayout = () => {
       </AnimatePresence>
       <header className="w-full h-[80px] fixed top-0 left-0 z-[999] flex items-end justify-center">
         <>
-          <Navbar />
+          <NavbarNew />
         </>
       </header>
       <main className=" bg-akti-burgundy  w-full h-fit min-h-fit p-3.5 ">

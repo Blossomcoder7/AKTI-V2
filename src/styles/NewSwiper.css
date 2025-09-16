@@ -1,0 +1,34 @@
+/* Pagination Container */
+.swiper-pagination {
+  bottom: 20px !important;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Bullet Default Style */
+.swiper-pagination-bullet {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  font-weight: 500;
+  opacity: 1;
+  border: none;
+  width: auto;
+  height: auto;
+  line-height: 1;
+  transition: all 0.3s ease;
+}
+
+/* Active Bullet Style */
+.swiper-pagination-bullet-active {
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

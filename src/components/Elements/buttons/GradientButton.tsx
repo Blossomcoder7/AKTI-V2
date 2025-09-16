@@ -11,7 +11,7 @@ const GradientButton = ({
   return (
     <div
       className={clsx(
-        "inline-flex cursor-pointer items-center justify-center rounded-[25px] text-akti-burgundy min-w-[70px] min-h-[45px] bg-gradient-to-r from-akti-white to-[#d9d9d9] border border-[#e0e0e0] transition-all",
+        "inline-flex cursor-pointer items-center justify-center rounded-[25px] text-akti-white min-w-[70px] min-h-[45px] bg-gradient-to-r from-akti-burgundy to-akti-burgundy-light border border-[#e0e0e0] transition-all",
         className
       )}
       {...rest}

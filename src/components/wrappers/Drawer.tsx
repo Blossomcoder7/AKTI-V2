@@ -18,13 +18,11 @@ export interface DrawerRefType {
   open: () => void;
   close: () => void;
 }
-
 export interface DrawerProps extends HTMLAttributes<HTMLDivElement> {
   muiDrawerProps: Omit<MUIDrawerProps, "open"> | undefined;
   menu: ReactNode | undefined;
 }
-
-const Drawer = forwardRef<DrawerRefType, DrawerProps>(
+const Drawer = forwardRef(
   (
     {
       children,
@@ -41,7 +39,6 @@ const Drawer = forwardRef<DrawerRefType, DrawerProps>(
     const handleClick: MouseEventHandler<HTMLDivElement> = (e) => {
       onClick?.(e);
     };
-
     const handleClose = () => {
       setOpenDrawer(false);
     };
@@ -52,12 +49,12 @@ const Drawer = forwardRef<DrawerRefType, DrawerProps>(
       },
       close: () => {
         handleClose();
+        setOpenDrawer(false);
       },
     }));
 
     const { changeTarget, retrigger } = useSmoothScroll({});
     const paperRef = useRef<HTMLDivElement>(null);
-
     useEffect(() => {
       if (!paperRef?.current) {
         return;
@@ -71,19 +68,24 @@ const Drawer = forwardRef<DrawerRefType, DrawerProps>(
 
     return (
       <>
-        {/* Desktop children */}
         <div
           {...rest}
           onClick={handleClick}
           className={clsx(
             className,
+            `lg:hidden inline-flex items-center justify-center w-fit h-screen max-h-[100svh]`
+          )}
+        >
+          {menu}
+        </div>
+        <div
+          className={clsx(
             `hidden lg:flex flex-row justify-center items-center flex-1 w-full h-full`
           )}
         >
           {children}
         </div>
 
-        {/* MUI Drawer (mobile menu) */}
         <MUIDrawer
           {...muiDrawerProps}
           open={openDrawer}
@@ -92,13 +94,12 @@ const Drawer = forwardRef<DrawerRefType, DrawerProps>(
             paper: {
               sx: {
                 width: 300,
-                background: "#740832",
+                background: "#590b25",
               },
               className: `flex flex-col justify-start items-center space-y-3 relative max-h-[100svh] overflow-hidden`,
             },
           }}
         >
-          {/* Close button */}
           <IconButton
             sx={{
               p: 0.5,
@@ -107,27 +108,18 @@ const Drawer = forwardRef<DrawerRefType, DrawerProps>(
               top: 20,
               right: 20,
               "&:hover": {
-                color: "red",
+                color: "white",
               },
             }}
             onClick={() => handleClose()}
           >
-            <IoClose className="text-[clamp(20px,2rem,22px)] z-[9999] text-akti-white hover:text-akti-fire" />
+            <IoClose className="text-[clamp(20px,2rem,22px)] text-akti-fire " />
           </IconButton>
-
-          {/* Scrollable Drawer content */}
           <div
             ref={paperRef}
-            className="w-full h-screen max-h-[100svh] overflow-auto flex flex-col py-10"
+            className="w-full h-screen max-h-[100svh] overflow-auto flex flex-col py-10 bg-akti-burgundy text-akti-white"
           >
-            {/* 👇 menu content now inside Drawer */}
-            {menu && (
-              <div className="min-h-fit flex flex-col w-full">{menu}</div>
-            )}
-            {/* optional children */}
-            {children && (
-              <div className="min-h-fit flex flex-col w-full">{children}</div>
-            )}
+            <div className="min-h-fit flex flex-col w-full text-white ">{children}</div>
           </div>
         </MUIDrawer>
       </>

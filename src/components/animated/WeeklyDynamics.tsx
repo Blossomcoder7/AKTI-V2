@@ -36,10 +36,11 @@ const WeeklyDynamics = () => {
           <motion.div
             key={i}
             initial={{ height: 0 }}
-            animate={{ height: `${height}%` }}
+            whileInView={{ height: `${height}%` }}
+            viewport={{ once: true, amount: 0.5 }}
             transition={{
               duration: 0.5,
-              delay: i * 0.2, 
+              delay: i * 0.2,
               ease: "easeOut",
             }}
             style={{

@@ -55,8 +55,8 @@ const ChooseUs = () => {
   ];
 
   return (
-    <div className="w-full flex flex-col items-center justify-center rounded-[20px] py-8 bg-white mt-4">
-      <div className="max-w-4xl text-center px-6">
+    <div className="w-full flex flex-col items-center justify-center rounded-[20px] p-10 bg-white">
+      <div className="w-full max-w-4xl text-center flex  flex-col justify-center items-center">
         <motion.h1
           initial={{ y: 100, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}

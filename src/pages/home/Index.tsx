@@ -1,5 +1,4 @@
 // import useLayoutConfig from "../../hooks/useLayoutConfig";
-import LeftTopCorner from "../../components/UI/LeftTopCorner";
 import AddressSection from "./sections/AddressSection";
 import AktiApp from "./sections/AktiApp";
 import BannerNew from "./sections/BannerNew";
@@ -9,26 +8,30 @@ import InsuranceClamNew from "./sections/InsuranceClamNew";
 import InsuranceType from "./sections/InsuranceType";
 import SecureFuture from "./sections/SecureFuture";
 import ShowCounter from "./sections/ShowCounter";
-import WheelSection from "./sections/WheelSection";
+import SlidingBenefits from "./sections/SlidingBenefits";
+import FormSection from "./sections/FormSection";
+import NewWheelSection from "./sections/NewWheelSection";
 
 const HomePage = () => {
   // const { isRtl, locale } = useLayoutConfig();
   return (
     <>
-      <div className="w-full  mb-3  flex flex-col md:flex-row rounded-[20px] items-center relative justify-between gap-10">
-        <LeftTopCorner />
+      <div className="w-full mt-8 pt-6 flex flex-col md:flex-row rounded-[20px] items-center relative justify-between gap-10">
         <InsuranceType />
       </div>
-      <div className="w-full bg-white  py-14 px-6 md:px-12 flex flex-col md:flex-row rounded-[20px] items-center relative justify-between gap-10">
+      <div className="w-full bg-white  px-6 md:px-10 flex flex-col md:flex-row rounded-[20px] items-center my-3 relative justify-between gap-10">
         <BannerNew />
       </div>
       <ShowCounter />
       <SecureFuture />
-      <WheelSection />
+      <SlidingBenefits />
+      <NewWheelSection />
+      {/* <WheelSection /> */}
       <InsuranceClamNew />
+      <FormSection />
       <ChooseUs />
-      {/* <Reviews /> */}
       <AktiApp />
+      <SlidingBenefits />
       <AddressSection />
       <FaqNew />
     </>

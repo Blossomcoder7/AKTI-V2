@@ -9,10 +9,7 @@ import {
   type HTMLAttributes,
   type RefObject,
 } from "react";
-
-import XSpacing from "../../../components/wrappers/XSpacing";
 import { DraggableRotation } from "../../../components/animated/DraggableRotation";
-
 import image1 from "/images/insurances/motor.png";
 import image2 from "/images/insurances/marine.png";
 import image3 from "/images/insurances/medical.png";
@@ -22,7 +19,6 @@ import image5 from "/images/insurances/travel.png";
 const Cards = () => {
   const { scrollYProgress } = useScroll({});
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 900]);
-
   const cards1 = [
     {
       id: 1,
@@ -46,7 +42,6 @@ const Cards = () => {
         "Designed exclusively for residents aged 60 and above, AKTI Senior’s Health Insurance plans offer two tailored options: Basic and Basic Plus.",
     },
   ];
-
   const cards2 = [
     {
       id: 4,
@@ -63,10 +58,7 @@ const Cards = () => {
         "Stay protected against trip delays, lost baggage, and unexpected emergencies—wherever you go.",
     },
   ];
-
-  // Combine all cards for easy lookup
   const allCards = [...cards1, ...cards2];
-
   const cellElms = useRef<(HTMLDivElement | null)[]>([]);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [overlayStyle, setOverlayStyle] = useState({
@@ -76,16 +68,13 @@ const Cards = () => {
     height: 0,
   });
   const gridRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (hoveredIndex === null) return;
-
     const cell = cellElms.current[hoveredIndex];
     const grid = gridRef.current;
     if (cell && grid) {
       const gridRect = grid.getBoundingClientRect();
       const cellRect = cell.getBoundingClientRect();
-
       setOverlayStyle({
         top: cellRect.top - gridRect.top,
         left: cellRect.left - gridRect.left,
@@ -94,16 +83,12 @@ const Cards = () => {
       });
     }
   }, [hoveredIndex]);
-
-  // Get current hovered card's image
   const hoveredImage = hoveredIndex
     ? allCards.find((card) => card.id === hoveredIndex)?.image
     : null;
-
   return (
-    <div className="py-14 flex w-full overflow-hidden flex-col relative">
-      {/* Top Section */}
-      <XSpacing className="gap-3">
+    <div className="py-14 flex w-full  flex-col relative">
+      <>
         <div
           ref={gridRef}
           className="grid grid-cols-1 w-full h-fit gap-3 relative"
@@ -121,7 +106,7 @@ const Cards = () => {
                   height: overlayStyle.height,
                 }}
                 exit={{ opacity: 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                transition={{ type: "spring", stiffness: 300, damping: 35 }}
                 className="pointer-events-none absolute top-0 left-0 rounded-xl bg-akti-copper z-1 overflow-hidden"
               >
                 <img
@@ -132,7 +117,6 @@ const Cards = () => {
               </motion.div>
             )}
           </AnimatePresence>
-
           <div className="col-span-1 grid grid-cols-1 md:grid-cols-3 gap-3 w-full ">
             {cards1.map((item) => (
               <Fragment key={item.id}>
@@ -148,8 +132,6 @@ const Cards = () => {
               </Fragment>
             ))}
           </div>
-
-          {/* Bottom Section */}
           <div className="col-span-1 relative w-full h-fit ">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-3">
               {cards2.map((item) => (
@@ -165,8 +147,6 @@ const Cards = () => {
                   />
                 </Fragment>
               ))}
-
-              {/* BlueHole Image */}
               <div className="hidden lg:flex items-end justify-end relative">
                 <div className="absolute -bottom-20 right-0 z-1">
                   <motion.div
@@ -188,7 +168,7 @@ const Cards = () => {
             </div>
           </div>
         </div>
-      </XSpacing>
+      </>
     </div>
   );
 };

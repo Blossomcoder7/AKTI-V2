@@ -54,7 +54,7 @@ const Banner = () => {
   return (
     <div className="flex w-full h-fit items-center justify-center">
       <div className="w-full flex flex-col md:flex-row py-4 md:py-0 items-center md:max-h-[900px] h-screen  md:justify-center justify-end gap-6 md:gap-0 relative bg-white  md:min-h-[700px] rounded-[20px]">
-        <div className="flex items-center justify-center max-w-fit">
+        <div className="flex items-center relative justify-center max-w-fit">
           <LeftTopCorner />
         </div>
 

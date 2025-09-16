@@ -6,7 +6,6 @@ import ChooseUs from "./sections/ChooseUs";
 import FaqNew from "./sections/FaqNew";
 import InsuranceClamNew from "./sections/InsuranceClamNew";
 import InsuranceType from "./sections/InsuranceType";
-import Reviews from "./sections/Reviews";
 import SecureFuture from "./sections/SecureFuture";
 import ShowCounter from "./sections/ShowCounter";
 import WheelSection from "./sections/WheelSection";
@@ -22,7 +21,6 @@ const HomePage = () => {
       <WheelSection />
       <InsuranceClamNew />
       <ChooseUs />
-      <Reviews />
       <AktiApp />
       <AddressSection />
       <FaqNew />

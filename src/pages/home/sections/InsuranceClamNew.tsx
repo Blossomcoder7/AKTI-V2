@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
-import image1 from "../../../assets/images/image6.png";
-import image2 from "../../../assets/images/image2.png";
-import image3 from "../../../assets/images/image3.png";
+import image1 from "../../../assets/images/image3.jpg";
+import image2 from "../../../assets/images/image2.jpg";
+import image3 from "../../../assets/images/image1.jpg";
 
 const steps = [
   {
@@ -27,19 +27,19 @@ const steps = [
     id: 4,
     process: "Step 4",
     image: image1,
-    text: "Step 4: Claim evaluation and approval process starts. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit  Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+    text: "Step 4: Claim evaluation and approval process starts. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit  Lorem ipsum dolor sit amet, consectetur adipisicing elit consectetur adipisicing elit.",
   },
   {
     id: 5,
     process: "Step 5",
     image: image2,
-    text: "Step 5: Settlement amount is finalized. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit  Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+    text: "Step 5: Settlement amount is finalized. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit  Lorem ipsum dolor sit amet, consectetur adipisicing elit adipisicing elit consectetur adipisicing elit.  ",
   },
   {
     id: 6,
     process: "Step 6",
     image: image3,
-    text: "Step 6: Claim amount is credited to your account. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit  Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+    text: "Step 6: Claim amount is credited to your account. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit  Lorem ipsum dolor sit amet, consectetur adipisicing elit  adipisicing elit consectetur adipisicing elit.",
   },
 ];
 
@@ -55,18 +55,18 @@ const InsuranceClamNew = () => {
   };
 
   return (
-    <div className="w-full h-auto flex flex-col items-center justify-center rounded-[20px] bg-akti-white py-10 ">
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-8">
+    <div className="w-full h-auto  flex flex-col items-center justify-center rounded-[20px] bg-akti-white p-8 ">
+      <div className="w-full  grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
         <div className="w-full flex justify-center items-center">
           <img
             src={steps[activeStep].image}
             alt="Insurance Step"
-            className="rounded-xl shadow-lg max-h-80 object-contain"
+            className="rounded-xl w-full  max-h-80 object-cover"
           />
         </div>
 
-        <div className="w-full flex flex-col gap-4">
-          <h2 className="text-4xl font-bold mb-4">
+        <div className="w-full flex flex-col gap-4 text-center lg:text-start">
+          <h2 className="text-2xl lg:text-4xl font-bold mb-4">
             How to Claim Insurance <br />
             Online with AKTI?
           </h2>
@@ -74,7 +74,7 @@ const InsuranceClamNew = () => {
         </div>
       </div>
 
-      <div className="w-full mt-12 px-10 flex flex-col items-center">
+      <div className="w-full mt-12 flex flex-col items-center">
         <div className="relative flex items-center justify-between w-full">
           <div className="absolute top-[12px] left-3 right-3  h-[2px] bg-gray-300"></div>
 
@@ -91,7 +91,7 @@ const InsuranceClamNew = () => {
           {steps.map((step, index) => (
             <div
               key={index}
-              className="flex flex-col items-center cursor-pointer relative z-10"
+              className="flex flex-col text-sm items-center cursor-pointer relative z-10"
               onClick={() => setActiveStep(index)}
             >
               <div

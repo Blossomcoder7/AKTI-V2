@@ -6,7 +6,7 @@ import mobileApp from "../../../assets/images/AktiApp.png";
 const AktiApp = () => {
   return (
     <>
-      <div className="flex w-full bg-akti-burgundy">
+      <div className="flex w-full bg-akti-burgundy my-4">
         <div
           className="bg-akti-white py-10 md:py-5 md:h-[24rem] lg:h-[31rem] flex bg-cover bg-center w-full justify-between items-center relative md:px-20 rounded-[20px]"
           style={{ backgroundImage: `url(${backgroundImage_home})` }}

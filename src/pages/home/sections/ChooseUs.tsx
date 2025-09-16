@@ -55,8 +55,7 @@ const ChooseUs = () => {
   ];
 
   return (
-    <div className="w-full flex flex-col items-center justify-center rounded-[20px] py-12 bg-white mt-4">
-      {/* Section Heading */}
+    <div className="w-full flex flex-col items-center justify-center rounded-[20px] py-8 bg-white mt-4">
       <div className="max-w-4xl text-center px-6">
         <motion.h1
           initial={{ y: 100, opacity: 0 }}
@@ -82,7 +81,6 @@ const ChooseUs = () => {
         </motion.p>
       </div>
 
-      {/* Feature Cards */}
       <div className="w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6 md:px-16">
         {features.map((feature, index) => (
           <motion.div

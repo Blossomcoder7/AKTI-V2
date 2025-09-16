@@ -12,7 +12,7 @@ const GetStartedButton = () => {
 
   const handleScroll = () => {
     gsap.to(window, {
-      duration: 2,
+      duration: 0.8,
       scrollTo: { y: "#section2", offsetY: 0 },
       ease: "power2.out",
     });

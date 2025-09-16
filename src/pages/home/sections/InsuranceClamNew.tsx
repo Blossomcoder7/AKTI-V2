@@ -55,13 +55,13 @@ const InsuranceClamNew = () => {
   };
 
   return (
-    <div className="w-full h-auto  flex flex-col items-center justify-center rounded-[20px] bg-akti-white p-8 ">
-      <div className="w-full  grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+    <div className="w-full h-auto flex flex-col items-center justify-center rounded-[20px] bg-akti-white pt-14 pb-8 px-6">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-8">
         <div className="w-full flex justify-center items-center">
           <img
             src={steps[activeStep].image}
             alt="Insurance Step"
-            className="rounded-xl w-full  max-h-80 object-cover"
+            className="rounded-2xl w-full max-h-80 object-fill object-center"
           />
         </div>
 
@@ -81,9 +81,8 @@ const InsuranceClamNew = () => {
           <div
             className="absolute top-[12px] left-3 h-[2px] bg-akti-burgundy transition-all duration-500"
             style={{
-              width: `calc(${
-                (activeStep / (steps.length - 1)) * 100
-              }% - 0.75rem)`,
+              width: `calc(${(activeStep / (steps.length - 1)) * 100
+                }% - 0.75rem)`,
               maxWidth: "calc(100% - 1.5rem)",
             }}
           ></div>
@@ -96,20 +95,18 @@ const InsuranceClamNew = () => {
             >
               <div
                 className={`w-6 h-6 rounded-full flex items-center justify-center border-2
-                    ${
-                      index === activeStep
-                        ? "bg-black border-black text-white"
-                        : index < activeStep
-                        ? "bg-akti-burgundy border-akti-burgundy text-white"
-                        : "bg-white border-gray-300 text-gray-400"
-                    }`}
+                    ${index === activeStep
+                    ? "bg-black border-black text-white"
+                    : index < activeStep
+                      ? "bg-akti-burgundy border-akti-burgundy text-white"
+                      : "bg-white border-gray-300 text-gray-400"
+                  }`}
               ></div>
               <p
-                className={`mt-2 text-sm ${
-                  index === activeStep
-                    ? "font-bold text-black"
-                    : "text-gray-600"
-                }`}
+                className={`mt-2 text-sm ${index === activeStep
+                  ? "font-bold text-black"
+                  : "text-gray-600"
+                  }`}
               >
                 {step.process}
               </p>

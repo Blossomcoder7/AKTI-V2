@@ -7,59 +7,57 @@ import LeftTopCorner from "../../../components/UI/LeftTopCorner";
 import Counter from "../../../components/animated/Counter";
 
 const BannerNew = () => {
+  return (
+    <>
+      <div className="w-full flex-1 flex flex-col items-start gap-5 max-w-lg">
+        <p className="text-base text-black italic">
+          Welcome to Alkhaleej Takaful Insurance
+        </p>
+        <h1 className="text-3xl md:text-5xl font-bold  leading-snug">
+          Secure Your Future <br /> with{" "}
+          <span className="text-white bg-gradient-to-r from-akti-burgundy-light to-akti-burgundy px-2 py-1 rounded-xl">
+            AKTI Insurance
+          </span>
+        </h1>
+        <p className="text-gray-700 leading-relaxed pb-5">
+          Are you searching for reliable online car insurance in Qatar that
+          offers comprehensive and convenient coverage? AKTI is the solution.
+          Purchasing car insurance may seem difficult at times, but we're here
+          to make it easier and assist you in obtaining coverage that suits your
+          values and requirements.
+        </p>
+        <GetStartedButton />
+      </div>
 
+      <div className="w-full flex-1 relative flex justify-center items-center">
+        <img
+          src={image1}
+          alt="Insurance"
+          className="w-full max-w-lg rounded-lg shadow-lg"
+        />
 
-    return (
-        <>
-            <LeftTopCorner />
-            <div className="w-full bg-white py-14 px-6 md:px-12 flex flex-col md:flex-row rounded-[20px] items-center justify-between gap-10">
-                <div className="w-full flex-1 flex flex-col items-start gap-5 max-w-lg">
-                    <p className="text-base text-black italic">
-                        Welcome to Alkhaleej Takaful Insurance
-                    </p>
-                    <h1 className="text-3xl md:text-5xl font-bold  leading-snug">
-                        Secure Your Future <br /> with{" "}
-                        <span className="text-white bg-gradient-to-r from-akti-burgundy-light to-akti-burgundy px-2 py-1 rounded-xl">
-                            AKTI Insurance
-                        </span>
-                    </h1>
-                    <p className="text-gray-700 leading-relaxed pb-5">
-                        Are you searching for reliable online car insurance in Qatar that
-                        offers comprehensive and convenient coverage? AKTI is the solution.
-                        Purchasing car insurance may seem difficult at times, but we're here
-                        to make it easier and assist you in obtaining coverage that suits your
-                        values and requirements.
-                    </p>
-                    <GetStartedButton />
-                </div>
-
-                <div className="w-full flex-1 relative flex justify-center items-center">
-                    <img
-                        src={image1}
-                        alt="Insurance"
-                        className="w-full max-w-lg rounded-lg shadow-lg"
-                    />
-
-                    <div className="absolute top-28 right-4 bg-white text-gray-700 py-2 px-3 rounded-2xl flex items-center gap-2">
-                        <div className="w-full flex justify-center items-center gap-2">
-                            <div className="w-full flex flex-col px-2 text-base font-semibold">
-                                <span>Customers</span>
-                                <span className="text-sm"> <Counter suffix="+" end={10000} /></span>
-                            </div>
-
-                            <SlidingButton className="w-fit p-1 flex items-center justify-center rounded-full bg-gradient-to-r from-akti-burgundy to-akti-burgundy-light text-white hover:cursor-pointer hover:scale-105 transition-transform duration-200">
-                                <FaLongArrowAltUp size={20} />
-                            </SlidingButton>
-                        </div>
-                    </div>
-
-                    <div className="absolute bottom-4 -left-8 px-4 py-2 rounded-md text-sm">
-                        <WeeklyDynamics />
-                    </div>
-                </div>
+        <div className="absolute top-28 right-4 bg-white text-gray-700 py-2 px-3 rounded-2xl flex items-center gap-2">
+          <div className="w-full flex justify-center items-center gap-2">
+            <div className="w-full flex flex-col px-2 text-base font-semibold">
+              <span>Customers</span>
+              <span className="text-sm">
+                {" "}
+                <Counter suffix="+" end={10000} />
+              </span>
             </div>
-        </>
-    );
+
+            <SlidingButton className="w-fit p-1 flex items-center justify-center rounded-full bg-gradient-to-r from-akti-burgundy to-akti-burgundy-light text-white hover:cursor-pointer hover:scale-105 transition-transform duration-200">
+              <FaLongArrowAltUp size={20} />
+            </SlidingButton>
+          </div>
+        </div>
+
+        <div className="absolute bottom-4 -left-8 px-4 py-2 rounded-md text-sm">
+          <WeeklyDynamics />
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default BannerNew;

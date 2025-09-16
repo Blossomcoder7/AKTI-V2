@@ -1,4 +1,5 @@
 // import useLayoutConfig from "../../hooks/useLayoutConfig";
+import LeftTopCorner from "../../components/UI/LeftTopCorner";
 import AddressSection from "./sections/AddressSection";
 import AktiApp from "./sections/AktiApp";
 import BannerNew from "./sections/BannerNew";
@@ -14,13 +15,19 @@ const HomePage = () => {
   // const { isRtl, locale } = useLayoutConfig();
   return (
     <>
-      <BannerNew />
+      <div className="w-full  mb-3  flex flex-col md:flex-row rounded-[20px] items-center relative justify-between gap-10">
+        <LeftTopCorner />
+        <InsuranceType />
+      </div>
+      <div className="w-full bg-white  py-14 px-6 md:px-12 flex flex-col md:flex-row rounded-[20px] items-center relative justify-between gap-10">
+        <BannerNew />
+      </div>
       <ShowCounter />
       <SecureFuture />
-      <InsuranceType />
       <WheelSection />
       <InsuranceClamNew />
       <ChooseUs />
+      {/* <Reviews /> */}
       <AktiApp />
       <AddressSection />
       <FaqNew />

@@ -2,7 +2,7 @@ import React, {
   useRef,
   useState,
   useLayoutEffect,
-  useEffect,  
+  useEffect,
   useMemo,
 } from "react";
 import background from "../../../assets/images/wheel-section-bg.png";
@@ -89,101 +89,154 @@ const WheelSection = () => {
   const totalHands = SliderList?.length || 0;
   const step = angle / (totalHands - 1);
 
-  useGSAP(
-    () => {
-      if (!pinEl.current || !handsGroupRef.current) return;
+  // useGSAP(
+  //   () => {
+  //     if (!pinEl.current || !handsGroupRef.current) return;
 
-      let currentItemIndex =
-        SliderList.findIndex((item) => item.id === activeId) || 0;
-      let isAnimating = false;
+  //     let currentItemIndex =
+  //       SliderList.findIndex((item) => item.id === activeId) || 0;
+  //     let isAnimating = false;
 
-      const st = ScrollTrigger.create({
+  //     const st = ScrollTrigger.create({
+  //       trigger: pinEl.current,
+  //       start: "top top",
+  //       end: `+=${100}% `,
+  //       markers: false,
+  //       pin: pinEl.current,
+  //       scrub: false,
+  //       pinSpacing: true,
+  //       snap: {
+  //         snapTo: (progress) => {
+  //           const rawIndex = progress * (totalHands - 1);
+  //           const nearestIndex = Math.round(rawIndex);
+  //           currentItemIndex = Math.max(
+  //             0,
+  //             Math.min(nearestIndex, totalHands - 1)
+  //           );
+  //           return currentItemIndex / (totalHands - 1);
+  //         },
+  //         duration: 0.5,
+  //         ease: "power2.out",
+  //         directional: false,
+  //       },
+  //       onUpdate: (self) => {
+  //         // Prevent multiple animations from running simultaneously
+  //         if (isAnimating) return;
+
+  //         const targetIndex = Math.round(self.progress * (totalHands - 1));
+  //         const clampedIndex = Math.max(
+  //           0,
+  //           Math.min(targetIndex, totalHands - 1)
+  //         );
+
+  //         // Only animate if the index actually changed
+  //         if (clampedIndex !== currentItemIndex) {
+  //           currentItemIndex = clampedIndex;
+  //           const exactRotation = -clampedIndex * step;
+  //           isAnimating = true;
+
+  //           // Single, clean rotation animation with proper rounding
+  //           gsap.to(handsGroupRef.current, {
+  //             rotation: exactRotation,
+  //             duration: 0.5,
+  //             ease: "power2.out",
+  //             force3D: true, // Force GPU acceleration
+  //             transformOrigin: "center center",
+  //             onComplete: () => {
+  //               // Ensure final position is exact
+  //               gsap.set(handsGroupRef.current, {
+  //                 rotation: Math.round(exactRotation * 100) / 100, // Round to prevent sub-pixel issues
+  //                 force3D: true,
+  //                 transformOrigin: "center center",
+  //               });
+  //               isAnimating = false;
+  //             },
+  //           });
+
+  //           const newActiveId = SliderList
+  //             ? SliderList[clampedIndex]?.id
+  //             : null;
+  //           if (activeId !== newActiveId) {
+  //             setActiveId(newActiveId);
+  //           }
+  //         }
+  //       },
+  //       onSnapComplete: (self) => {
+  //         const finalIndex = Math.round(self.progress * (totalHands - 1));
+  //         const clampedIndex = Math.max(
+  //           0,
+  //           Math.min(finalIndex, totalHands - 1)
+  //         );
+  //         const exactRotation = -clampedIndex * step;
+
+  //         // Set final position with precise rounding
+  //         gsap.set(handsGroupRef.current, {
+  //           rotation: Math.round(exactRotation * 100) / 100,
+  //           force3D: true,
+  //           transformOrigin: "center center",
+  //         });
+
+  //         isAnimating = false;
+  //       },
+  //     });
+
+  //     return () => st.kill();
+  //   },
+  //   { dependencies: [pinEl, handsGroupRef, totalHands, step] }
+  // );
+
+  useGSAP(() => {
+    if (!pinEl.current || !handsGroupRef.current) return;
+
+    // totalHands = 5 for example
+    // step = degrees between each hand
+    const totalRotation = -(totalHands - 1) * step; // rotate from 0 to -step*4 for 5 items
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
         trigger: pinEl.current,
         start: "top top",
-        end: `+=${SliderList.length * 40}% `,
-        markers: false,
-        pin: pinEl.current,
-        scrub: false,
+        end: "+=50%", // how far to scroll to finish the rotation
+        pin: true,
         pinSpacing: true,
-        snap: {
-          snapTo: (progress) => {
-            const rawIndex = progress * (totalHands - 1);
-            const nearestIndex = Math.round(rawIndex);
-            currentItemIndex = Math.max(
-              0,
-              Math.min(nearestIndex, totalHands - 1)
-            );
-            return currentItemIndex / (totalHands - 1);
-          },
-          duration: 0.5,
-          ease: "power2.out",
-          directional: false,
-        },
-        onUpdate: (self) => {
-          // Prevent multiple animations from running simultaneously
-          if (isAnimating) return;
+        scrub: 1, // <— enables smooth scrub
+        markers: false,
+      },
+    });
 
-          const targetIndex = Math.round(self.progress * (totalHands - 1));
-          const clampedIndex = Math.max(
-            0,
-            Math.min(targetIndex, totalHands - 1)
-          );
+    // animate from rotation 0 to totalRotation over the scroll
+    tl.fromTo(
+      handsGroupRef.current,
+      {
+        rotation: 0,
+        transformOrigin: "center center",
+      },
+      {
+        rotation: totalRotation,
+        ease: "power2.inOut",
+        transformOrigin: "center center",
+      }
+    );
 
-          // Only animate if the index actually changed
-          if (clampedIndex !== currentItemIndex) {
-            currentItemIndex = clampedIndex;
-            const exactRotation = -clampedIndex * step;
-            isAnimating = true;
+    // if you still want to set activeId based on scroll progress:
+    ScrollTrigger.create({
+      trigger: pinEl.current,
+      start: "top top",
+      end: "+=50%",
+      scrub: true,
+      onUpdate: (self) => {
+        const index = Math.round(self.progress * (totalHands - 1));
+        if (activeId !== SliderList[index]?.id) {
+          setActiveId(SliderList[index]?.id);
+        }
+      },
+    });
 
-            // Single, clean rotation animation with proper rounding
-            gsap.to(handsGroupRef.current, {
-              rotation: exactRotation,
-              duration: 0.5,
-              ease: "power2.out",
-              force3D: true, // Force GPU acceleration
-              transformOrigin: "center center",
-              onComplete: () => {
-                // Ensure final position is exact
-                gsap.set(handsGroupRef.current, {
-                  rotation: Math.round(exactRotation * 100) / 100, // Round to prevent sub-pixel issues
-                  force3D: true,
-                  transformOrigin: "center center",
-                });
-                isAnimating = false;
-              },
-            });
-
-            const newActiveId = SliderList
-              ? SliderList[clampedIndex]?.id
-              : null;
-            if (activeId !== newActiveId) {
-              setActiveId(newActiveId);
-            }
-          }
-        },
-        onSnapComplete: (self) => {
-          const finalIndex = Math.round(self.progress * (totalHands - 1));
-          const clampedIndex = Math.max(
-            0,
-            Math.min(finalIndex, totalHands - 1)
-          );
-          const exactRotation = -clampedIndex * step;
-
-          // Set final position with precise rounding
-          gsap.set(handsGroupRef.current, {
-            rotation: Math.round(exactRotation * 100) / 100,
-            force3D: true,
-            transformOrigin: "center center",
-          });
-
-          isAnimating = false;
-        },
-      });
-
-      return () => st.kill();
-    },
-    { dependencies: [pinEl, handsGroupRef, totalHands, step] }
-  );
+    return () => {
+      tl.scrollTrigger?.kill();
+      tl.kill();
+    };
+  }, [pinEl, handsGroupRef, totalHands, step]);
 
   return (
     <div className="w-full h-auto flex items-center justify-center">
@@ -225,7 +278,10 @@ const WheelSection = () => {
                   className="absolute z-30 w-full h-full flex items-center justify-center"
                 >
                   <AnimatedWheelWrapper className="flex items-center justify-center aspect-square h-1/2">
-                    <BrandLogo fill="#660033" className="md:w-full xl:h-full aspect-square xl:w-fit" />
+                    <BrandLogo
+                      fill="#660033"
+                      className="md:w-full xl:h-full aspect-square xl:w-fit"
+                    />
                   </AnimatedWheelWrapper>
                 </div>
                 {/* Hands */}

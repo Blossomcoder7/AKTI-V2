@@ -27,10 +27,10 @@ const SecureFuture = () => {
           </p>
           <div className="w-full flex justify-center md:justify-start items-center ">
             <SlidingButton className="bg-akti-burgundy-light text-sm flex items-center gap-2 px-4 py-2 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer">
-              <button className="flex items-center gap-2 text-white uppercase font-medium">
+              <div className="flex items-center gap-2 text-white uppercase font-medium">
                 <FaHourglassStart className="w-4 h-4" />
                 <span>Learn More</span>
-              </button>
+              </div>
             </SlidingButton>
           </div>
         </div>

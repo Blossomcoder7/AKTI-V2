@@ -2,12 +2,12 @@ import BlueHole from "../../../assets/logos/SmallLogo2.png";
 import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 import clsx from "clsx";
 import {
+  forwardRef,
   Fragment,
   useEffect,
   useRef,
   useState,
   type HTMLAttributes,
-  type RefObject,
 } from "react";
 import { DraggableRotation } from "../../../components/animated/DraggableRotation";
 import image1 from "/images/insurances/motor.png";
@@ -16,10 +16,16 @@ import image3 from "/images/insurances/medical.png";
 import image4 from "/images/insurances/personal.png";
 import image5 from "/images/insurances/travel.png";
 
+interface CardType {
+  id: number;
+  image: string;
+  title: string;
+  description: string;
+}
 const Cards = () => {
   const { scrollYProgress } = useScroll({});
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 900]);
-  const cards1 = [
+  const cards: CardType[] = [
     {
       id: 1,
       image: image1,
@@ -41,12 +47,10 @@ const Cards = () => {
       description:
         "Designed exclusively for residents aged 60 and above, AKTI Senior’s Health Insurance plans offer two tailored options: Basic and Basic Plus.",
     },
-  ];
-  const cards2 = [
     {
       id: 4,
       image: image4,
-      title: "Personal Accidents",
+      title: "Personal\nAccidents",
       description:
         "Select the plan that works for you and stay covered with reliable protection every day.",
     },
@@ -58,7 +62,7 @@ const Cards = () => {
         "Stay protected against trip delays, lost baggage, and unexpected emergencies—wherever you go.",
     },
   ];
-  const allCards = [...cards1, ...cards2];
+
   const cellElms = useRef<(HTMLDivElement | null)[]>([]);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [overlayStyle, setOverlayStyle] = useState({
@@ -84,14 +88,14 @@ const Cards = () => {
     }
   }, [hoveredIndex]);
   const hoveredImage = hoveredIndex
-    ? allCards.find((card) => card.id === hoveredIndex)?.image
+    ? cards.find((card) => card.id === hoveredIndex)?.image
     : null;
   return (
     <div className="py-6 flex w-full  flex-col relative">
       <>
         <div
           ref={gridRef}
-          className="grid grid-cols-1 w-full h-fit gap-3 relative"
+          className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full h-fit  relative"
         >
           <AnimatePresence>
             {hoveredIndex !== null && hoveredImage && (
@@ -107,64 +111,57 @@ const Cards = () => {
                 }}
                 exit={{ opacity: 0 }}
                 transition={{ type: "spring", stiffness: 300, damping: 35 }}
-                className="pointer-events-none absolute top-0 left-0 rounded-xl bg-akti-copper z-1 overflow-hidden"
+                className="pointer-events-none absolute top-0 left-0 inset-0 rounded-xl border border-white bg-akti-burgundy z-1 overflow-hidden"
               >
-                <img
-                  src={hoveredImage}
-                  alt="bg"
-                  className="object-contain w-full h-full opacity-20"
-                />
+                <div
+                  className={clsx(
+                    "w-1/2 h-1/2 absolute top-0 right-0 ",
+                    hoveredIndex === 1 && "w-full h-full"
+                  )}
+                >
+                  <img
+                    src={hoveredImage}
+                    alt="bg"
+                    className="object-contain w-full h-full "
+                  />
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
-          <div className="col-span-1 grid grid-cols-1 md:grid-cols-3 gap-3 w-full ">
-            {cards1.map((item) => (
-              <Fragment key={item.id}>
-                <CardItem
-                  description={item.description}
-                  title={item.title}
-                  ref={cellElms}
-                  index={item.id}
-                  onMouseEnter={() => setHoveredIndex(item.id)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  activeIndex={hoveredIndex ?? -1}
-                />
-              </Fragment>
-            ))}
-          </div>
-          <div className="col-span-1 relative w-full h-fit ">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-3">
-              {cards2.map((item) => (
+          <>
+            {cards.map((item) => {
+              return (
                 <Fragment key={item.id}>
                   <CardItem
-                    description={item.description}
-                    activeIndex={hoveredIndex ?? -1}
-                    title={item.title}
-                    ref={cellElms}
-                    index={item.id}
+                    cardContent={item}
+                    ref={(el) => {
+                      cellElms.current[item.id] = el;
+                    }}
                     onMouseEnter={() => setHoveredIndex(item.id)}
                     onMouseLeave={() => setHoveredIndex(null)}
+                    activeIndex={hoveredIndex ?? -1}
+                    className={clsx(item.title === "Motor" && "lg:row-span-2")}
                   />
                 </Fragment>
-              ))}
-              <div className="hidden lg:flex items-end justify-end relative">
-                <div className="absolute -bottom-14 right-0 z-1">
-                  <motion.div
-                    style={{
-                      rotate,
-                    }}
-                    className="flex w-full h-full justify-center items-center relative z-2"
-                  >
-                    <DraggableRotation sensitivity={1}>
-                      <img
-                        src={BlueHole}
-                        alt="BlueHole"
-                        className="h-[200px] lg:h-[298px] w-[200px] lg:w-[298px] object-contain"
-                      />
-                    </DraggableRotation>
-                  </motion.div>
-                </div>
-              </div>
+              );
+            })}
+          </>
+          <div className=" col-span-1 hidden  items-end justify-end relative">
+            <div className="absolute -bottom-0 right-0 z-1">
+              <motion.div
+                style={{
+                  rotate,
+                }}
+                className="flex w-full h-full justify-center items-center relative z-2"
+              >
+                <DraggableRotation sensitivity={1}>
+                  <img
+                    src={BlueHole}
+                    alt="BlueHole"
+                    className="h-[200px] lg:h-[298px] w-[200px] lg:w-[298px] object-contain"
+                  />
+                </DraggableRotation>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -174,54 +171,54 @@ const Cards = () => {
 };
 
 interface CardItemProps extends HTMLAttributes<HTMLDivElement> {
-  title: string;
-  description: string;
-  ref: RefObject<(HTMLDivElement | null)[]>;
-  index: number;
+  cardContent: CardType;
   activeIndex: number;
 }
-const CardItem = ({
-  title,
-  description,
-  className,
-  ref,
-  index,
-  activeIndex,
-  ...rest
-}: CardItemProps) => {
-  const isActive = index === activeIndex;
-
-  return (
-    <div
-      ref={(el) => {
-        ref.current[index] = el;
-      }}
-      {...rest}
-      className={clsx(
-        "group cursor-pointer bg-white rounded-xl p-6 flex flex-col justify-between min-h-[240px] transition-all duration-300 relative overflow-hidden",
-        className
-      )}
-    >
-      <div className="relative z-2 ">
-        <h1
+const CardItem = forwardRef<HTMLDivElement, CardItemProps>(
+  ({ cardContent, className, activeIndex, ...rest }, ref) => {
+    const isActive = cardContent.id === activeIndex;
+    return (
+      <div
+        ref={ref}
+        {...rest}
+        className={clsx(
+          "group col-span-1 cursor-pointer bg-white rounded-xl p-6 flex flex-col justify-between min-h-[240px] transition-all duration-300 relative overflow-hidden",
+          className
+        )}
+      >
+        {cardContent.id === 1 && (
+          <div className="w-full flex-1 h-full flex items-center justify-center">
+            <img
+              src={cardContent.image}
+              alt="image"
+              className={clsx(
+                "object-contain  object-center h-20",
+                cardContent.id === 1 && "h-full"
+              )}
+            />
+          </div>
+        )}
+        <div className="relative z-2 ">
+          <h1
+            className={clsx(
+              "text-[clamp(20px,3vw,48px)] font-semibold text-akti-burgundy-light transition-colors duration-300 leading-none",
+              isActive && "text-akti-white"
+            )}
+          >
+            <pre>{cardContent?.title}</pre>
+          </h1>
+        </div>
+        <p
           className={clsx(
-            "text-[48px] font-semibold text-akti-burgundy-light transition-colors duration-300 leading-none",
+            "text-sm mt-1 text-akti-burgundy/70 transition-colors duration-300 relative z-10",
             isActive && "text-akti-white"
           )}
         >
-          {title}
-        </h1>
+          {cardContent?.description}
+        </p>
       </div>
-      <p
-        className={clsx(
-          "text-sm mt-6 text-akti-burgundy/70 transition-colors duration-300 relative z-10",
-          isActive && "text-akti-white"
-        )}
-      >
-        {description}
-      </p>
-    </div>
-  );
-};
+    );
+  }
+);
 
 export default Cards;

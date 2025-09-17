@@ -39,10 +39,10 @@ const AddressSection = () => {
             </div>
 
             <SlidingButton className="bg-akti-burgundy-light text-sm flex items-center gap-2 px-4 py-2 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer">
-              <button className="flex items-center gap-2 text-white uppercase font-medium">
+              <div className="flex items-center gap-2 text-white uppercase font-medium">
                 <MdHomeWork className="w-4 h-4" />
                 <span>Visit Office</span>
-              </button>
+              </div>
             </SlidingButton>
           </div>
 

@@ -55,7 +55,7 @@ const InsuranceClamNew = () => {
   };
 
   return (
-    <div className="w-full h-auto flex flex-col items-center justify-center rounded-[20px] bg-akti-white p-10">
+    <div className="w-full h-auto flex flex-col items-center justify-center rounded-[20px] bg-akti-white px-6 md:px-10 py-10 my-3">
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center ">
         <div className="w-full flex justify-center items-center">
           <img

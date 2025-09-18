@@ -7,8 +7,8 @@ import { MdHomeWork } from "react-icons/md";
 
 const AddressSection = () => {
   return (
-    <div className="w-full flex flex-col justify-center items-center my-3">
-      <div className="relative w-full min-h-fit p-10 rounded-2xl overflow-hidden">
+    <div className="w-full flex flex-col justify-center items-center ">
+      <div className="relative w-full min-h-fit px-6 lg:px-10 py-10 rounded-2xl overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src={backgroundImage}
@@ -18,8 +18,8 @@ const AddressSection = () => {
           <div className="absolute z-0 inset-0 bg-black/40"></div>
         </div>
 
-        <div className="relative z-2 w-full h-full grid grid-cols-2 items-center justify-between ">
-          <div className=" flex flex-col items-start text-start gap-4 z-10">
+        <div className="relative z-2 w-full h-full grid grid-cols-1 lg:grid-cols-2 items-center justify-between gap-8 ">
+          <div className="w-full flex flex-col lg:items-start items-center justify-center text-center lg:text-start gap-4 z-10">
             <div className="w-24 h-24 aspect-square flex items-center relative justify-center">
               <div className="absolute left-1/2 top-1/2 -translate-1/2 text-center leading-none tracking-tight z-2 w-fit p-1 aspect-square flex items-center justify-center bg-white rounded-full text-akti-burgundy font-normal text-xs">
                 Stay <br /> Updated
@@ -33,7 +33,7 @@ const AddressSection = () => {
             </div>
 
             <div className="w-full flex items-center justify-start ">
-              <h1 className="text-white max-w-fit text-3xl md:text-5xl font-bold leading-tight">
+              <h1 className="w-full text-white max-w-fit text-3xl md:text-5xl font-bold leading-tight">
                 Safeguarding Dreams, Securing Lives
               </h1>
             </div>

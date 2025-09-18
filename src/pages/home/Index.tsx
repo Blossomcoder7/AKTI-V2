@@ -9,7 +9,6 @@ import InsuranceType from "./sections/InsuranceType";
 import SecureFuture from "./sections/SecureFuture";
 import ShowCounter from "./sections/ShowCounter";
 import SlidingBenefits from "./sections/SlidingBenefits";
-import FormSection from "./sections/FormSection";
 import NewWheelSection from "./sections/NewWheelSection";
 
 const HomePage = () => {
@@ -26,14 +25,12 @@ const HomePage = () => {
       <SecureFuture />
       <SlidingBenefits />
       <NewWheelSection />
-      {/* <WheelSection /> */}
       <InsuranceClamNew />
-      <FormSection />
       <ChooseUs />
       <AktiApp />
       <SlidingBenefits />
-      <AddressSection />
       <FaqNew />
+      <AddressSection />
     </>
   );
 };

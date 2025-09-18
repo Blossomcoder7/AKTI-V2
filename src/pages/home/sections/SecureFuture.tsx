@@ -1,14 +1,13 @@
 import { FaHourglassStart } from "react-icons/fa";
-import image1 from "../../../assets/images/Vecto.png";
 import SlidingButton from "../../../components/Elements/buttons/SlidingButton";
 
 const SecureFuture = () => {
   return (
-    <div className="w-full h-auto  flex justify-center items-center p-10 rounded-[20px] bg-white my-3">
-      <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+    <div className="w-full h-auto  flex justify-center items-center py-10 px-6 md:px-10 rounded-[20px] bg-white my-3">
+      <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
         <div className="w-full h-[300px] md:h-[450px]  flex flex-1 justify-center items-center">
           <img
-            src={image1}
+            src="https://res.cloudinary.com/db2bcuzzn/image/upload/v1758180011/17833_hgi9ny.jpg"
             alt="Secure Future"
             className="w-full h-full object-cover rounded-xl"
           />

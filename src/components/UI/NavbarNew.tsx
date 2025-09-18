@@ -9,7 +9,6 @@ import {
   useScroll,
 } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
-
 import { useTranslation } from "react-i18next";
 import type { DrawerRefType } from "../wrappers/Drawer";
 import MagicScrollWrapper from "../wrappers/MagicScrollWrapper";
@@ -25,11 +24,11 @@ const NavbarNew = () => {
   const { scrollY } = useScroll();
   const controls = useAnimation();
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false); // Track screen size
   const navigate = useNavigate();
   const location = useLocation();
 
   const navItems = [
-    // { label: t("Home"), path: "/" },
     { label: t("Motor"), path: "/motor" },
     { label: t("Medical"), path: "/medical" },
     { label: t("Marine"), path: "/marine" },
@@ -37,6 +36,13 @@ const NavbarNew = () => {
     { label: t("Personal Accidents"), path: "/personalaccidents" },
     { label: t("Support"), path: "/projects" },
   ];
+
+  useEffect(() => {
+    const checkScreen = () => setIsMobile(window.innerWidth < 1024);
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 400);
@@ -58,15 +64,13 @@ const NavbarNew = () => {
     drawerEl.current?.close?.();
   };
 
-  const isActive = (path: string) => {
-    return location.pathname === path;
-  };
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <MagicScrollWrapper>
       <nav
         className={clsx(
-          "navbar w-full lg:py-4 items-center relative justify-center flex text-base overflow-hidden h-full text-akti-burgundy bg-white px-10"
+          "navbar w-full lg:py-4 items-center relative justify-center flex text-base overflow-hidden h-full text-akti-burgundy bg-white px-5 lg:px-10"
         )}
       >
         <motion.div
@@ -112,17 +116,21 @@ const NavbarNew = () => {
                   className="object-contain object-center"
                 />
               </div>
-              <div className="flex flex-col lg:flex-row items-center justify-center flex-1 space-y-6 lg:space-y-0 lg:space-x-8 ">
+              <div className="flex flex-col lg:flex-row items-center justify-center flex-1 pt-6 lg:pt-0 space-y-6 lg:space-y-0 lg:space-x-8 ">
                 {navItems.map((item, i) => (
                   <button
                     type="button"
                     key={i}
                     onClick={() => handleNavigation(item.path)}
                     className={clsx(
-                      "text-center font-bold  hover:scale-110 transition-all ease-in-out hover:cursor-pointer",
+                      "text-center font-bold hover:scale-110 transition-all ease-in-out hover:cursor-pointer",
                       isActive(item.path)
-                        ? "text-akti-burgundy scale-110 "
-                        : "text-akti-burgundy-light "
+                        ? isMobile
+                          ? "text-white scale-110"
+                          : "text-akti-burgundy scale-110"
+                        : isMobile
+                          ? "text-white"
+                          : "text-akti-burgundy-light"
                     )}
                   >
                     {item.label}

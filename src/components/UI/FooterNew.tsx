@@ -50,8 +50,8 @@ const FooterNew = () => {
 
   return (
     <div className="w-full h-auto bg-akti-white pt-5 ">
-      <div className="w-full px-8 pt-12 text-gray-800 rounded-t-2xl overflow-hidden">
-        <div className="pb-12 grid grid-cols-1 md:grid-cols-5 gap-8">
+      <div className="w-full px-6 lg:px-8 pt-12 text-gray-800 rounded-t-2xl overflow-hidden">
+        <div className="w-full pb-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
           <div className="flex flex-col col-span-2 space-y-7">
             <div className="hover:cursor-pointer">
               <img src={textLogo} alt="Brand Logo" className="w-36 h-auto" />
@@ -115,7 +115,7 @@ const FooterNew = () => {
         <div className="h-px bg-gray-400"></div>
       </div>
 
-      <div className="w-full px-8 py-8 bg-white ">
+      <div className="w-full p-8 bg-white ">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col items-center md:items-start gap-2 text-gray-800">
             <div className="flex gap-5">

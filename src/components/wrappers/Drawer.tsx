@@ -93,7 +93,7 @@ const Drawer = forwardRef(
           slotProps={{
             paper: {
               sx: {
-                width: 300,
+                width: 320,
                 background: "#590b25",
               },
               className: `flex flex-col justify-start items-center space-y-3 relative max-h-[100svh] overflow-hidden`,
@@ -105,21 +105,23 @@ const Drawer = forwardRef(
               p: 0.5,
               color: "white",
               position: "absolute",
-              top: 20,
-              right: 20,
+              top: 25,
+              right: 25,
               "&:hover": {
                 color: "white",
               },
             }}
             onClick={() => handleClose()}
           >
-            <IoClose className="text-[clamp(20px,2rem,22px)] text-akti-fire " />
+            <IoClose className="text-[clamp(20px,2rem,22px)] text-akti-fire z-10" />
           </IconButton>
           <div
             ref={paperRef}
             className="w-full h-screen max-h-[100svh] overflow-auto flex flex-col py-10 bg-akti-burgundy text-akti-white"
           >
-            <div className="min-h-fit flex flex-col w-full text-white ">{children}</div>
+            <div className="min-h-fit flex flex-col w-full text-akti-white ">
+              {children}
+            </div>
           </div>
         </MUIDrawer>
       </>

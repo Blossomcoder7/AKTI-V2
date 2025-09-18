@@ -15,41 +15,37 @@ const NewWheelSection = () => {
       title: "Motor Insurance",
       description:
         "Are you searching for reliable online car insurance in Qatar that offers comprehensive and convenient coverage? AKTI is then the solution",
-      bg: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1470&q=80",
+      bg: "https://res.cloudinary.com/db2bcuzzn/video/upload/v1758180361/854514-hd_1280_720_30fps_pspnxm.mp4",
     },
     {
       title: "Marine Insurance",
       description:
         "Set sail with confidence, knowing you're covered. Our third-party Boat & Yacht Insurance provides seamless protection on the water.",
-
-      bg: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1470&q=80",
+      bg: "https://res.cloudinary.com/db2bcuzzn/video/upload/v1758183446/14400696_960_540_60fps_apujo7.mp4",
     },
     {
       title: "Medical Insurance",
       description:
         "Designed exclusively for residents aged 60 and above, AKTI Senior's Health Insurance plans offer two tailored options: Basic and Basic Plus.",
-
-      bg: "https://res.cloudinary.com/dfdgjx0ri/image/upload/v1753703644/samples/coffee.jpg",
+      bg: "https://res.cloudinary.com/db2bcuzzn/video/upload/v1758183564/7164229-hd_1920_1080_30fps_fmn4uf.mp4",
     },
     {
       title: "Personal Insurance",
       description:
         "Select the plan that works for you and stay covered with reliable protection every day.",
-
-      bg: "https://res.cloudinary.com/dfdgjx0ri/image/upload/v1753703644/samples/cup-on-a-table.jpg",
+      bg: "https://res.cloudinary.com/db2bcuzzn/video/upload/v1758183738/7821646-hd_1920_1080_30fps_gngjmc.mp4",
     },
     {
       title: "Travel Insurance",
       description:
         "Stay protected against trip delays, lost baggage, and unexpected emergencies—wherever you go.",
-
-      bg: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80",
+      bg: "https://res.cloudinary.com/db2bcuzzn/video/upload/v1758183640/4684101-hd_1920_1080_25fps_idkix8.mp4",
     },
   ];
 
   return (
     <div className="w-full flex justify-center items-center my-3 rounded-2xl bg-white">
-      <div className="w-full min-h-[500px] p-10">
+      <div className="w-full min-h-[500px] px-6 md:px-10 py-10">
         <div className="relative w-full">
           <Swiper
             modules={[Autoplay, Pagination, Navigation, EffectFade]}
@@ -72,15 +68,22 @@ const NewWheelSection = () => {
             loop
             effect="fade"
             fadeEffect={{ crossFade: true }}
-            className="w-full h-[500px] rounded-2xl overflow-hidden cursor-grab"
+            className="w-full h-[500px] rounded-2xl overflow-hidden"
           >
             {insuranceData.map((item, index) => (
               <SwiperSlide key={index}>
-                <div
-                  className="w-full h-full relative bg-cover bg-center"
-                  style={{ backgroundImage: `url(${item.bg})` }}
-                >
-                  <div className="absolute inset-0 bg-black/50 z-0 "></div>
+                <div className="w-full h-full relative">
+                  <video
+                    className="absolute inset-0 w-full h-full object-cover"
+                    src={item.bg}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  ></video>
+
+                  <div className="absolute inset-0 bg-black/50 z-0"></div>
+
                   <div className="relative z-10 w-full h-full flex flex-col justify-center items-center mx-auto">
                     <div className="max-w-xl text-center flex flex-col justify-center items-center text-akti-white px-4">
                       <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight">

@@ -29,7 +29,7 @@ const AktiApp = () => {
 
         {/* Content section */}
         <div className="relative z-10 flex flex-col gap-5 w-full md:max-w-[40rem] py-2 md:py-0">
-          <div className="content text-akti-burgundy-light flex-1 justify-center items-center px-3">
+          <div className="content text-akti-burgundy-light flex-1 justify-center items-center px-6">
             <h1 className="text-center md:text-left font-montserrat w-full text-xl md:text-3xl lg:text-4xl font-semibold screen900:text-[2.5rem] pb-2">
               Get the AKTI app
             </h1>
@@ -43,7 +43,7 @@ const AktiApp = () => {
             <img
               src={mobileApp}
               alt="Mobile app"
-              className="w-full h-full object-cover"
+              className="w-fit h-[150px] object-cover"
             />
           </div>
 
@@ -67,7 +67,7 @@ const AktiApp = () => {
           <img
             src={mobileApp}
             alt="Mobile app"
-            className="w-full h-[300px] object-cover"
+            className="w-full lg:h-[300px] md:h-[200px]  object-cover md:object-contain"
           />
         </div>
       </div>

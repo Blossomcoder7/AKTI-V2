@@ -16,6 +16,12 @@ import image3 from "/images/insurances/medical.png";
 import image4 from "/images/insurances/personal.png";
 import image5 from "/images/insurances/travel.png";
 
+import hoverImage1 from "/images/insurances/carImage.jpg";
+import hoverImage2 from "/images/insurances/marineImage.jpg";
+import hoverImage3 from "/images/insurances/medicalImage.jpg";
+import hoverImage4 from "/images/insurances/personalImage.jpg";
+import hoverImage5 from "/images/insurances/travelImage.jpg";
+
 interface CardType {
   id: number;
   image: string;
@@ -25,6 +31,7 @@ interface CardType {
 const Cards = () => {
   const { scrollYProgress } = useScroll({});
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 900]);
+
   const cards: CardType[] = [
     {
       id: 1,
@@ -63,6 +70,15 @@ const Cards = () => {
     },
   ];
 
+  // Mapping hover images by card ID
+  const hoverImages: Record<number, string> = {
+    1: hoverImage1,
+    2: hoverImage2,
+    3: hoverImage3,
+    4: hoverImage4,
+    5: hoverImage5,
+  };
+
   const cellElms = useRef<(HTMLDivElement | null)[]>([]);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [overlayStyle, setOverlayStyle] = useState({
@@ -72,6 +88,7 @@ const Cards = () => {
     height: 0,
   });
   const gridRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (hoveredIndex === null) return;
     const cell = cellElms.current[hoveredIndex];
@@ -87,15 +104,16 @@ const Cards = () => {
       });
     }
   }, [hoveredIndex]);
-  const hoveredImage = hoveredIndex
-    ? cards.find((card) => card.id === hoveredIndex)?.image
-    : null;
+
+  // Use hover image based on hovered card
+  const hoveredImage = hoveredIndex ? hoverImages[hoveredIndex] : null;
+
   return (
-    <div className="py-6 flex w-full  flex-col relative">
+    <div className="pt-6 flex w-full flex-col relative">
       <>
         <div
           ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full h-fit  relative"
+          className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full h-fit relative"
         >
           <AnimatePresence>
             {hoveredIndex !== null && hoveredImage && (
@@ -113,21 +131,17 @@ const Cards = () => {
                 transition={{ type: "spring", stiffness: 300, damping: 35 }}
                 className="pointer-events-none absolute top-0 left-0 inset-0 rounded-xl border border-white bg-akti-burgundy z-1 overflow-hidden"
               >
-                <div
-                  className={clsx(
-                    "w-1/2 h-1/2 absolute top-0 right-0 ",
-                    hoveredIndex === 1 && "w-full h-full"
-                  )}
-                >
+                <div className="w-full h-full absolute top-0 right-0 blur-[2px]">
                   <img
                     src={hoveredImage}
-                    alt="bg"
-                    className="object-contain w-full h-full "
+                    alt="hover-bg"
+                    className="object-cover w-full h-full"
                   />
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
+
           <>
             {cards.map((item) => {
               return (
@@ -146,6 +160,7 @@ const Cards = () => {
               );
             })}
           </>
+
           <div className=" col-span-1 hidden  items-end justify-end relative">
             <div className="absolute -bottom-0 right-0 z-1">
               <motion.div
@@ -174,47 +189,58 @@ interface CardItemProps extends HTMLAttributes<HTMLDivElement> {
   cardContent: CardType;
   activeIndex: number;
 }
+
 const CardItem = forwardRef<HTMLDivElement, CardItemProps>(
   ({ cardContent, className, activeIndex, ...rest }, ref) => {
     const isActive = cardContent.id === activeIndex;
+    const isMotor = cardContent.id === 1;
+
     return (
       <div
         ref={ref}
         {...rest}
         className={clsx(
           "group col-span-1 cursor-pointer bg-white rounded-xl p-6 flex flex-col justify-between min-h-[240px] transition-all duration-300 relative overflow-hidden",
+          isActive && "bg-akti-burgundy",
           className
         )}
       >
-        {cardContent.id === 1 && (
-          <div className="w-full flex-1 h-full flex items-center justify-center">
+        {isMotor ? (
+          <div className="w-full flex-1 h-full flex items-center justify-center ">
             <img
               src={cardContent.image}
               alt="image"
-              className={clsx(
-                "object-contain  object-center h-20",
-                cardContent.id === 1 && "h-full"
-              )}
+              className="object-contain object-center h-full "
+            />
+          </div>
+        ) : (
+          <div className="absolute top-0 -right-3 w-1/2 h-1/2 z-0 overflow-hidden">
+            <img
+              src={cardContent.image}
+              alt="bg"
+              className="object-contain w-full h-full"
             />
           </div>
         )}
-        <div className="relative z-2 ">
+
+        <div className="relative z-10 mt-auto">
           <h1
             className={clsx(
               "text-[clamp(20px,3vw,48px)] font-semibold text-akti-burgundy-light transition-colors duration-300 leading-none",
               isActive && "text-akti-white"
             )}
           >
-            <pre>{cardContent?.title}</pre>
+            <pre>{cardContent.title}</pre>
           </h1>
         </div>
+
         <p
           className={clsx(
             "text-sm mt-1 text-akti-burgundy/70 transition-colors duration-300 relative z-10",
             isActive && "text-akti-white"
           )}
         >
-          {cardContent?.description}
+          {cardContent.description}
         </p>
       </div>
     );

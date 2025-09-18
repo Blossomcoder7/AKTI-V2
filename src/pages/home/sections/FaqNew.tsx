@@ -50,9 +50,9 @@ const FaqNew = () => {
   };
 
   return (
-    <div className="w-full h-auto flex flex-col justify-center items-center bg-akti-white rounded-[20px] p-10">
-      <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 gap-10 ">
-        <div className="w-full h-full flex flex-col justify-between">
+    <div className="w-full h-auto flex flex-col justify-center items-center bg-akti-white rounded-[20px] py-10 md:px-10 px-6 my-3">
+      <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="w-full h-full flex flex-col justify-between gap-8">
           <div className="flex flex-col gap-5">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Have a question? <br /> We are here to help.
@@ -103,9 +103,8 @@ const FaqNew = () => {
               <button className="w-full flex items-center justify-between px-4 py-4 text-left text-akti-burgundy-light font-medium focus:outline-none">
                 <span className="font-bold">{faq.question}</span>
                 <FiChevronDown
-                  className={`w-5 h-5 bg-akti-burgundy text-akti-white p-1 rounded-full transform transition-transform duration-300 ${
-                    openIndex === index ? "rotate-180" : ""
-                  }`}
+                  className={`w-5 h-5 bg-akti-burgundy text-akti-white p-1 rounded-full transform transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""
+                    }`}
                 />
               </button>
 

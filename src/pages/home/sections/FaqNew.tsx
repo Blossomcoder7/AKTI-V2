@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { FiChevronDown, FiHelpCircle, FiPhone } from "react-icons/fi";
 import SlidingButton from "../../../components/Elements/buttons/SlidingButton";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
+import { useInView } from "framer-motion";
+import clsx from "clsx";
 
 const faqs = [
   {
@@ -42,8 +44,23 @@ const faqs = [
   },
 ];
 
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2 },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { y: -50, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
 const FaqNew = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.3 }); // 30% trigger
 
   const toggleFaq = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -52,25 +69,26 @@ const FaqNew = () => {
   return (
     <div className="w-full h-auto flex flex-col justify-center items-center bg-akti-white rounded-[20px] py-10 md:px-10 px-6 my-3">
       <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-10">
+        {/* Left Section */}
         <div className="w-full h-full flex flex-col justify-between gap-8">
           <div className="flex flex-col gap-5">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Have a question? <br /> We are here to help.
             </h2>
-            <p className="text-gray-700 ">
+            <p className="text-gray-700">
               Check out the most common questions our customers asked. Still
               have questions? Contact our customer support.
             </p>
 
             <div className="text-base text-gray-700">
               <p>
-                {" "}
                 Our customer support is available Monday to Friday: 8am–8:30pm.
               </p>
-              <p> Average answer time: 24h</p>
+              <p>Average answer time: 24h</p>
             </div>
           </div>
 
+          {/* Support Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-start items-center">
             <SlidingButton className="bg-akti-burgundy-light text-sm flex items-center gap-2 px-4 py-2 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer">
               <a
@@ -93,40 +111,67 @@ const FaqNew = () => {
           </div>
         </div>
 
-        <div className="space-y-4">
+        {/* FAQ Section */}
+        <motion.div
+          ref={containerRef}
+          className="space-y-4"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {faqs.map((faq, index) => (
-            <div
+            <motion.div
               key={faq.id}
+              variants={itemVariants}
               onClick={() => toggleFaq(index)}
-              className="border-2 border-gray-400 hover:border-akti-burgundy-light hover:cursor-pointer rounded-lg"
+              className={clsx(
+                "group border-2 border-gray-400 rounded-lg cursor-pointer transition-colors duration-300",
+                openIndex === index
+                  ? "bg-akti-burgundy text-white"
+                  : "bg-white text-gray-800",
+                "hover:bg-akti-burgundy hover:text-white"
+              )}
+              whileHover={{
+                scale: 1.02,
+                boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
+              }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
             >
-              <button className="w-full flex items-center justify-between px-4 py-4 text-left text-akti-burgundy-light font-medium focus:outline-none">
+              <button className="w-full flex items-center justify-between px-4 py-4 text-left font-medium focus:outline-none">
                 <span className="font-bold">{faq.question}</span>
-                <FiChevronDown
-                  className={`w-5 h-5 bg-akti-burgundy text-akti-white p-1 rounded-full transform transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""
-                    }`}
-                />
+                <motion.div
+                  animate={{ rotate: openIndex === index ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <FiChevronDown
+                    className={clsx(
+                      "w-5 h-5 p-1 rounded-full transition-colors duration-300",
+                      openIndex === index
+                        ? "bg-white text-akti-burgundy"
+                        : "bg-akti-burgundy text-white",
+                      "group-hover:bg-white group-hover:text-akti-burgundy"
+                    )}
+                  />
+                </motion.div>
               </button>
 
               <AnimatePresence initial={false}>
                 {openIndex === index && (
                   <motion.div
                     key="content"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    initial={{ height: 0, opacity: 0, y: -10 }}
+                    animate={{ height: "auto", opacity: 1, y: 0 }}
+                    exit={{ height: 0, opacity: 0, y: -10 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <div className="px-4 pb-4 text-gray-700 text-sm">
-                      {faq.answer}
-                    </div>
+                    <div className="px-4 pb-4 text-sm">{faq.answer}</div>
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

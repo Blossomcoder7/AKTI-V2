@@ -6,7 +6,7 @@ import useLayoutConfig from "../../../hooks/useLayoutConfig";
 import clsx from "clsx";
 
 const AktiApp = () => {
-  const {isRtl} = useLayoutConfig()
+  const { isRtl } = useLayoutConfig();
   return (
     <div className="flex w-full bg-akti-burgundy py-3">
       <div
@@ -17,9 +17,12 @@ const AktiApp = () => {
         "
       >
         {/* Background image */}
-        <div className={clsx("absolute inset-0 w-full h-full flex items-center justify-center",
-          isRtl &&"rotate-y-180"
-        )}>
+        <div
+          className={clsx(
+            "absolute inset-0 w-full h-full flex items-center justify-center",
+            isRtl && "rotate-y-180"
+          )}
+        >
           <img
             src={backgroundImage_home}
             alt="Background"
@@ -43,7 +46,7 @@ const AktiApp = () => {
             <img
               src={mobileApp}
               alt="Mobile app"
-              className="w-fit h-[150px] object-cover"
+              className="w-fit h-[150px] object-contain"
             />
           </div>
 

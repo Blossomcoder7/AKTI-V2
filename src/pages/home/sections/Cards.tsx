@@ -10,24 +10,26 @@ import {
   type HTMLAttributes,
 } from "react";
 import { DraggableRotation } from "../../../components/animated/DraggableRotation";
-import image1 from "/images/insurances/motor.png";
-import image2 from "/images/insurances/marine.png";
-import image3 from "/images/insurances/medical.png";
-import image4 from "/images/insurances/personal.png";
-import image5 from "/images/insurances/travel.png";
+import image1 from "/images/insurances/newCar.png";
+import image2 from "/images/insurances/Ship.png";
+import image3 from "/images/insurances/Health.png";
+import image4 from "/images/insurances/Ambulance.png";
+import image5 from "/images/insurances/Aeroplane.png";
 
-import hoverImage1 from "/images/insurances/carImage.jpg";
-import hoverImage2 from "/images/insurances/marineImage.jpg";
-import hoverImage3 from "/images/insurances/medicalImage.jpg";
-import hoverImage4 from "/images/insurances/personalImage.jpg";
-import hoverImage5 from "/images/insurances/travelImage.jpg";
+import hoverImage1 from "/images/insurances/hoverImage.png";
+import hoverImage2 from "/images/insurances/newShip.png";
+import hoverImage3 from "/images/insurances/Health.png";
+import hoverImage4 from "/images/insurances/AmbulanceNew.png";
+import hoverImage5 from "/images/insurances/AeroplaneNew.png";
 
 interface CardType {
   id: number;
   image: string;
+  hoverImage: string;
   title: string;
   description: string;
 }
+
 const Cards = () => {
   const { scrollYProgress } = useScroll({});
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 900]);
@@ -36,6 +38,7 @@ const Cards = () => {
     {
       id: 1,
       image: image1,
+      hoverImage: hoverImage1,
       title: "Motor",
       description:
         "Are you searching for reliable online car insurance in Qatar that offers comprehensive and convenient coverage? AKTI is then the solution.",
@@ -43,6 +46,7 @@ const Cards = () => {
     {
       id: 2,
       image: image2,
+      hoverImage: hoverImage2,
       title: "Marine",
       description:
         "Set sail with confidence, knowing you're covered. Our third-party Boat & Yacht Insurance provides seamless protection on the water. Get your policy online in minutes and enjoy total peace of mind",
@@ -50,6 +54,7 @@ const Cards = () => {
     {
       id: 3,
       image: image3,
+      hoverImage: hoverImage3,
       title: "Medical",
       description:
         "Designed exclusively for residents aged 60 and above, AKTI Senior’s Health Insurance plans offer two tailored options: Basic and Basic Plus.",
@@ -57,6 +62,7 @@ const Cards = () => {
     {
       id: 4,
       image: image4,
+      hoverImage: hoverImage4,
       title: "Personal\nAccidents",
       description:
         "Select the plan that works for you and stay covered with reliable protection every day.",
@@ -64,20 +70,12 @@ const Cards = () => {
     {
       id: 5,
       image: image5,
+      hoverImage: hoverImage5,
       title: "Travel",
       description:
         "Stay protected against trip delays, lost baggage, and unexpected emergencies—wherever you go.",
     },
   ];
-
-  // Mapping hover images by card ID
-  const hoverImages: Record<number, string> = {
-    1: hoverImage1,
-    2: hoverImage2,
-    3: hoverImage3,
-    4: hoverImage4,
-    5: hoverImage5,
-  };
 
   const cellElms = useRef<(HTMLDivElement | null)[]>([]);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -105,11 +103,12 @@ const Cards = () => {
     }
   }, [hoveredIndex]);
 
-  // Use hover image based on hovered card
-  const hoveredImage = hoveredIndex ? hoverImages[hoveredIndex] : null;
+  const hoveredImage = hoveredIndex
+    ? cards.find((card) => card.id === hoveredIndex)?.hoverImage
+    : null;
 
   return (
-    <div className="pt-6 flex w-full flex-col relative">
+    <div className="flex w-full flex-col relative">
       <>
         <div
           ref={gridRef}
@@ -131,17 +130,21 @@ const Cards = () => {
                 transition={{ type: "spring", stiffness: 300, damping: 35 }}
                 className="pointer-events-none absolute top-0 left-0 inset-0 rounded-xl border border-white bg-akti-burgundy z-1 overflow-hidden"
               >
-                <div className="w-full h-full absolute top-0 right-0 blur-[2px]">
+                <div
+                  className={clsx(
+                    "w-1/2 h-1/2 absolute top-0 right-0 ",
+                    hoveredIndex === 1 && "w-full h-full"
+                  )}
+                >
                   <img
                     src={hoveredImage}
-                    alt="hover-bg"
-                    className="object-cover w-full h-full"
+                    alt="bg"
+                    className="object-contain w-full h-full "
                   />
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
-
           <>
             {cards.map((item) => {
               return (
@@ -160,8 +163,7 @@ const Cards = () => {
               );
             })}
           </>
-
-          <div className=" col-span-1 hidden  items-end justify-end relative">
+          <div className="col-span-1 hidden items-end justify-end relative">
             <div className="absolute -bottom-0 right-0 z-1">
               <motion.div
                 style={{
@@ -206,11 +208,11 @@ const CardItem = forwardRef<HTMLDivElement, CardItemProps>(
         )}
       >
         {isMotor ? (
-          <div className="w-full flex-1 h-full flex items-center justify-center ">
+          <div className="w-full flex-1 h-full flex items-center justify-center">
             <img
               src={cardContent.image}
               alt="image"
-              className="object-contain object-center h-full "
+              className="object-contain object-center h-fit"
             />
           </div>
         ) : (

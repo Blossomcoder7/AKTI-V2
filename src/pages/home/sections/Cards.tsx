@@ -117,7 +117,8 @@ const Cards = () => {
           <AnimatePresence>
             {hoveredIndex !== null && hoveredImage && (
               <motion.div
-                key="overlay"
+                // key=
+                // {`overlay-${hoveredIndex}`}
                 initial={{ opacity: 0 }}
                 animate={{
                   opacity: 1,
@@ -131,12 +132,15 @@ const Cards = () => {
                 className="pointer-events-none absolute top-0 left-0 inset-0 rounded-xl border border-white bg-akti-burgundy z-1 overflow-hidden"
               >
                 <div
+                  key={hoveredIndex}
+
                   className={clsx(
                     "w-1/2 h-1/2 absolute top-0 right-0 ",
                     hoveredIndex === 1 && "w-full h-full"
                   )}
                 >
                   <img
+                    key={hoveredIndex}
                     src={hoveredImage}
                     alt="bg"
                     className="object-contain w-full h-full "

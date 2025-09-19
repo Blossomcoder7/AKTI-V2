@@ -60,7 +60,7 @@ const itemVariants: Variants = {
 const FaqNew = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.3 }); // 30% trigger
+  const isInView = useInView(containerRef, { once: true, amount: 0.3 });
 
   const toggleFaq = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);

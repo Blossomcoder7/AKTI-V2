@@ -13,13 +13,13 @@ import { DraggableRotation } from "../../../components/animated/DraggableRotatio
 import image1 from "/images/insurances/newCar.png";
 import image2 from "/images/insurances/Ship.png";
 import image3 from "/images/insurances/Health.png";
-import image4 from "/images/insurances/Ambulance.png";
+import image4 from "/images/insurances/insurance.png";
 import image5 from "/images/insurances/Aeroplane.png";
 
 import hoverImage1 from "/images/insurances/hoverImage.png";
 import hoverImage2 from "/images/insurances/newShip.png";
 import hoverImage3 from "/images/insurances/Health.png";
-import hoverImage4 from "/images/insurances/AmbulanceNew.png";
+import hoverImage4 from "/images/insurances/insuranceNew.png";
 import hoverImage5 from "/images/insurances/AeroplaneNew.png";
 
 interface CardType {
@@ -63,7 +63,7 @@ const Cards = () => {
       id: 4,
       image: image4,
       hoverImage: hoverImage4,
-      title: "Personal\nAccidents",
+      title: "Personal\nInsurance",
       description:
         "Select the plan that works for you and stay covered with reliable protection every day.",
     },
@@ -133,7 +133,6 @@ const Cards = () => {
               >
                 <div
                   key={hoveredIndex}
-
                   className={clsx(
                     "w-1/2 h-1/2 absolute top-0 right-0 ",
                     hoveredIndex === 1 && "w-full h-full"

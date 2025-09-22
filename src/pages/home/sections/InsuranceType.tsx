@@ -92,7 +92,7 @@ const InsuranceType = () => {
               animate={control}
               onClick={(e) => e.stopPropagation()}
               className={clsx(
-                "absolute z-5  h-64 bg-akti-burgundy/40 top-1/2 -translate-y-1/2  backdrop-blur-sm",
+                "absolute z-5  h-64 bg-akti-burgundy/40 top-1/2   backdrop-blur-sm",
                 isRtl ? "rounded-r-2xl left-0" : "rounded-l-2xl right-0"
               )}
             >

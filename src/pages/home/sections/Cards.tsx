@@ -19,7 +19,7 @@ import image5 from "/images/insurances/Aeroplane.png";
 import hoverImage1 from "/images/insurances/hoverImage.png";
 import hoverImage2 from "/images/insurances/newShip.png";
 import hoverImage3 from "/images/insurances/Health.png";
-import hoverImage4 from "/images/insurances/insuranceNew.png";
+import hoverImage4 from "../../../assets/images/personal-ins.png";
 import hoverImage5 from "/images/insurances/AeroplaneNew.png";
 
 interface CardType {

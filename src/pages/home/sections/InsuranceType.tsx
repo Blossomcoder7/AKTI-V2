@@ -81,7 +81,7 @@ const InsuranceType = () => {
         </div>
         <motion.div
           className={clsx(
-            "w-full h-full fixed inset-0 z-10 cursor-pointer bg-white/5 backdrop-blur-[1px]",
+            "w-full h-full fixed top-0 inset-0 z-10 cursor-pointer bg-white/5 backdrop-blur-[1px]",
             open ? "flex" : "hidden"
           )}
           onClick={handleClose}

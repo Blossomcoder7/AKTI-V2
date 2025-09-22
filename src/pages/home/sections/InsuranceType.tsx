@@ -3,7 +3,7 @@ import Cards from "./Cards";
 import { useCallback, useEffect, useState } from "react";
 import { MdOutlineArrowRight } from "react-icons/md";
 import PhoneCollectionForm from "./PhoneCollectionForm";
-import corner from "../../../assets/images/banner-corner-white-border.png";
+import corner from "../../../assets/images/banner-corner-burgandy.png";
 import useLayoutConfig from "../../../hooks/useLayoutConfig";
 import clsx from "clsx";
 import { FaCaretLeft } from "react-icons/fa";

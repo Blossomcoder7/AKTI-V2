@@ -18,19 +18,21 @@ const HomePage = () => {
       <div className="w-full mt-8 pt-6 flex flex-col md:flex-row rounded-[20px] items-center relative justify-between gap-10">
         <InsuranceType />
       </div>
-      <div className="w-full bg-white  px-6 md:px-10 flex flex-col md:flex-row rounded-[20px] items-center my-3 relative justify-between gap-10">
-        <BannerNew />
+      <div className="flex flex-col  p-3.5">
+        <div className="w-full bg-white  px-6 md:px-10 flex flex-col md:flex-row rounded-[20px] items-center my-3 relative justify-between gap-10">
+          <BannerNew />
+        </div>
+        <ShowCounter />
+        <SecureFuture />
+        <SlidingBenefits />
+        <NewWheelSection />
+        <InsuranceClamNew />
+        <ChooseUs />
+        <AktiApp />
+        <SlidingBenefits />
+        <FaqNew />
+        <AddressSection />
       </div>
-      <ShowCounter />
-      <SecureFuture />
-      <SlidingBenefits />
-      <NewWheelSection />
-      <InsuranceClamNew />
-      <ChooseUs />
-      <AktiApp />
-      <SlidingBenefits />
-      <FaqNew />
-      <AddressSection />
     </>
   );
 };

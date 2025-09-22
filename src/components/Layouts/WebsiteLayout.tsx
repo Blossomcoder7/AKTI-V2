@@ -35,7 +35,7 @@ const WebsiteLayout = () => {
           <NavbarNew />
         </>
       </header>
-      <main className=" bg-akti-burgundy  w-full h-fit min-h-fit p-3.5 ">
+      <main className=" bg-akti-burgundy  w-full h-fit min-h-fit ">
         <Outlet />
       </main>
       <footer className="flex items-center justify-center">

@@ -4,9 +4,17 @@ import SlidingButton from "../../../components/Elements/buttons/SlidingButton";
 import WeeklyDynamics from "../../../components/animated/WeeklyDynamics";
 import Counter from "../../../components/animated/Counter";
 
+
+
+
 const BannerNew = () => {
+
+
   return (
-    <div className="w-full h-auto flex justify-center items-center py-10 gap-6">
+    <div className="w-full p-3.5 h-auto flex justify-center items-center py-10 gap-6 relative">
+      {/* phone number field  */}
+ 
+
       <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 ">
         <div className="w-full flex-1 flex  flex-col justify-center items-start text-center lg:text-start gap-5">
           <p className="w-full text-base text-black italic">
